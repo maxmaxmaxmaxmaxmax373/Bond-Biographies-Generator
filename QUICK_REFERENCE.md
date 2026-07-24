@@ -3,7 +3,7 @@
 Two things: (1) where the bond code numbers live, (2) how to generate a biography.
 Longer, zero-Python-experience version: [`README.md`](README.md).
 
-**The "project folder"** is the `Bond-Biographies-Generator copy` directory itself — the folder that
+**The "project folder"** is the `Bond-Biographies-Generator` directory itself — the folder that
 holds `bond_biography_agent.py`, `requirements.txt`, and the `data/` and `enhanced_chapters/`
 subfolders. **Every path in this document is written relative to that folder**, so run every
 command with your terminal `cd`'d into it.
@@ -190,7 +190,7 @@ Workflow: generate the draft → fill in the `ENRICH` blocks following the templ
 
 ## Gotchas
 
-- **Run the command from the project folder** (`Bond-Biographies-Generator copy`) — the script
+- **Run the command from the project folder** (`Bond-Biographies-Generator`) — the script
   resolves `data/` and writes output relative to it.
 - **`ImportError: Import pytables failed`** — the loader reads
   [`data/BondDF.h5`](data/BondDF.h5) first, which needs PyTables: `pip3 install tables`.
