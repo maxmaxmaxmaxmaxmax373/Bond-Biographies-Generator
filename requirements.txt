@@ -1,0 +1,13 @@
+jupyter-book
+numpy
+pandas
+ipywidgets
+mplcursors
+#pytables required for using h5 file
+tables
+matplotlib>=3.8
+seaborn
+openpyxl
+ipympl
+
+

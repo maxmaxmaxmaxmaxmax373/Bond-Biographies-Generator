@@ -1,0 +1,10 @@
+# OS / editor junk
+.DS_Store
+.Rhistory
+
+# Python
+__pycache__/
+*.pyc
+
+# Unrelated local document
+去除官场版本v4.doc
