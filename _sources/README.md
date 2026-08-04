@@ -26,6 +26,22 @@ environment is the one with Jupyter Book installed):
 
 Then open `_build/html/index.html`.
 
+## Publishing to GitHub Pages
+
+The built book is published to the repository's `gh-pages` branch and served at:
+
+**https://maxmaxmaxmaxmaxmax373.github.io/Bond-Biographies-Generator/**
+
+To republish after a rebuild (from this directory):
+
+```bash
+/Users/thomassargent/anaconda3/bin/ghp-import -n -p -f -m "Update book" _build/html
+```
+
+(`-n` adds `.nojekyll`, `-p` pushes, `-f` force-updates the branch. If the push fails
+with an HTTP 400 "unexpected disconnect", raise the buffer once:
+`git config http.postBuffer 524288000`.)
+
 ## Design notes
 
 - Notebooks are included as `.ipynb` rather than converted to MyST markdown. MyST text

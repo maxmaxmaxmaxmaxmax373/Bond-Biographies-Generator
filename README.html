@@ -208,8 +208,10 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VI. Reconstruction, Refunding, and the Gold Standard, 1862–1935</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="chapters/chapter_40007_Currency_Sixes_enhanced.html">Bond Biography: Currency Sixes — Bonds Issued to Pacific Railroad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapters/chapter_20120_Four_and_OneHalf_Percent_Loan_of_1891_enhanced.html">Bond Biography: Four and One-Half Percent Loan of 1891</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapters/chapter_20121_Four_Percent_Loan_of_1907_enhanced.html">Bond Biography: Four Percent Loan of 1907</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapters/chapter_20129_Loan_of_1925_enhanced.html">Bond Biography: Loan of 1925</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapters/chapter_20130_TenTwenty_Loan_of_1898_enhanced.html">Bond Biography: Ten-Twenty Loan of 1898</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapters/chapter_20131_Consols_of_1930_enhanced.html">Bond Biography: Consols of 1930</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. The First World War and After, 1917–1935</span></p>
@@ -383,6 +385,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layout">Layout</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publishing-to-github-pages">Publishing to GitHub Pages</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-notes">Design notes</a></li>
 </ul>
             </nav>
@@ -421,6 +424,18 @@ environment is the one with Jupyter Book installed):</p>
 </pre></div>
 </div>
 <p>Then open <code class="docutils literal notranslate"><span class="pre">_build/html/index.html</span></code>.</p>
+</section>
+<section id="publishing-to-github-pages">
+<h2>Publishing to GitHub Pages<a class="headerlink" href="#publishing-to-github-pages" title="Link to this heading">#</a></h2>
+<p>The built book is published to the repository’s <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch and served at:</p>
+<p><strong><a class="reference external" href="https://maxmaxmaxmaxmaxmax373.github.io/Bond-Biographies-Generator/">https://maxmaxmaxmaxmaxmax373.github.io/Bond-Biographies-Generator/</a></strong></p>
+<p>To republish after a rebuild (from this directory):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/Users/thomassargent/anaconda3/bin/ghp-import<span class="w"> </span>-n<span class="w"> </span>-p<span class="w"> </span>-f<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Update book&quot;</span><span class="w"> </span>_build/html
+</pre></div>
+</div>
+<p>(<code class="docutils literal notranslate"><span class="pre">-n</span></code> adds <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code>, <code class="docutils literal notranslate"><span class="pre">-p</span></code> pushes, <code class="docutils literal notranslate"><span class="pre">-f</span></code> force-updates the branch. If the push fails
+with an HTTP 400 “unexpected disconnect”, raise the buffer once:
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">http.postBuffer</span> <span class="pre">524288000</span></code>.)</p>
 </section>
 <section id="design-notes">
 <h2>Design notes<a class="headerlink" href="#design-notes" title="Link to this heading">#</a></h2>
@@ -489,6 +504,7 @@ an H3 directly under the H1 title) and can be ignored.</p></li>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layout">Layout</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publishing-to-github-pages">Publishing to GitHub Pages</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-notes">Design notes</a></li>
 </ul>
   </nav></div>
