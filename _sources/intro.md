@@ -3,7 +3,7 @@
 ## Lives of U.S. Federal Securities, 1790–1935
 
 Every government bond is a promise, and every price is an opinion about whether that
-promise will be kept. This book collects twenty-four *biographies* of individual U.S.
+promise will be kept. This book collects forty-nine *biographies* of individual U.S.
 federal securities — each one tracing a single bond from the act of Congress that
 authorized it, through its life in the market, to its redemption, conversion, or, in one
 famous case, the rewriting of its terms by the government that issued it.
@@ -67,6 +67,38 @@ with detected significant events; volatility and yield analysis; comparisons wit
 related issues; and the story of its redemption. Charts are computed live from the
 database. Where the record is thin — some issues have few or no surviving price
 quotations — the chapters say so plainly rather than embroider.
+
+## A note on coverage: "first tier" and "second tier" chapters
+
+The chapters were written in tiers, and the reader deserves to know what that
+distinction means — and, just as importantly, what it does not.
+
+The tiers rank the **density of the surviving market record, not the historical
+importance of the bond**. Of the database's 2,857 issues, only 77 have twelve or more
+monthly price observations. The first chapters written were the *headline* issues —
+bonds with hundreds of monthly quotations, whose charts can carry a narrative almost
+unaided: Hamilton's 3s of 1790 (488 observations), the Loan of 1925 (the longest
+continuous series in the collection), the Five-Twenties of 1862. The "second tier"
+comprises issues whose price records are shorter or sparser — anywhere from roughly a
+hundred observations down to a few dozen — or which are *variants* of first-tier bonds:
+conversion and continuance securities (the converted Liberty Loans, the exchanged 6%
+stocks of 1807 and 1812), small bridge tranches (the Five-Twenties of March 1864), and
+short-lived instruments (the Victory notes of 1919).
+
+Three things follow. First, a thinner price record shifts the evidentiary weight of a
+chapter: where quotations are sparse, the narrative leans more on the quantity series,
+the statutory terms, and cross-reference to a better-documented sibling, and the
+chapter says so explicitly rather than dressing inference as observation. Second,
+thin coverage is itself historical evidence — issues traded rarely because their
+floats were small, locked in bank vaults for circulation privileges, or absorbed by
+conversion; the silence of the record is part of the biography. Third, some of the
+collection's most instructive episodes live in the second tier precisely because the
+securities are variants: the deferred-versus-immediate 6s of 1790, the 4¾/3¾ Victory
+note pair (a market experiment in the value of tax exemption), and the exchanged
+stocks of 1807 and 1812 (mirror-image liability-management operations) reveal their
+lessons only *as pairs* with their first-tier parents. Tiering, in short, is a
+statement about how much the market happened to write down — not about how much a
+bond mattered.
 
 ## Sources and method
 
