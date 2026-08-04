@@ -7,6 +7,7 @@ parts:
       - file: chapters/chapter_20021_Six_Per_Cent_Stock_of_1790_enhanced
       - file: chapters/chapter_20022_Deferred_Six_Per_Cent_Stock_of_1790_enhanced
       - file: chapters/chapter_20023_Three_Per_Cent_Stock_of_1790_enhanced
+      - file: chapters/chapter_20042_Eight_Per_Cent_Loan_of_1798_enhanced
       - file: chapters/chapter_20043_Eight_Per_Cent_Loan_of_1800_enhanced
   - caption: "II. Jeffersonian Statecraft, 1803–1807"
     chapters:
@@ -15,26 +16,35 @@ parts:
   - caption: "III. The War of 1812, 1812–1815"
     chapters:
       - file: chapters/chapter_20048_Six_Per_Cent_Loan_of_1812_enhanced
+      - file: chapters/chapter_20051_Exchanged_Six_Per_Cent_Stock_of_1812_enhanced
       - file: chapters/chapter_20052_Sixteen_Million_Loan_of_1813_enhanced
       - file: chapters/chapter_20056_Ten_Million_Loan_of_1814_enhanced
       - file: chapters/chapter_20058_Undesignated_Loan_of_1814_enhanced
       - file: chapters/chapter_20064_Seven_Per_Cent_Stock_of_1815_enhanced
-  - caption: "IV. Antebellum Crisis and the Mexican War, 1842–1848"
+      - file: chapters/chapter_20069_Six_Per_Cent_Loan_of_1815_enhanced
+  - caption: "IV. Antebellum America: Crisis, Recovery, and the Mexican War, 1842–1858"
     chapters:
       - file: chapters/chapter_20083_Loan_of_1842_enhanced
+      - file: chapters/chapter_20084_Loan_of_1843_enhanced
+      - file: chapters/chapter_20086_Loan_of_1846_enhanced
       - file: chapters/chapter_20089_Loan_of_1847_enhanced
       - file: chapters/chapter_20090_Loan_of_1848_enhanced
-  - caption: "V. The Civil War, 1861–1864"
+      - file: chapters/chapter_20093_Texas_Indemnity_Stock_enhanced
+      - file: chapters/chapter_20092_Loan_of_1858_enhanced
+  - caption: "V. The Civil War, 1861–1868"
     chapters:
       - file: chapters/chapter_20096_Loan_of_February_1861_enhanced
       - file: chapters/chapter_20101_FiveTwenties_of_1862_enhanced
       - file: chapters/chapter_20108_TenForties_of_1864_enhanced
+      - file: chapters/chapter_20109_FiveTwenties_of_March_1864_enhanced
+      - file: chapters/chapter_20113_FiveTwenties_of_1865_enhanced
       - file: chapters/chapter_20114_Consols_of_1865_enhanced
       - file: chapters/chapter_20115_Consols_of_1867_enhanced
       - file: chapters/chapter_20116_Consols_of_1868_enhanced
   - caption: "VI. Reconstruction, Refunding, and the Gold Standard, 1862–1935"
     chapters:
       - file: chapters/chapter_40007_Currency_Sixes_enhanced
+      - file: chapters/chapter_20119_Five_Percent_Loan_of_1881_enhanced
       - file: chapters/chapter_20120_Four_and_OneHalf_Percent_Loan_of_1891_enhanced
       - file: chapters/chapter_20121_Four_Percent_Loan_of_1907_enhanced
       - file: chapters/chapter_20128_Loan_of_1904_enhanced
@@ -47,6 +57,11 @@ parts:
   - caption: "VII. The First World War and After, 1917–1935"
     chapters:
       - file: chapters/chapter_20162_1st_Liberty_Loan_enhanced
+      - file: chapters/chapter_20163_1st_Liberty_Loan_Converted_to_4_enhanced
+      - file: chapters/chapter_20164_1st_Liberty_Loan_Converted_to_425_enhanced
       - file: chapters/chapter_20166_2nd_Liberty_Loan_of_1917_4_enhanced
+      - file: chapters/chapter_20167_2nd_Liberty_Loan_Converted_to_425_enhanced
       - file: chapters/chapter_20168_3rd_Liberty_Loan_enhanced
       - file: chapters/chapter_20169_4th_Liberty_Loan_enhanced
+      - file: chapters/chapter_20170_Victory_Liberty_Loan_4_34_enhanced
+      - file: chapters/chapter_20171_Victory_Liberty_Loan_3_34_enhanced

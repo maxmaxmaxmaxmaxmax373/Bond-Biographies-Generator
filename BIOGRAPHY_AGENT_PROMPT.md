@@ -93,9 +93,9 @@ antebellum/Mexican War (20083 → 20089 → 20090); Civil War (20096 → 20101 �
 refunding/gold standard (20121 → 20131); WWI Liberty sequence (20162 → 20166 → 20168 →
 20169, ending in the gold-clause abrogation and Perry v. United States).
 
-Best remaining candidates by price coverage (scanned from `data/BondPrice.csv`):
-20113/20109 Five-Twenties of 1865/March 1864 (281/230), 20119 Five Percent Loan of
-1881 (217), 20092 Loan of 1858 (172), 20051 Exchanged 6s of 1812 (150), 20093 Texas
-Indemnity Stock (120), 20084 Loan of 1843 (117), 20042 Eight Per Cent Loan of 1798
-(112), 20086 Loan of 1846 (101), converted Liberty issues (20163/20164/20167:
-110/96/96), 20069 Six Per Cent Loan of 1815 (86), 20170/20171 Victory Loans (38/36).
+Second tier complete (August 2026): 20042, 20051, 20069, 20084, 20086, 20092, 20093,
+20109, 20113, 20119, 20163, 20164, 20167, 20170, 20171 — all 49 issues on the
+candidate lists are now written and in the book. Remaining unwritten issues with ≥12
+price observations are mostly Treasury-note records, continuations (20123/20125/20127),
+small 1820s loans, and 1920s Treasury notes — check coverage in `data/BondPrice.csv`
+before choosing further chapters.
