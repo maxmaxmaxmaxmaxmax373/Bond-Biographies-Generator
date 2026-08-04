@@ -32,8 +32,10 @@ parts:
   - caption: "VI. Reconstruction, Refunding, and the Gold Standard, 1862–1935"
     chapters:
       - file: chapters/chapter_40007_Currency_Sixes_enhanced
+      - file: chapters/chapter_20120_Four_and_OneHalf_Percent_Loan_of_1891_enhanced
       - file: chapters/chapter_20121_Four_Percent_Loan_of_1907_enhanced
       - file: chapters/chapter_20129_Loan_of_1925_enhanced
+      - file: chapters/chapter_20130_TenTwenty_Loan_of_1898_enhanced
       - file: chapters/chapter_20131_Consols_of_1930_enhanced
   - caption: "VII. The First World War and After, 1917–1935"
     chapters:
