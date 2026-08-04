@@ -1,0 +1,25 @@
+# Jupyter Book configuration — see https://jupyterbook.org/customize/config.html
+title: "Bond Biographies: Lives of U.S. Federal Securities, 1790–1935"
+author: Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
+copyright: "2026"
+logo: ""
+
+# The notebooks are pre-executed and verified; reuse their stored outputs.
+execute:
+  execute_notebooks: "off"
+
+# Notebook interface links
+repository:
+  url: https://github.com/maxmaxmaxmaxmaxmax373/Bond-Biographies-Generator
+  path_to_book: Bond-Biography-Book
+  branch: main
+
+html:
+  use_issues_button: false
+  use_repository_button: true
+  home_page_in_navbar: true
+
+sphinx:
+  config:
+    html_show_copyright: false
+    myst_heading_anchors: 3

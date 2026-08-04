@@ -1,0 +1,43 @@
+# Table of contents — see https://jupyterbook.org/customize/toc.html
+format: jb-book
+root: intro
+parts:
+  - caption: "I. Hamilton's Funding System, 1790–1800"
+    chapters:
+      - file: chapters/chapter_20021_Six_Per_Cent_Stock_of_1790_enhanced
+      - file: chapters/chapter_20022_Deferred_Six_Per_Cent_Stock_of_1790_enhanced
+      - file: chapters/chapter_20023_Three_Per_Cent_Stock_of_1790_enhanced
+      - file: chapters/chapter_20043_Eight_Per_Cent_Loan_of_1800_enhanced
+  - caption: "II. Jeffersonian Statecraft, 1803–1807"
+    chapters:
+      - file: chapters/chapter_20044_Louisiana_Six_Per_Cent_Stock_enhanced
+      - file: chapters/chapter_20045_Exchanged_Six_Per_Cent_Stock_of_1807_enhanced
+  - caption: "III. The War of 1812, 1812–1815"
+    chapters:
+      - file: chapters/chapter_20048_Six_Per_Cent_Loan_of_1812_enhanced
+      - file: chapters/chapter_20052_Sixteen_Million_Loan_of_1813_enhanced
+      - file: chapters/chapter_20056_Ten_Million_Loan_of_1814_enhanced
+      - file: chapters/chapter_20058_Undesignated_Loan_of_1814_enhanced
+      - file: chapters/chapter_20064_Seven_Per_Cent_Stock_of_1815_enhanced
+  - caption: "IV. Antebellum Crisis and the Mexican War, 1842–1848"
+    chapters:
+      - file: chapters/chapter_20083_Loan_of_1842_enhanced
+      - file: chapters/chapter_20089_Loan_of_1847_enhanced
+      - file: chapters/chapter_20090_Loan_of_1848_enhanced
+  - caption: "V. The Civil War, 1861–1864"
+    chapters:
+      - file: chapters/chapter_20096_Loan_of_February_1861_enhanced
+      - file: chapters/chapter_20101_FiveTwenties_of_1862_enhanced
+      - file: chapters/chapter_20108_TenForties_of_1864_enhanced
+  - caption: "VI. Reconstruction, Refunding, and the Gold Standard, 1862–1935"
+    chapters:
+      - file: chapters/chapter_40007_Currency_Sixes_enhanced
+      - file: chapters/chapter_20121_Four_Percent_Loan_of_1907_enhanced
+      - file: chapters/chapter_20129_Loan_of_1925_enhanced
+      - file: chapters/chapter_20131_Consols_of_1930_enhanced
+  - caption: "VII. The First World War and After, 1917–1935"
+    chapters:
+      - file: chapters/chapter_20162_1st_Liberty_Loan_enhanced
+      - file: chapters/chapter_20166_2nd_Liberty_Loan_of_1917_4_enhanced
+      - file: chapters/chapter_20168_3rd_Liberty_Loan_enhanced
+      - file: chapters/chapter_20169_4th_Liberty_Loan_enhanced
