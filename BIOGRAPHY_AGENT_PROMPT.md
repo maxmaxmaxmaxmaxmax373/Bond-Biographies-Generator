@@ -82,17 +82,20 @@ Enhanced: 20044, 20048, 20101, 20162, 40007, 20023, 20121, 20021, 20022, 20096, 
 plus 20089, 20090 (Mexican War loans), 20108 (Ten-Forties), 20168, 20169 (3rd/4th
 Liberty), 20045, 20056, 20058 (1814-era, from the old raw drafts), 20129 (Loan of
 1925 — the Belmont–Morgan gold loan; longest continuous price series), 20120 (4.5%
-Loan of 1891 — the refunding's middle leg), and 20130 (Ten-Twenty of 1898 — the
-Spanish-American War popular loan).
+Loan of 1891 — the refunding's middle leg), 20130 (Ten-Twenty of 1898 — the
+Spanish-American War popular loan), 20114/20115/20116 (Consols of 1865/1867/1868 —
+the 7-30 conversion trio), 20128 (Loan of 1904 — Cleveland's 1894 gold-defense sales),
+and 20132/20133/20134 (Panama Canal Series 1906/1908/1911 — the last a bond without
+the circulation privilege, the era's controlled experiment).
 Cross-referenced arcs: Hamilton funding trio (20021/20022/20023) + Quasi-War 8s (20043)
 + exchange operation (20045); War of 1812 (20048 → 20052 → 20056/20058 → 20064);
 antebellum/Mexican War (20083 → 20089 → 20090); Civil War (20096 → 20101 → 20108);
 refunding/gold standard (20121 → 20131); WWI Liberty sequence (20162 → 20166 → 20168 →
 20169, ending in the gold-clause abrogation and Perry v. United States).
 
-Best remaining candidates by price coverage (scanned from `data/BondPrice.csv`): 20115/20116/20114 Consols of 1867/1868/1865
-(348/326/315), 20128 Loan of 1904 (301), 20134/20132/20133 Panama Canal Loans
-(297/275/210), 20113/20109 Five-Twenties of 1865/March 1864 (281/230), 20119 Five
-Percent Loan of 1881 (217), 20089-era siblings, 20092 Loan of 1858 (172), 20093 Texas
-Indemnity Stock (120), 20042 Eight Per Cent Loan of 1798 (112), converted Liberty
-issues (20163/20164/20167: 110/96/96), 20170/20171 Victory Loans (38/36).
+Best remaining candidates by price coverage (scanned from `data/BondPrice.csv`):
+20113/20109 Five-Twenties of 1865/March 1864 (281/230), 20119 Five Percent Loan of
+1881 (217), 20092 Loan of 1858 (172), 20051 Exchanged 6s of 1812 (150), 20093 Texas
+Indemnity Stock (120), 20084 Loan of 1843 (117), 20042 Eight Per Cent Loan of 1798
+(112), 20086 Loan of 1846 (101), converted Liberty issues (20163/20164/20167:
+110/96/96), 20069 Six Per Cent Loan of 1815 (86), 20170/20171 Victory Loans (38/36).

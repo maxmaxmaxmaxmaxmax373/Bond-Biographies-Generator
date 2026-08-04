@@ -29,14 +29,21 @@ parts:
       - file: chapters/chapter_20096_Loan_of_February_1861_enhanced
       - file: chapters/chapter_20101_FiveTwenties_of_1862_enhanced
       - file: chapters/chapter_20108_TenForties_of_1864_enhanced
+      - file: chapters/chapter_20114_Consols_of_1865_enhanced
+      - file: chapters/chapter_20115_Consols_of_1867_enhanced
+      - file: chapters/chapter_20116_Consols_of_1868_enhanced
   - caption: "VI. Reconstruction, Refunding, and the Gold Standard, 1862–1935"
     chapters:
       - file: chapters/chapter_40007_Currency_Sixes_enhanced
       - file: chapters/chapter_20120_Four_and_OneHalf_Percent_Loan_of_1891_enhanced
       - file: chapters/chapter_20121_Four_Percent_Loan_of_1907_enhanced
+      - file: chapters/chapter_20128_Loan_of_1904_enhanced
       - file: chapters/chapter_20129_Loan_of_1925_enhanced
       - file: chapters/chapter_20130_TenTwenty_Loan_of_1898_enhanced
       - file: chapters/chapter_20131_Consols_of_1930_enhanced
+      - file: chapters/chapter_20132_Panama_Canal_Loan_Series_1906_enhanced
+      - file: chapters/chapter_20133_Panama_Canal_Loan_Series_1908_enhanced
+      - file: chapters/chapter_20134_Panama_Canal_Loan_Series_1911_enhanced
   - caption: "VII. The First World War and After, 1917–1935"
     chapters:
       - file: chapters/chapter_20162_1st_Liberty_Loan_enhanced
