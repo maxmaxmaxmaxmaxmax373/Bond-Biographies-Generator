@@ -65,3 +65,6 @@ parts:
       - file: chapters/chapter_20169_4th_Liberty_Loan_enhanced
       - file: chapters/chapter_20170_Victory_Liberty_Loan_4_34_enhanced
       - file: chapters/chapter_20171_Victory_Liberty_Loan_3_34_enhanced
+  - caption: "VIII. Synthesis"
+    chapters:
+      - file: chapters/synthesis
