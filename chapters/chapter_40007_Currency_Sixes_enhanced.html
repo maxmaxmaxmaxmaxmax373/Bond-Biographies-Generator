@@ -418,6 +418,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bond-features">Bond Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lifecycle-timeline">Lifecycle Timeline</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bond-quantity-over-time">Bond Quantity Over Time</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantity-analysis">Quantity Analysis</a></li>
 </ul>
@@ -487,7 +488,7 @@ document.write(`
     <span class="s1">&#39;axes.titlesize&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span> <span class="s1">&#39;axes.labelsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
 
 <span class="c1"># Load the bond database</span>
-<span class="n">store</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s1">&#39;/Users/chengpengcheong/Desktop/US-Fiscal-History(new version) copy/02-Bond-Biographies/notebooks/data/BondDF.h5&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">store</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s1">&#39;../data/BondDF.h5&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">BondList</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondList&#39;</span><span class="p">]</span>
 <span class="n">BondQuant</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondQuant&#39;</span><span class="p">]</span>
 <span class="n">BondPrice</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondPrice&#39;</span><span class="p">]</span>
@@ -502,6 +503,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/thomassargent/anaconda3/lib/python3.9/site-packages/pandas/core/arrays/masked.py:60: UserWarning: Pandas requires version &#39;1.3.6&#39; or newer of &#39;bottleneck&#39; (version &#39;1.3.5&#39; currently installed).
+  from pandas.core import (
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded data for: Currency Sixes — Bonds Issued to Pacific Railroad (ID: 40007)
 </pre></div>
 </div>
@@ -656,6 +661,80 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="lifecycle-timeline">
+<h2>Lifecycle Timeline<a class="headerlink" href="#lifecycle-timeline" title="Link to this heading">#</a></h2>
+<p>The timeline below marks the statutory and market milestones of the Currency Sixes: authorization under the Pacific Railway Act, the subsidy-bond issues of 1862–1869 culminating in the road’s completion, the peak of outstanding debt in 1872, the Thurman Act’s sinking-fund regime, and the maturities and railroad settlements of 1895–1899 that closed the account.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Bond Lifecycle Timeline ──────────────────────────────────</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">DT</span>
+<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
+
+<span class="c1"># Bond life span</span>
+<span class="n">auth_date</span> <span class="o">=</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1862</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">completion</span> <span class="o">=</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1869</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">peak_date</span> <span class="o">=</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1872</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">29</span><span class="p">)</span>
+<span class="n">last_maturity</span> <span class="o">=</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1899</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Draw the main bar</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">last_maturity</span> <span class="o">-</span> <span class="n">auth_date</span><span class="p">)</span><span class="o">.</span><span class="n">days</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="n">mdates</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">auth_date</span><span class="p">),</span>
+        <span class="n">height</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#2c3e50&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Bond Lifetime&#39;</span><span class="p">)</span>
+
+<span class="c1"># Key milestones</span>
+<span class="n">milestones</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;Authorization</span><span class="se">\n</span><span class="s1">Pacific Railway Act</span><span class="se">\n</span><span class="s1">Jul 1, 1862&#39;</span><span class="p">,</span> <span class="n">auth_date</span><span class="p">,</span> <span class="s1">&#39;#1f77b4&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Road Completed</span><span class="se">\n</span><span class="s1">May 10, 1869&#39;</span><span class="p">,</span> <span class="n">completion</span><span class="p">,</span> <span class="s1">&#39;#1f77b4&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Peak Outstanding</span><span class="se">\n</span><span class="s1">$64.62M, Feb 1872&#39;</span><span class="p">,</span> <span class="n">peak_date</span><span class="p">,</span> <span class="s1">&#39;#e67e22&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Final Maturities</span><span class="se">\n</span><span class="s1">1895</span><span class="se">\u2013</span><span class="s1">1899&#39;</span><span class="p">,</span> <span class="n">last_maturity</span><span class="p">,</span> <span class="s1">&#39;#c0392b&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">milestones</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="mf">0.3</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+                <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+
+<span class="c1"># Historical events</span>
+<span class="n">events</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;1864 Amendment&#39;</span><span class="p">,</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1864</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;#2ecc71&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Golden Spike&#39;</span><span class="p">,</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1869</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;#95a5a6&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Panic of 1873&#39;</span><span class="p">,</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1873</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="s1">&#39;#9b59b6&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Thurman Act&#39;</span><span class="p">,</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1878</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="s1">&#39;#2ecc71&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Resumption&#39;</span><span class="p">,</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1879</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;#2ecc71&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Panic of 1893 /</span><span class="se">\n</span><span class="s1">UP receivership&#39;</span><span class="p">,</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1893</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="s1">&#39;#9b59b6&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Maturities begin&#39;</span><span class="p">,</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1895</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;#95a5a6&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Railroad settlements&#39;</span><span class="p">,</span> <span class="n">DT</span><span class="p">(</span><span class="mi">1898</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;#95a5a6&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.45</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">d</span><span class="p">),</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+                <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%Y&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">YearLocator</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Currency Sixes --- Lifecycle Timeline&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Legend patches</span>
+<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
+<span class="n">legend_els</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#2ecc71&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Legislation&#39;</span><span class="p">),</span>
+    <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#9b59b6&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Financial Crisis&#39;</span><span class="p">),</span>
+    <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#95a5a6&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Other&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">legend_els</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/98ed64cb5c48aaccf6aa30caeb52ef7badf16df4dec58e30b8580dcb2ce690fd.png" src="../_images/98ed64cb5c48aaccf6aa30caeb52ef7badf16df4dec58e30b8580dcb2ce690fd.png" />
+</div>
+</div>
+</section>
 <section id="bond-quantity-over-time">
 <h2>Bond Quantity Over Time<a class="headerlink" href="#bond-quantity-over-time" title="Link to this heading">#</a></h2>
 <p>The bond’s outstanding quantity peaked at <strong>$64.62 million</strong> on 1872-02-29. Data spans from 1869-12-31 to 1899-12-31 (353 monthly observations).</p>
@@ -692,7 +771,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/320f6093c65129ca59c732f573647349e224b00e276c7275a84eded7617429fd.png" src="../_images/320f6093c65129ca59c732f573647349e224b00e276c7275a84eded7617429fd.png" />
+<img alt="../_images/b9e859e1512ff64e89f1e3467654f513df30ae22f30eaf024381ea166f0ff50f.png" src="../_images/b9e859e1512ff64e89f1e3467654f513df30ae22f30eaf024381ea166f0ff50f.png" />
 </div>
 </div>
 <section id="quantity-analysis">
@@ -750,7 +829,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6c8d8a0397f85615df1323ce013479d310689fc54ec9cd1c0acfd63586fc2b3c.png" src="../_images/6c8d8a0397f85615df1323ce013479d310689fc54ec9cd1c0acfd63586fc2b3c.png" />
+<img alt="../_images/f148e8fe68f65de8c959c2a1bfefbffd01c3a1aa08de0183accdbc6a9e6c42ad.png" src="../_images/f148e8fe68f65de8c959c2a1bfefbffd01c3a1aa08de0183accdbc6a9e6c42ad.png" />
 </div>
 </div>
 <section id="notable-events-impact-on-prices">
@@ -835,7 +914,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5481ad39d0a33769babb9047ab73f18b483c98d76a563f4b98dcb3951395a3fe.png" src="../_images/5481ad39d0a33769babb9047ab73f18b483c98d76a563f4b98dcb3951395a3fe.png" />
+<img alt="../_images/99d52700de0bde7d6f67ea2638ad9830ca930c14277261eca2717264b32aeb19.png" src="../_images/99d52700de0bde7d6f67ea2638ad9830ca930c14277261eca2717264b32aeb19.png" />
 </div>
 </div>
 </section>
@@ -1121,6 +1200,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bond-features">Bond Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lifecycle-timeline">Lifecycle Timeline</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bond-quantity-over-time">Bond Quantity Over Time</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantity-analysis">Quantity Analysis</a></li>
 </ul>
