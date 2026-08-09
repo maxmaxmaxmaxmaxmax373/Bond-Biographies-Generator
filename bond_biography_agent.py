@@ -725,7 +725,7 @@ def build_lifecycle_timeline_cells(bond_info, overlapping_events):
         "    d = datetime.strptime(date_str, '%Y-%m-%d')\n"
         "    ax.axvline(mdates.date2num(d), color=colors.get(cat, 'gray'), alpha=0.5, linestyle='--')\n"
         "    ax.annotate(name, (mdates.date2num(d), -0.25), ha='center', va='top',\n"
-        "               fontsize=7, rotation=45, color=colors.get(cat, 'gray'))\n\n"
+        "               fontsize=10, rotation=45, color=colors.get(cat, 'gray'))\n\n"
         "ax.set_yticks([])\n"
         "ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))\n"
         f"ax.set_title('{bond_name} — Lifecycle Timeline')\n"
