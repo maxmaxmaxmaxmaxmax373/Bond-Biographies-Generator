@@ -37,7 +37,8 @@ Bond-Biographies-Generator/
 │   ├── BondPrice.csv                ← Monthly price data
 │   ├── BondQuant.csv                ← Monthly quantity data
 │   ├── Macaulay_table2_railroad_bond_prices.xlsx
-│   └── Macaulay_table3_railroad_bond_yields.xlsx
+│   ├── Macaulay_table3_railroad_bond_yields.xlsx
+│   └── gold_price_greenbacks_1862_1878.csv  ← Monthly greenback price of $100 gold (for gold-unit charts)
 │
 └── enhanced_chapters/               ← 5 polished sample chapters (already generated + edited)
     ├── chapter_20044_Louisiana_Six_Per_Cent_Stock_enhanced.ipynb  ★ TEMPLATE
@@ -239,3 +240,13 @@ jupyter notebook                                          # open the .ipynb
 ```
 
 Data source: Payne, Szoke, Hall & Sargent, *Quarterly Journal of Economics* (2025). Covers 2,857 U.S. federal bond issues, 1776–1960.
+
+---
+
+## Data corrections log
+
+- **4 October 2026.** Two `BondList` fields corrected in both `BondList.csv` and `BondDF.h5`:
+  - ID 20133 (Panama Canal Loan, Series 1908), `Price Sold`: 1.0299 → 1.02436. The 1908 series sold at 102.436 (Treasury Department, *Information Respecting United States Bonds*, 1915, p. 17); 102.99 was the November 1907 sale of Series 1906 bonds.
+  - ID 20171 (Victory Liberty Loan 3¾%), `Redeemable After Date`: 1922-12-15 → 1922-06-15. The 3¾% notes were redeemed on June 15, 1922; the quantity series ends in May 1922.
+- `BondDF.h5` was repacked with its original blosc compression. `BondPrice` and `BondQuant` are unchanged.
+- Chapters that plot the four one-month prints flagged as artifacts (Loan of 1848, Dec 1859; Panama 2s of 1908, Dec 1919; Victory 4¾s, Jan 1920; Second Liberty 4s, May 1920) drop those prints in their data-loading cell (`ARTIFACT_PRINTS`). The database itself still contains them.

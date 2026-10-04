@@ -8,3 +8,6 @@ __pycache__/
 
 # Unrelated local document
 去除官场版本v4.doc
+
+# Jupyter Book build output
+Bond-Biography-Book/_build/
