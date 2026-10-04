@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Eight Per Cent. Loan of 1800" href="chapter_20043_Eight_Per_Cent_Loan_of_1800_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -433,15 +419,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-bonds-context-in-the-early-republic-s-debt">Related Bonds: Context in the Early Republic’s Debt</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-context-what-11-25-million-meant">Modern Context: What $11.25 Million Meant</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scale-relative-to-the-economy">Scale Relative to the Economy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-made-this-unprecedented">What Made This Unprecedented</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-made-this-distinctive">What Made This Distinctive</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tangential-stories-five-footnotes-to-history">Tangential Stories: Five Footnotes to History</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tangential-stories-three-footnotes-to-history">Tangential Stories: Three Footnotes to History</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-banks-that-trusted-before-they-were-trusted">1. The Banks That Trusted Before They Were Trusted</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-prime-minister-who-objected-and-was-ignored">2. The Prime Minister Who Objected (and Was Ignored)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-foreign-government-bond-on-the-london-stock-exchange">3. First Foreign Government Bond on the London Stock Exchange</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rothschilds-were-watching">4. The Rothschilds Were Watching</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cost-that-does-not-appear-in-any-ledger">5. The Cost That Does Not Appear in Any Ledger</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cost-that-does-not-appear-in-any-ledger">3. The Cost That Does Not Appear in Any Ledger</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implications-and-legacy">Implications and Legacy</a></li>
@@ -469,6 +453,7 @@ document.write(`
 <p><em>An enhanced chapter from the Hall-Payne-Sargent US Federal Bond Database (2,857 issues, 1776–1960)</em></p>
 <p><strong>Bond ID (L1):</strong> 20044  |  <strong>Category:</strong> Interest Bearing &gt; Marketable &gt; Long Term Bond</p>
 <hr class="docutils" />
+<p>The Act of April 15, 1842 authorized new twenty-year borrowing at up to 6 per cent, extending the shorter-term authority of 1841. The Act of 1841 had forbidden sales below par; the Act of April 15, 1842 let the Secretary sell the stock below par after advertising it. The Act of August 31, 1842 restored the par floor. Subscriptions came in slowly and in fragments: the quantity series below shows only $1.6 million placed by June 1842 and $3.4 million by year-end. The database records a sale price of 97½. Bayley (1881, pp. 363–364) reports $8,343,886 of stock sold for $8,301,468 in cash, an average of about 99.5. On either figure the United States, at peace, sold a 6 per cent coin bond below par.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -534,7 +519,7 @@ Database contains 2857 bond issues
 <p><strong>1. The Cession Treaty</strong> — France formally ceded its claim to the Louisiana Territory to the United States. Crucially, France did not transfer <em>ownership</em> of the land — much of it was inhabited and governed by dozens of Native American nations. What France transferred was its imperial <em>claim</em>, recently acquired from Spain in the secret Treaty of San Ildefonso (1800).</p>
 <p><strong>2. The Stock Convention (60 Million Francs)</strong> — The United States committed to pay France 60 million francs (approximately $11.25 million at the fixed exchange rate of $1 = 5⅓ francs). Rather than pay cash, the U.S. would issue <strong>$11.25 million in 6% bonds</strong> with a 15-year term. Interest was payable quarterly, and — in a provision that would prove consequential — payments could be made <strong>in Paris, London, or Amsterdam</strong>, in local currencies.</p>
 <p><strong>3. The Claims Convention ($3.75 Million)</strong> — The United States agreed to assume $3.75 million in debts that France owed to American merchants, bringing the total cost to $15 million (80 million francs).</p>
-<p>The total purchase price of $15 million, while modest in absolute terms, represented a staggering fiscal commitment for the young republic. It amounted to roughly <strong>19% of the existing national debt</strong> of $80 million and consumed nearly <strong>95% of annual federal revenue</strong>. There was no precedent for a sovereign debt issuance on this scale by the United States.</p>
+<p>The total purchase price of $15 million, while modest in absolute terms, represented a staggering fiscal commitment for the young republic. It amounted to roughly <strong>19% of the existing national debt</strong> of $80 million and consumed nearly <strong>95% of annual federal revenue</strong>.</p>
 </section>
 <section id="baring-hope-s-agreement-with-the-french-republic">
 <h2>Baring &amp; Hope’s Agreement with the French Republic<a class="headerlink" href="#baring-hope-s-agreement-with-the-french-republic" title="Link to this heading">#</a></h2>
@@ -546,7 +531,7 @@ Database contains 2857 bond issues
 <li><p><strong>France transferred</strong> the full $11.25 million in U.S. bonds to Baring &amp; Co. and Hope &amp; Co.</p></li>
 <li><p><strong>The banks committed</strong> to pay France <strong>52 million francs</strong> ($9.75 million) — a <strong>13⅓% discount</strong> (or commission) on the face value.</p></li>
 <li><p><strong>Payment schedule</strong>: 6 million francs in the first month after receiving the bonds, then 2 million francs per month for the next 23 months.</p></li>
-<li><p><strong>The United States</strong> would repay the banks the full $11.25 million over 15 years (with interest), then redeem the principal in four annual installments of $2.8125 million.</p></li>
+<li><p><strong>The United States</strong> would pay 6% interest on the full $11.25 million to whoever held the stock, and under the convention would repay the principal in annual payments of not less than $3 million each, the first due fifteen years after the exchange of ratifications (October 1803), that is, from late 1818.</p></li>
 </ul>
 <p>In effect, Baring and Hope <em>purchased the Louisiana Territory from France and resold it to the United States</em>. This was entirely unlike every other major U.S. land acquisition — the Floridas, the Gadsden Purchase, and Alaska were all paid for directly in dollars. The Louisiana Purchase was financed by what we would today call a <strong>syndicated sovereign bond offering</strong>, intermediated by two of Europe’s most prestigious banking houses.</p>
 <p>Secretary of the Treasury Albert Gallatin later estimated the two banks’ profit at roughly <strong>$3 million</strong> — a handsome return for facilitating the largest land deal in history. Other estimates place the figure closer to $1.5 million.</p>
@@ -600,11 +585,12 @@ Database contains 2857 bond issues
 <td><p>London (£), Paris (₣), or Amsterdam (ƒ)</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Principal Repayment</strong></p></td>
-<td><p>Four annual installments of $2.8125M (1819–1823)</p></td>
+<td><p>Annual payments of at least $3M from 1818 (convention); four installments, 1818–1821</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>The First Redemption, Final Redemption, payment-frequency and Price Sold entries are database fields. The convention of April 30, 1803 made interest payable half-yearly in London, Amsterdam or Paris. The database quantities show the stock essentially retired by mid-1821: $9.96 million outstanding in June 1818, $5.38 million in December 1818, $2.08 million in March 1821, and about $8,000 of unclaimed stock in June 1821. The 1823 final-redemption date marks the end of that residue. The small reductions between 1812 and mid-1818 (from $11.25 million to $9.96 million) predate the first convention installment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display full bond features from database</span>
@@ -799,9 +785,10 @@ Database contains 2857 bond issues
 <li><p><strong>November 10, 1803</strong> — Authorized by act of Congress</p></li>
 <li><p><strong>March 31, 1804</strong> — First bonds issued and delivered to Baring &amp; Hope</p></li>
 <li><p><strong>1804–1812</strong> — Quarterly interest payments; bonds trade on secondary markets in London, Amsterdam, and (eventually) New York</p></li>
-<li><p><strong>September 30, 1812</strong> — First redemption begins; coincides almost exactly with the outbreak of the War of 1812</p></li>
-<li><p><strong>1819–1823</strong> — Principal repaid in four annual installments of $2.8125 million</p></li>
-<li><p><strong>October 23, 1823</strong> — Final redemption; all bonds retired</p></li>
+<li><p><strong>September 30, 1812</strong> — First recorded reduction in the outstanding stock (database first-redemption date); coincides almost exactly with the outbreak of the War of 1812</p></li>
+<li><p><strong>1818–1821</strong> — Principal repaid in four installments, the first in late 1818, fifteen years after ratification of the convention</p></li>
+<li><p><strong>Mid-1821</strong> — Stock essentially retired; about $8,000 of unclaimed stock remains</p></li>
+<li><p><strong>October 23, 1823</strong> — Final redemption date in the database; the last unclaimed residue retired</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -862,12 +849,13 @@ Database contains 2857 bond issues
 <p>The Louisiana Six Per Cent. Stock lived through one of the most turbulent periods in early American history. Three major forces shaped its market performance:</p>
 <section id="the-first-barbary-war-18011805">
 <h3>The First Barbary War (1801–1805)<a class="headerlink" href="#the-first-barbary-war-18011805" title="Link to this heading">#</a></h3>
-<p>Already underway when the bonds were authorized, the naval conflict with the Barbary States of North Africa was a modest fiscal burden. The war’s cost was manageable and its successful conclusion in 1805 actually <em>bolstered</em> confidence in the young republic. Bond prices during this period remained steady and at or above par.</p>
+<p>Already underway when the bonds were authorized, the naval conflict with the Barbary States of North Africa was a modest fiscal burden. The war’s cost was manageable. The database has no quotations for the Louisiana stock before July 1809, so the price series cannot show how the stock traded during the war.</p>
 </section>
 <section id="the-war-of-1812-18121815">
 <h3>The War of 1812 (1812–1815)<a class="headerlink" href="#the-war-of-1812-18121815" title="Link to this heading">#</a></h3>
 <p>This was the defining crisis of the bond’s lifetime. When war with Britain broke out in June 1812, the impact on the Louisiana bonds was severe. Britain was the world’s dominant naval power, and the war disrupted Atlantic trade — the very trade on which U.S. tariff revenues (and thus the government’s ability to service its debt) depended.</p>
 <p>The price data tells the story vividly: bonds that had traded comfortably at $100–$104 plunged to <strong>$75</strong> by January 1815 — a <strong>maximum drawdown of -27.9%</strong>. The burning of Washington, D.C. on August 24, 1814, was a particularly grim moment for holders of American government debt.</p>
+<p>Prices from August 1814 onward are quoted in the paper of banks that had suspended specie payments, so the trough of $75 and the recovery below mix a credit shock with a fall in the value of the unit of account (see the data note at the top of this chapter).</p>
 <p>But the recovery was equally dramatic. When news of the Treaty of Ghent (December 24, 1814) and Andrew Jackson’s victory at New Orleans (January 8, 1815) reached financial markets, prices snapped back with a <strong>+22% surge</strong> in February 1815. By mid-1815, bonds were again trading near par.</p>
 </section>
 <section id="the-panic-of-1819">
@@ -877,7 +865,7 @@ Database contains 2857 bond issues
 </section>
 <section id="bond-quantity-over-time">
 <h2>Bond Quantity Over Time<a class="headerlink" href="#bond-quantity-over-time" title="Link to this heading">#</a></h2>
-<p>The bond’s outstanding quantity peaked at <strong>$11.25 million</strong> upon issuance on March 31, 1804. The full amount remained outstanding for over eight years, until the first redemption in September 1812. The principal was then paid down in four annual installments of $2.8125 million between 1819 and 1823.</p>
+<p>The bond’s outstanding quantity peaked at <strong>$11.25 million</strong> upon issuance on March 31, 1804. The full amount remained outstanding for over eight years, until the first small reduction in September 1812; by June 1818 $9.96 million remained. The principal was then repaid in four installments between late 1818 and mid-1821: the outstanding stock fell to $5.38 million in December 1818 and to about $8,000 of unclaimed stock by June 1821.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bond quantity over time</span>
@@ -1082,21 +1070,22 @@ Database contains 2857 bond issues
 <tr class="row-even"><td><p><strong>1818-12</strong></p></td>
 <td><p>Quantity decrease</p></td>
 <td><p><strong>-45.9%</strong></p></td>
-<td><p>First major principal redemption tranche. The U.S. was paying down debt ahead of the Panic.</p></td>
+<td><p>(contract arithmetic: scheduled repayment) First principal installment, due under the convention fifteen years after the exchange of ratifications in October 1803.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>1821-06</strong></p></td>
 <td><p>Quantity decrease</p></td>
 <td><p><strong>-99.6%</strong></p></td>
-<td><p>Near-complete redemption. Despite the Panic of 1819, the U.S. honored every payment.</p></td>
+<td><p>(contract arithmetic: scheduled repayment) Last installment; about $8,000 of unclaimed stock remains. Despite the Panic of 1819, the U.S. honored every payment.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>1823-12</strong></p></td>
 <td><p>Quantity decrease</p></td>
 <td><p><strong>-100%</strong></p></td>
-<td><p>Final redemption. The bond was fully retired on schedule.</p></td>
+<td><p>Retirement of a $2,500 unclaimed residue; the stock itself was retired by mid-1821.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>The 1814-10 drop and the 1815-02 spike fall inside the bank-paper window (August 1814–February 1817), when prices were quoted in suspended bank paper.</p>
 </section>
 </section>
 <section id="price-volatility">
@@ -1248,7 +1237,7 @@ Database contains 2857 bond issues
 </tbody>
 </table>
 </div>
-<p>The Hamilton-era 6% stocks of 1790 were the Louisiana bond’s closest cousins — same coupon, same government, same quarterly payments. Comparing their prices shows how the market priced the incremental risk of a much larger issuance ($11.25M vs. the smaller Hamilton-era issues).</p>
+<p>The Hamilton-era 6% stocks of 1790 were the Louisiana bond’s closest cousins — same coupon, same government, same quarterly payments. The database records the same monthly price for the Louisiana stock and the Six Per Cent Stock of 1790 in 76 of the 135 months in which both are quoted, so differences between the two lines carry little information.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparative price chart with related bonds</span>
@@ -1338,17 +1327,17 @@ Database contains 2857 bond issues
 </table>
 </div>
 </section>
-<section id="what-made-this-unprecedented">
-<h3>What Made This Unprecedented<a class="headerlink" href="#what-made-this-unprecedented" title="Link to this heading">#</a></h3>
+<section id="what-made-this-distinctive">
+<h3>What Made This Distinctive<a class="headerlink" href="#what-made-this-distinctive" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p><strong>No nation had ever used sovereign bonds as a medium of payment.</strong> The U.S. did not pay France in gold or silver — it paid with <em>promises</em>. This was the birth of sovereign debt as money-like.</p></li>
-<li><p><strong>The international syndication structure was entirely novel.</strong> Two European banks underwrote a New World sovereign’s debt, distributed it across three countries’ capital markets, and paid a European power in its own currency. This is the template that would be used for sovereign debt issuance for the next two centuries.</p></li>
+<li><p><strong>The United States paid France in stock.</strong> The U.S. did not pay France in gold or silver; it paid with <em>promises</em>, which France sold to Baring and Hope.</p></li>
+<li><p><strong>The international syndication structure.</strong> Two European banks underwrote a New World sovereign’s debt, distributed it across three countries’ capital markets, and paid a European power in its own currency.</p></li>
 <li><p><strong>Every payment was made on time.</strong> Through the First Barbary War, the War of 1812, and the Panic of 1819, the United States never missed a payment on the Louisiana bonds. Each bond, redeemed in Amsterdam, London, or Paris, bore the inscription: <em>“An Act authorizing the creation of a Stock to the amount of eleven millions two hundred and fifty thousand dollars.”</em> The world watched the young republic honor its word.</p></li>
 </ol>
 </section>
 </section>
-<section id="tangential-stories-five-footnotes-to-history">
-<h2>Tangential Stories: Five Footnotes to History<a class="headerlink" href="#tangential-stories-five-footnotes-to-history" title="Link to this heading">#</a></h2>
+<section id="tangential-stories-three-footnotes-to-history">
+<h2>Tangential Stories: Three Footnotes to History<a class="headerlink" href="#tangential-stories-three-footnotes-to-history" title="Link to this heading">#</a></h2>
 <section id="the-banks-that-trusted-before-they-were-trusted">
 <h3>1. The Banks That Trusted Before They Were Trusted<a class="headerlink" href="#the-banks-that-trusted-before-they-were-trusted" title="Link to this heading">#</a></h3>
 <p>Baring &amp; Co. and Hope &amp; Co. sent <strong>17.5 million francs</strong> to France <em>before the United States had delivered a single bond</em>. The agreement only required payments to begin after the banks received the securities, but they advanced the money on faith — faith in the American government’s creditworthiness, and in their own ability to eventually sell the bonds. In an era when transatlantic communication took weeks, this was a remarkable leap of trust.</p>
@@ -1357,16 +1346,8 @@ Database contains 2857 bond issues
 <h3>2. The Prime Minister Who Objected (and Was Ignored)<a class="headerlink" href="#the-prime-minister-who-objected-and-was-ignored" title="Link to this heading">#</a></h3>
 <p>A British bank was funneling millions of francs per month to Napoleon — the very man Britain expected to fight. <strong>Henry Addington</strong>, the British Prime Minister, personally wrote to Baring &amp; Co. urging them not to honor the deal. Francis Baring politely declined the Prime Minister’s request and continued making payments. The banks’ profits, it seems, trumped patriotic sentiment. Addington was replaced by William Pitt the Younger the following year, though for unrelated reasons.</p>
 </section>
-<section id="first-foreign-government-bond-on-the-london-stock-exchange">
-<h3>3. First Foreign Government Bond on the London Stock Exchange<a class="headerlink" href="#first-foreign-government-bond-on-the-london-stock-exchange" title="Link to this heading">#</a></h3>
-<p>In <strong>1811</strong>, the Louisiana Six Per Cent. Stock became the <strong>first foreign government bond listed on the London Stock Exchange</strong>. This was a watershed moment in financial history. Before this, the LSE had traded only British government consols and corporate shares. The listing of an American government bond opened the door to the vast international sovereign debt market that the LSE would dominate for the next century.</p>
-</section>
-<section id="the-rothschilds-were-watching">
-<h3>4. The Rothschilds Were Watching<a class="headerlink" href="#the-rothschilds-were-watching" title="Link to this heading">#</a></h3>
-<p>The spectacular success of Baring &amp; Co. and Hope &amp; Co. in the Louisiana bond deal did not go unnoticed. The <strong>Rothschild brothers</strong> — then a rising but still second-tier banking family — studied the transaction carefully. Within two decades, they would surpass both Baring and Hope as the dominant underwriters of European sovereign debt, using many of the same techniques: international distribution, multi-currency payments, and carefully managed secondary markets. The Louisiana Purchase bonds were, in a sense, the blueprint for the Rothschild empire.</p>
-</section>
 <section id="the-cost-that-does-not-appear-in-any-ledger">
-<h3>5. The Cost That Does Not Appear in Any Ledger<a class="headerlink" href="#the-cost-that-does-not-appear-in-any-ledger" title="Link to this heading">#</a></h3>
+<h3>3. The Cost That Does Not Appear in Any Ledger<a class="headerlink" href="#the-cost-that-does-not-appear-in-any-ledger" title="Link to this heading">#</a></h3>
 <p>The $15 million price tag captures only what the United States paid to France and the banks. It says nothing about what happened next. The Louisiana Territory was home to dozens of Native American nations — the Osage, Quapaw, Caddo, Choctaw, and many others — who had not been consulted about the sale. France had ceded not ownership of the land, but merely its imperial <em>claim</em>, recently acquired from Spain. The actual “acquisition” of the territory would take decades of treaties, forced removals, and violence. The Indian Removal Act of 1830 and the Trail of Tears were direct consequences of the purchase. The true cost of Louisiana — in lives, cultures, and broken treaties — is incalculable, and no bond can account for it.</p>
 </section>
 </section>
@@ -1467,7 +1448,8 @@ Database contains 2857 bond issues
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1500,15 +1482,13 @@ Database contains 2857 bond issues
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-bonds-context-in-the-early-republic-s-debt">Related Bonds: Context in the Early Republic’s Debt</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-context-what-11-25-million-meant">Modern Context: What $11.25 Million Meant</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scale-relative-to-the-economy">Scale Relative to the Economy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-made-this-unprecedented">What Made This Unprecedented</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-made-this-distinctive">What Made This Distinctive</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tangential-stories-five-footnotes-to-history">Tangential Stories: Five Footnotes to History</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tangential-stories-three-footnotes-to-history">Tangential Stories: Three Footnotes to History</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-banks-that-trusted-before-they-were-trusted">1. The Banks That Trusted Before They Were Trusted</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-prime-minister-who-objected-and-was-ignored">2. The Prime Minister Who Objected (and Was Ignored)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-foreign-government-bond-on-the-london-stock-exchange">3. First Foreign Government Bond on the London Stock Exchange</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rothschilds-were-watching">4. The Rothschilds Were Watching</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cost-that-does-not-appear-in-any-ledger">5. The Cost That Does Not Appear in Any Ledger</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cost-that-does-not-appear-in-any-ledger">3. The Cost That Does Not Appear in Any Ledger</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implications-and-legacy">Implications and Legacy</a></li>
@@ -1559,8 +1539,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

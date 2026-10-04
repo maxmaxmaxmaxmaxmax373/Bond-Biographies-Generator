@@ -14,7 +14,7 @@ ask what moved the measurements.
 Six findings organize the chapter. (i) A price cannot be read until its unit of account
 is identified; for roughly a quarter of the sample the unit is not what it appears to
 be. (ii) Several of the largest issues in the collection were priced by regulation
-rather than by time preference, and one deliberate design change in 1909 lets us
+rather than by time preference, and one deliberate design change of 1909–1911 lets us
 measure the difference. (iii) Much of what looks like price *drift* is the mechanical
 arithmetic of embedded options and finite maturities, not news about credit. (iv) The
 terms on which the Treasury could *sell* debt — primary-market prices and coupons —
@@ -32,8 +32,8 @@ meant. Three episodes in the collection turn on this point.
 First, the Civil War. After specie payments were suspended in December 1861, the
 quotations in the database are greenback prices of bonds whose coupons — and, after
 the Public Credit Act of 1869, principal — were payable in coin. The Loan of February
-1861 traded at 107–114 in 1864 while the gold premium exceeded 100 percent; in gold
-units the bond stood near 50. The biographies of the wartime issues (the February 1861
+1861 traded at 106–114 in 1864; in the second half of that year the gold premium
+exceeded 100 percent, and in gold units the bond stood near or below 50. The biographies of the wartime issues (the February 1861
 loan, the Five-Twenties, the Ten-Forties) therefore read every wartime movement twice:
 once as a statement about Union credit, once as a statement about the greenback. Most
 of the drama belongs to the greenback. The March 1865 *fall* in quoted prices, which a
@@ -67,19 +67,25 @@ of 1907 and the Ten-Twenties of 1898 show the same force at earlier dates: bonds
 at premiums because banks needed them, with yields that measure note-issue economics
 rather than the price of time.
 
-The Act of August 5, 1909 supplies the experiment. The 3 percent Panama Canal bonds of
-1911 were issued *without* the circulation privilege — the first major issue sold on
-investment terms alone since the Civil War era. Through the stress of 1917–1921 the
-privileged Panama 2s never traded below roughly 96 while the unprivileged 3s fell to
-80 and then to 74. Same obligor, same era, same gold clause; the entire gap is the
-regulatory subsidy. The episode deserves emphasis because the temptation to read
+Two statutes supply the experiment. Section 39 of the Act of August 5, 1909 authorized
+further Panama Canal bonds at up to 3 percent, and the Act of March 2, 1911 let the
+Secretary make them unreceivable as security for national bank notes. The 3 percent
+Panama Canal bonds of 1911 were therefore issued *without* the circulation privilege —
+the first major issue sold on investment terms alone since the Civil War era. They sold
+at 102.58, about 2.9 percent to 1961. Between 1911 and 1916 the 3s yielded about 0.8 to
+1.0 percentage point more than the privileged Panama 2s: same obligor, same era, same
+gold clause, and that gap is the cleanest measure of the regulatory subsidy. Through
+the stress of 1917–1921 the 2s never traded below roughly 96 while the 3s fell to 80
+and then to 74. That larger gap mixes the privilege with duration and call terms: the
+3s were a non-callable fifty-year bond, while the 2s had passed their optional
+redemption dates. The episode deserves emphasis because the temptation to read
 pre-1917 U.S. bond yields as market interest rates is strong, and for the 2 percent
 family it is wrong. Macaulay made this point in 1938; the paired price series here
 let one see it plainly.
 
 A corollary: when the Federal Reserve Act rendered the note-issue franchise obsolete,
 the propped prices sagged without any change in federal credit. The Consols' price
-trough in October 1913 coincides with the Act's passage. Deregulation, like
+trough in October 1913 coincides with the congressional endgame of the Act. Deregulation, like
 regulation, moves prices that credit theory alone cannot explain.
 
 ## 4. The arithmetic of contract terms
@@ -105,7 +111,7 @@ supported above-par prices when rates fell, and obstructed Gallatin's debt reduc
 which is why the exchange operations of 1807 and 1812 exist. The two exchanges are
 mirror images: 1807 traded the cap away to permit faster redemption; 1812 traded it
 away to *defer* redemption twelve years, converting a mandatory amortization stream
-into a postwar bullet at the moment the Treasury was borrowing at 88. Liability
+into a postwar bullet a year before the Treasury had to borrow at 88. Liability
 management is not a modern invention.
 
 *Embedded options.* The Liberty Loans carried conversion privileges that created five
@@ -120,9 +126,12 @@ months while the quantities sort monotonically toward the taxable coupon as rate
 surtax expectations moved — clientele sorting revealed in quantities, with a
 break-even surtax near 21 percent implied by the coupon spread.
 
-*Price-guarantee clauses.* The 1814 loans carried a most-favored-lender clause: if a
-later tranche sold cheaper, earlier subscribers were retroactively credited. The
-clause is why recorded sale prices of 88 and 80 coexist within one loan, and it is an
+*Price-guarantee clauses.* The 1814 loans carried a most-favored-lender clause, written
+into the Treasury's invitation for subscriptions rather than into the statute
+(Bayley): if a later sale went cheaper, earlier subscribers were credited with
+additional stock. The May 1814 loan sold at 88. A separate August 1814 offering of $6
+million raised about $4.3 million for $5.4 million of stock, at 80; that sale triggered
+the clause, and the May subscribers received supplemental stock. The clause is an
 early solution to a mechanism-design problem — sequential borrowing under deteriorating
 credit — that the biographies of 1813–1814 document in detail.
 
@@ -137,13 +146,13 @@ is a usable time series of reputation.
 | 1790 | Funding Act exchange | par, with coupon reduced ex post (the deferral and the 3s) |
 | 1798–1800 | Quasi-War loans | 8 percent coupons to sell near par |
 | 1813 | Sixteen Million Loan | 88, syndicate of three |
-| 1814 | Ten Million Loan and successors | 88, then 80, with guarantee clause |
-| 1842 | Loan of 1842 | 6s at 97½, placed with difficulty |
+| 1814 | May loan; separate August offering | 88 in May; 80 in August, which triggered the guarantee clause |
+| 1842 | Loan of 1842 | 6s at about par (Bayley: $8,343,886 sold for $8,301,468, about 99.5; the database records 97½), placed with difficulty |
 | 1843 | Loan of 1843 | 5s at ~101 |
-| 1848 | Loan of 1848 | 6s above 103, oversubscribed |
+| 1848 | Loan of 1848 | 6s above 103 |
 | 1861 | February loan | ~89, bids below minimum rejected |
 | 1870–79 | Refunding | 6s replaced by 5s, 4½s, 4s at par |
-| 1895 | Belmont–Morgan contract | 4s at 104½, resold near 120 |
+| 1895 | Belmont–Morgan contract | 4s at 104½, reoffered by the syndicate at 112¼; market near 120 within weeks |
 | 1896–98 | Popular loans | 1896 4s at ~111; 1898 3s at par, ~7× oversubscribed |
 | 1917–19 | Liberty and Victory loans | 3½–4¾ percent to tens of millions of subscribers |
 
@@ -169,8 +178,12 @@ comes to believe the settlement. The appreciation is not instantaneous; the inte
 between the Public Credit Act (1869) and resumption (1879), during which the 6%
 consols climbed from roughly 108 toward gold parity, is a decade-long record of
 belief formation. Investors who bought Union debt in greenbacks and were repaid in
-gold earned the reward for correctly forecasting a regime; the biographies of the
-Five-Twenties make the magnitude explicit.
+gold earned the reward for correctly forecasting a regime. The Public Credit Act of
+March 18, 1869 shows the settlement in prices: the average price of three Five-Twenty issues
+(the Five-Twenties of 1865 and the Consols of 1865 and 1867), whose principal the Act
+pledged to pay in coin, stood less than 1
+point above the Ten-Forties in January 1869 and about 9 points above them in March and
+April 1869.
 
 The cycle has one exception, and the book ends on it. In 1933 Congress abrogated the
 gold clause in outstanding federal bonds; the dollar was devalued from $20.67 to $35
@@ -196,7 +209,13 @@ absorbed by conversion, notes held to maturity. Silence is therefore correlated 
 the very mechanisms Sections 3 and 4 describe, and inferences drawn only from the
 well-quoted issues overweight securities that traded freely. Several biographies also
 document artifacts — isolated prints, gap-spanning "events," stale quotations repeated
-for months — and decline to narrate them. We flag this here because the collection is
+for months — and decline to narrate them. Some bonds share one price series:
+the Eight Per Cent Loans of 1798 and 1800 carry identical prices; the Loan of 1812 and
+the Exchanged Six Per Cent Stock of 1812 carry identical prices, and the Sixteen
+Million and Seven and One-Half Million Loans of 1813 share a series that matches them
+in most months; the two 1814 loans carry identical prices; and from 1801 the Deferred
+Sixes carry essentially the price of the Six Per Cent Stock. Comparisons between
+those bonds measure nothing. We flag this here because the collection is
 likely to be used as a data source: the chapters' event tables record which detected
 movements we could attribute, which we could not, and which we judge to be defects of
 the record. Treating the third category as market history would manufacture findings.

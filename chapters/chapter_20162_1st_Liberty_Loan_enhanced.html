@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="Bond Biography: Panama Canal Loan (Series 1911)" href="chapter_20134_Panama_Canal_Loan_Series_1911_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,15 +149,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -256,9 +245,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -370,24 +364,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -512,6 +498,13 @@ document.write(`
 <span class="n">BondPrice</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondPrice&#39;</span><span class="p">]</span>
 <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
+<span class="c1"># Drop one-month prints flagged as data artifacts (each is described in the chapter text)</span>
+<span class="n">ARTIFACT_PRINTS</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">20090</span><span class="p">,</span> <span class="s1">&#39;1859-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20133</span><span class="p">,</span> <span class="s1">&#39;1919-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20170</span><span class="p">,</span> <span class="s1">&#39;1920-01-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20166</span><span class="p">,</span> <span class="s1">&#39;1920-05-31&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">_id</span><span class="p">,</span> <span class="n">_d</span> <span class="ow">in</span> <span class="n">ARTIFACT_PRINTS</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">_s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Average&#39;</span><span class="p">,</span> <span class="s1">&#39;Coupon&#39;</span><span class="p">,</span> <span class="s1">&#39;Registered&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">BondPrice</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">_d</span><span class="p">),</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">)</span>
+
 <span class="n">BondQuant_T</span> <span class="o">=</span> <span class="n">BondQuant</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <span class="n">BondPrice_T</span> <span class="o">=</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 
@@ -604,7 +597,7 @@ Database contains 2857 bond issues spanning 1777–2015
 <td><p>June 30, 1917</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Term</strong></p></td>
-<td><p>30 years</p></td>
+<td><p>30 years (redeemable after June 15, 1932; payable June 15, 1947)</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Coupon Rate</strong></p></td>
 <td><p>3.5%</p></td>
@@ -698,13 +691,13 @@ Database contains 2857 bond issues spanning 1777–2015
 <tr class="row-odd"><th class="head"><p>Bond ID</p></th>
 <th class="head"><p>Name</p></th>
 <th class="head"><p>Coupon</p></th>
-<th class="head"><p>Issue Date</p></th>
+<th class="head"><p>First Issue Date (database)</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>20162</strong></p></td>
-<td><p>1st Liberty Loan of 1917</p></td>
+<td><p>1st Liberty Loan of 1917 (3.5%)</p></td>
 <td><p>3.5%</p></td>
 <td><p>June 30, 1917</p></td>
 <td><p>Original issue</p></td>
@@ -713,28 +706,29 @@ Database contains 2857 bond issues spanning 1777–2015
 <td><p>1st Liberty Loan Converted to 4%</p></td>
 <td><p>4.0%</p></td>
 <td><p>November 30, 1918</p></td>
-<td><p>First conversion</p></td>
+<td><p>Bonds dated November 15, 1917: 3½s converted under the privilege arising from the Second Liberty Loan</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>20164</strong></p></td>
 <td><p>1st Liberty Loan Converted to 4.25%</p></td>
 <td><p>4.25%</p></td>
 <td><p>November 30, 1918</p></td>
-<td><p>Direct conversion to 4.25%</p></td>
+<td><p>Bonds dated May 9, 1918: 3½s and converted 4s converted under the privilege arising from the Third Liberty Loan; later conversions of the 4s also flow into this record</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>20165</strong></p></td>
 <td><p>1st Liberty Loan Second Converted to 4.25%</p></td>
 <td><p>4.25%</p></td>
 <td><p>October 24, 1918</p></td>
-<td><p>Second-stage conversion</p></td>
+<td><p>3½s converted under the privilege arising from the Fourth Liberty Loan (Act of September 24, 1918)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>The dates of the converted bonds follow the Act of September 24, 1918 (“bonds of the First Liberty Loan Converted, dated either November 15, 1917, or May 9, 1918”) and the Third Liberty Bond Act of April 4, 1918, §3. The database records all of the 1917–18 conversions in November 1918.</p>
 </section>
 <section id="why-it-mattered">
 <h3>Why It Mattered<a class="headerlink" href="#why-it-mattered" title="Link to this heading">#</a></h3>
 <p>The conversion feature solved a problem that the Treasury itself had created. By setting the initial coupon at 3.5% — below what the market would have cleared at — McAdoo ensured strong initial demand but created a latent problem: as subsequent loans were offered at 4% and then 4.25%, the 3.5% bonds would trade below par unless holders could convert. The conversion privilege prevented a political crisis (millions of patriotic subscribers seeing their bonds lose value) while allowing the Treasury to maintain the fiction that it had initially borrowed cheaply.</p>
-<p>By war’s end, the vast majority of 1st Liberty Loan bonds had been converted. The original 3.5% issue that remains in the database represents only those bonds whose holders chose not to convert — a self-selected group that accepted the lower coupon, perhaps because they valued the original terms or simply never acted.</p>
+<p>Most holders did not convert. The database records about <span class="math notranslate nohighlight">\(575 million, roughly 29 percent of the \)</span>1.99 billion loan, leaving the 3½ percent record in November 1918; the book puts the converted total at about <span class="math notranslate nohighlight">\(560 million. About \)</span>1.41 billion stayed in the original 3½s until the 1935 call. The 3½s were exempt from all federal taxes except estate and inheritance taxes, while the converted bonds were subject to the federal surtaxes and excess-profits taxes, apart from limited exemptions. A high-bracket holder gave up more in tax than he gained in coupon by converting.</p>
 </section>
 </section>
 <section id="subscriber-progression-across-all-liberty-and-victory-loans">
@@ -940,7 +934,7 @@ TOTAL: 66.4M cumulative subscriptions, $21.4B accepted
 </section>
 <section id="bond-quantity-over-time">
 <h2>Bond Quantity Over Time<a class="headerlink" href="#bond-quantity-over-time" title="Link to this heading">#</a></h2>
-<p>The bond’s outstanding quantity peaked at <strong>$1.99 billion</strong> on September 30, 1918 — near the war’s end. The subsequent decline reflects two forces: conversions to higher-coupon issues (the 4% and 4.25% variants) and Treasury redemptions. The sharp drops in 1918–1919 align with mass conversions as the 2nd, 3rd, and 4th Liberty Loans offered better terms. By 1935, the remaining unconverted bonds were being retired.</p>
+<p>The bond’s outstanding quantity peaked at **<span class="math notranslate nohighlight">\(1.99 billion** in mid-1918. The series then shows one step down, of about \)</span>575 million in November 1918, when the database records in a single month the conversions made into the 4% and 4.25% variants during late 1917 and 1918. After that the 3½s stayed near $1.41 billion until the Treasury called the First Liberty Loan in 1935.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Bond Quantity Over Time with War/Depression Shading ──────────────────────</span>
@@ -1286,22 +1280,22 @@ TOTAL: 66.4M cumulative subscriptions, $21.4B accepted
 <td><p>1st Liberty Loan Converted to 4%</p></td>
 <td><p>4.0%</p></td>
 <td><p>Nov 1918</p></td>
-<td><p>—</p></td>
-<td><p>Conversion from 3.5%</p></td>
+<td><p>Yes (into 4.25%)</p></td>
+<td><p>3½s converted under the Second Loan privilege (bonds dated Nov 15, 1917)</p></td>
 </tr>
 <tr class="row-even"><td><p>20164</p></td>
 <td><p>1st Liberty Loan Converted to 4.25%</p></td>
 <td><p>4.25%</p></td>
 <td><p>Nov 1918</p></td>
-<td><p>—</p></td>
-<td><p>Direct conversion to 4.25%</p></td>
+<td><p>No</p></td>
+<td><p>3½s and 4s converted under the Third Loan privilege (bonds dated May 9, 1918)</p></td>
 </tr>
 <tr class="row-odd"><td><p>20165</p></td>
-<td><p>1st Liberty Loan 2nd Converted to 4.25%</p></td>
+<td><p>1st Liberty Loan Second Converted to 4.25%</p></td>
 <td><p>4.25%</p></td>
 <td><p>Oct 1918</p></td>
-<td><p>—</p></td>
-<td><p>Second-stage conversion</p></td>
+<td><p>No</p></td>
+<td><p>3½s converted under the Fourth Loan privilege</p></td>
 </tr>
 <tr class="row-even"><td><p>20166</p></td>
 <td><p>2nd Liberty Loan of 1917</p></td>
@@ -1332,18 +1326,18 @@ TOTAL: 66.4M cumulative subscriptions, $21.4B accepted
 <td><p>Largest: $6.959B accepted</p></td>
 </tr>
 <tr class="row-even"><td><p>20170</p></td>
-<td><p>Victory Liberty Loan (3.75%)</p></td>
-<td><p>3.75%</p></td>
-<td><p>Apr 1919</p></td>
-<td><p>No</p></td>
-<td><p>Short-term (3–4 year)</p></td>
+<td><p>Victory Liberty Loan (4 3/4%)</p></td>
+<td><p>4.75%</p></td>
+<td><p>May 1919</p></td>
+<td><p>Yes (into 3.75%)</p></td>
+<td><p>Four-year note; exempt from normal income tax, subject to surtaxes</p></td>
 </tr>
 <tr class="row-odd"><td><p>20171</p></td>
-<td><p>Victory Liberty Loan (4.75%)</p></td>
-<td><p>4.75%</p></td>
-<td><p>Apr 1919</p></td>
-<td><p>No</p></td>
-<td><p>Short-term variant</p></td>
+<td><p>Victory Liberty Loan (3 3/4%)</p></td>
+<td><p>3.75%</p></td>
+<td><p>May 1919</p></td>
+<td><p>Yes (into 4.75%)</p></td>
+<td><p>Four-year note; exempt from all federal taxes except estate and inheritance taxes</p></td>
 </tr>
 </tbody>
 </table>
@@ -1413,7 +1407,7 @@ TOTAL: 66.4M cumulative subscriptions, $21.4B accepted
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e9d075fd2d274183d0392497a6b980f420793175216c581546eeb6f5c4706d7f.png" src="../_images/e9d075fd2d274183d0392497a6b980f420793175216c581546eeb6f5c4706d7f.png" />
+<img alt="../_images/9186181aec18f734638c662d8b1903ba924086e95a8e02c46a5694c31bd7f585.png" src="../_images/9186181aec18f734638c662d8b1903ba924086e95a8e02c46a5694c31bd7f585.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plotted 10 Liberty/Victory Loan price series
 </pre></div>
 </div>
@@ -1519,7 +1513,7 @@ TOTAL: 66.4M cumulative subscriptions, $21.4B accepted
 <section id="the-national-sales-campaign">
 <h3>The National Sales Campaign<a class="headerlink" href="#the-national-sales-campaign" title="Link to this heading">#</a></h3>
 <p>The marketing of the 1st Liberty Loan was unlike anything America had seen. Secretary McAdoo personally embarked on a nationwide speaking tour, addressing crowds in major cities. The Treasury enlisted celebrities, organized rallies, and deployed tens of thousands of volunteers. Boy Scouts sold bonds door-to-door. Movie stars appeared at Liberty Loan rallies — Charlie Chaplin, Douglas Fairbanks, and Mary Pickford all made public appeals.</p>
-<p>The bonds were offered in denominations as small as **<span class="math notranslate nohighlight">\(50** (later reduced to \)</span>50 for subsequent issues), making them accessible to middle-class and even working-class Americans. Payment could be made in installments — typically 2% at application and the remainder over several months.</p>
+<p>The bonds were offered in denominations as small as <strong>$50</strong>, making them accessible to middle-class and even working-class Americans. Payment could be made in installments — typically 2% at application and the remainder over several months.</p>
 </section>
 <section id="who-bought">
 <h3>Who Bought?<a class="headerlink" href="#who-bought" title="Link to this heading">#</a></h3>
@@ -1533,7 +1527,7 @@ TOTAL: 66.4M cumulative subscriptions, $21.4B accepted
 </section>
 <section id="redemption">
 <h3>Redemption<a class="headerlink" href="#redemption" title="Link to this heading">#</a></h3>
-<p>The 1st Liberty Loan was callable — the Treasury could redeem it before the full 30-year term. As the database shows, outstanding quantities declined steadily through the 1920s and 1930s as bonds were converted, called, or matured. By 1935, only a residual amount remained in the data.</p>
+<p>The 1st Liberty Loan was callable — the Treasury could redeem it after June 15, 1932, before the full 30-year term. As the database shows, the 3½s stayed near <span class="math notranslate nohighlight">\(1.41 billion from the November 1918 conversion step until 1935, when the Treasury called the First Liberty Loan; public holdings fell from \)</span>1.39 billion in March 1935 to $190 million in May 1935.</p>
 </section>
 </section>
 <section id="detected-price-and-quantity-events">
@@ -1554,9 +1548,9 @@ TOTAL: 66.4M cumulative subscriptions, $21.4B accepted
 <td><p>Initial distribution following June 1917 issue</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>1918-11</strong></p></td>
-<td><p>Quantity decrease</p></td>
+<td><p>Quantity decrease (bookkeeping date)</p></td>
 <td><p>-28.9%</p></td>
-<td><p>Mass conversion to higher-coupon variants after Armistice</p></td>
+<td><p>Conversions into the 4% and 4.25% variants, made during late 1917 and 1918, recorded in one month</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>1920-04</strong></p></td>
 <td><p>Price drop</p></td>
@@ -1576,7 +1570,7 @@ TOTAL: 66.4M cumulative subscriptions, $21.4B accepted
 </tbody>
 </table>
 </div>
-<p>The 1918 quantity decrease is particularly telling: it corresponds exactly to the period when the conversion privilege was exercised en masse, as holders swapped their 3.5% bonds for the newly available 4% and 4.25% issues.</p>
+<p>The November 1918 quantity decrease records in a single month the exchanges that holders made over late 1917 and 1918, as they swapped their 3.5% bonds for the 4% and 4.25% issues.</p>
 </section>
 <section id="legacy">
 <h2>Legacy<a class="headerlink" href="#legacy" title="Link to this heading">#</a></h2>
@@ -1695,7 +1689,8 @@ TOTAL: 66.4M cumulative subscriptions, $21.4B accepted
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1793,8 +1788,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

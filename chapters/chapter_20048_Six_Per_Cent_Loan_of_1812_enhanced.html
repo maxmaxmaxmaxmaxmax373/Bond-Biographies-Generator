@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="Bond Biography: Exchanged Six Per Cent. Stock of 1807" href="chapter_20045_Exchanged_Six_Per_Cent_Stock_of_1807_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,15 +149,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -256,9 +245,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -370,24 +364,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -469,6 +455,9 @@ document.write(`
 <p><strong>Bond ID (L1):</strong> 20048<br />
 <strong>Category:</strong> Interest Bearing &gt; Marketable &gt; Long Term Bond</p>
 <hr class="docutils" />
+<blockquote>
+<div><p><strong>Data note.</strong> The database records one price series for three loans: this loan, the Exchanged Six Per Cent. Stock of 1812 (ID 20051) and the Sixteen Million Loan of 1813 (ID 20052). This loan’s prices equal those of the exchanged stock in all 150 months (April 1813–September 1825) and those of the 1813 loan in 130 of 149 overlapping months (they differ only in May–September 1813 and July 1824–September 1825). Comparisons among these bonds carry no information. Prices from August 1814 to February 1817 are quoted in the paper of banks that had suspended specie payments, so the 1814 decline and the 1815 recovery are measured in a depreciating unit.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -514,6 +503,7 @@ document.write(`
 During its lifetime on the secondary market, the bond’s average price was <span class="math notranslate nohighlight">\(99.96, ranging from \)</span>75.0 to <span class="math notranslate nohighlight">\(109.5 (based on 150 monthly observations from 1813-04-30 to 1825-09-30). Peak outstanding reached \)</span>7.81 million on 1815-06-30.</p>
 <p>In the decade leading up to the War of 1812, Jeffersonian finance dictated national economic and financial policy. President Thomas Jefferson advocated for a decentralized federal government and an agrarian society. Land sales and customs duties generated most of the government’s revenue, and the government did not impose an income tax on its citizens. The Embargo Act of 1807 severely damaged customs revenues, and in 1811, Congress refused to recharter the First Bank of the United States despite Treasury Secretary Albert Gallatin’s efforts to renew it. The loss of a national bank proved consequential: the government forfeited a critical source of loans just as the nation headed toward war. As Perkins (1994) notes, the United States faced its bleakest credit outlook since the Revolutionary War.</p>
 <p>This was the first long-term bond issued to finance the War of 1812, intended to generate sustained revenue for war supplies and military expenditures. Congress allowed the President to borrow no more than <span class="math notranslate nohighlight">\(11 million, yet bonds could not be sold below par. The modest 6% interest rate -- typical for the era, as most government bonds since 1801 carried rates between 5% and 6% -- did not excite many potential buyers. The Madison Administration refused to raise rates any higher. Only \)</span>8,134,700 was ultimately raised through the issuance, well below the $11 million authorization, foreshadowing the persistent financing difficulties that would plague the government throughout the war.</p>
+<p><em>Note on size.</em> The $8,134,700 figure is Bayley’s (1881). Public holdings in the database peak at $7,810,500 (June 1815), about $324,000 less; the quarterly series already stands at $7.79 million in December 1812. The quarterly data do not show the source of the gap; stock issued and retired or transferred between quarterly observations, or differences in what each source counts, could account for it.</p>
 </section>
 <section id="historical-context">
 <h2>Historical Context<a class="headerlink" href="#historical-context" title="Link to this heading">#</a></h2>
@@ -560,7 +550,7 @@ During its lifetime on the secondary market, the bond’s average price was <spa
 </section>
 <section id="the-panic-of-1819">
 <h3>The Panic of 1819<a class="headerlink" href="#the-panic-of-1819" title="Link to this heading">#</a></h3>
-<p>The period from 1819 through the latter half of 1822 actually saw an <em>increase</em> in the bond’s price, which may seem paradoxical during a financial crisis. The rise is explained by the Second Bank of the United States’ tighter monetary policy during this period, which contracted the money supply and produced deflation. As the general price level fell, the fixed nominal payments of the 6% bonds became more valuable in real terms, driving bond prices upward. The market price reached a maximum of $109.50 by the end of June 1822.</p>
+<p>The period from 1819 through the latter half of 1822 actually saw an <em>increase</em> in the bond’s price, which may seem paradoxical during a financial crisis. The rise is explained by the Second Bank of the United States’ tighter monetary policy during this period, which contracted the money supply and produced deflation. As the general price level fell, the fixed nominal payments of the 6% bonds became more valuable in real terms, driving bond prices upward. The market price reached a maximum of $109.50 at the end of June 1821.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bond Lifecycle Timeline</span>
@@ -861,7 +851,7 @@ During its lifetime on the secondary market, the bond’s average price was <spa
 <h3>Price Analysis<a class="headerlink" href="#price-analysis" title="Link to this heading">#</a></h3>
 <p>Prices dipped substantially during the latter half of 1814. From the end of June 1814 to the end of January 1815, prices decreased by <strong>13.79%</strong>. This decline coincides directly with the British Chesapeake Campaign, which saw the burning of Washington, D.C. on August 24, 1814. Beyond the military shock, the broader decrease in trade during the war further depressed bond values.</p>
 <p>The uptick in prices after January 1815 is explained by two events in quick succession: the signing of the <strong>Treaty of Ghent</strong> on December 24, 1814 (ending the war) and the <strong>Battle of New Orleans</strong> on January 8, 1815 (a decisive American military victory, though it occurred after the peace treaty was signed). News of both events reached financial markets in early 1815, producing the +22% price spike detected in February 1815.</p>
-<p>The market price reached its maximum of <strong>$109.50</strong> by the end of June 1822. Notably, the period from 1819 through mid-1822 saw rising prices despite the Panic of 1819 – this apparent paradox is explained by the Second Bank of the United States’ contractionary monetary policy. The resulting deflation increased the real value of the bond’s fixed nominal coupon payments, driving prices above par.</p>
+<p>The market price reached its maximum of <strong>$109.50</strong> at the end of June 1821. Notably, the period from 1819 through mid-1822 saw rising prices despite the Panic of 1819 – this apparent paradox is explained by the Second Bank of the United States’ contractionary monetary policy. The resulting deflation increased the real value of the bond’s fixed nominal coupon payments, driving prices above par.</p>
 <p>In 1817, the commissioners of the sinking fund purchased stock at par, providing price support. By the time bonds became redeemable in January 1825, the outstanding quantity dropped sharply as the government retired the debt.</p>
 </section>
 <section id="detected-price-quantity-events">
@@ -1085,12 +1075,12 @@ During its lifetime on the secondary market, the bond’s average price was <spa
 <section id="related-bonds-the-war-of-1812-family">
 <h3>Related Bonds: The War of 1812 Family<a class="headerlink" href="#related-bonds-the-war-of-1812-family" title="Link to this heading">#</a></h3>
 <p>The Six Per Cent. Loan of 1812 was the first in a series of instruments Congress authorized to finance the War of 1812. Understanding its price behavior requires context about its companion bonds:</p>
-<p><strong>Exchanged Six Per Cent. Stock (ID 20051):</strong> Authorized by an act on June 24, 1812, this instrument allowed holders of the original Six Per Cent. Loan to exchange their old stock for new certificates with identical features. Treasury Secretary Gallatin noted that by June 1812, the <span class="math notranslate nohighlight">\(11 million loan had only raised \)</span>6.46 million; he hoped the exchange mechanism would increase the bond’s market price, since the old stock was trading 2-3% below par. Approximately $2,984,746 was collected in subscriptions.</p>
-<p><strong>Sixteen Million Loan of 1813 (ID 20052):</strong> Authorized February 8, 1813 at 6% interest, this loan sold at 88% face value – a significant discount reflecting the government’s deteriorating credit. Its market price tracked almost identically to the 1812 bonds, as the two instruments shared similar features and traded contemporaneously. Crucially, this loan marked the first time the government relied on outside financiers: a syndicate of Stephen Girard, David Parish, and John Jacob Astor purchased <span class="math notranslate nohighlight">\(10.1 million of the \)</span>16 million issue.</p>
+<p><strong>Exchanged Six Per Cent. Stock (ID 20051):</strong> Authorized by the Act of July 6, 1812 (ch. 135, 2 Stat. 782), this stock was created by exchange: holders of Hamilton’s old six per cent and deferred six per cent stocks of 1790 could subscribe them for a new 6% stock, redeemable at the pleasure of the United States only after December 31, 1824. The exchange did not involve the Loan of 1812. Approximately $2,984,746 was subscribed.</p>
+<p><strong>Sixteen Million Loan of 1813 (ID 20052):</strong> Authorized February 8, 1813 at 6% interest, this loan sold at 88% face value – a significant discount reflecting the government’s deteriorating credit. The database records the same monthly price for it and for the 1812 loan in 130 of 149 months, so the near-identical price paths say nothing about how the market distinguished the two loans. Crucially, this loan marked the first time the government relied on outside financiers: a syndicate of Stephen Girard, David Parish, and John Jacob Astor purchased <span class="math notranslate nohighlight">\(10.1 million of the \)</span>16 million issue.</p>
 <p><strong>Seven and One-Half Million Loan of 1813 (ID 20054):</strong> Authorized August 2, 1813, these bonds sold at 88.25% face value. Their market prices were identical to the Sixteen Million Loan since they shared the same features and redemption date (January 1, 1826).</p>
-<p><strong>Six Per Cent. Loans of 1814 (IDs 20056, 20057, 20058):</strong> Comprising the Ten Million, Six Million, and Undesignated loans, these were issued under a single <span class="math notranslate nohighlight">\(25 million authorization. They sold at 80% face value -- a 20% discount reflecting the nadir of government credit during the British invasion. Jacob Barker purchased \)</span>5 million using leveraged transactions, borrowing from banks and using the bonds as collateral.</p>
+<p><strong>Six Per Cent. Loans of 1814 (IDs 20056, 20057, 20058):</strong> Comprising the Ten Million, Six Million, and Undesignated loans, these were issued under the $25 million authorization of March 24, 1814. Bayley (1881) describes two offerings: the May 1814 loan sold at 88, and a separate August 1814 offering of $6 million raised about $4.3 million for about $5.4 million of stock at 80, the low point of government credit during the British invasion. Jacob Barker purchased $5 million using leveraged transactions, borrowing from banks and using the bonds as collateral.</p>
 <p><strong>Treasury Notes (IDs 20050, 20053, 20055, 20060-20067):</strong> Five separate issues of short-term Treasury notes supplemented the long-term bonds. These notes typically bore 5.4% interest, were redeemable after one year, and could be used to pay taxes, duties, and purchase public lands. They functioned as quasi-currency and were more successful than the long-term bonds in raising funds, partly because their short maturity reduced credit risk for buyers.</p>
-<p>All War of 1812 six-percent bonds exhibited similar price patterns: a decline during the British Chesapeake Campaign, a sharp recovery after the Treaty of Ghent, and a gradual climb above par through the post-war years as government creditworthiness was restored.</p>
+<p>The 1812 and 1813 loans share one price series in the database for most of their lives, so their common pattern (a decline during the British Chesapeake Campaign, a sharp recovery after the Treaty of Ghent, and a gradual climb above par after the war) is one observation, not several. The database has no wartime quotations for the 1814 loans; their prices begin in January 1817.</p>
 </section>
 </section>
 <section id="issuance-distribution-and-redemption">
@@ -1127,7 +1117,7 @@ During its lifetime on the secondary market, the bond’s average price was <spa
 <ol class="arabic simple">
 <li><p><strong>The chartering of the Second Bank of the United States (1816):</strong> The chaos of wartime finance – with hundreds of state banks issuing depreciated notes, no central institution to manage government debt, and the suspension of specie payments – made the case for a national bank irresistible even to many Republicans who had opposed the First Bank.</p></li>
 <li><p><strong>The evolution of government bond marketing:</strong> The failure of the passive “announce and wait” approach for this loan led Treasury officials to embrace more active distribution methods for subsequent issues. By the time of the Sixteen Million Loan of 1813, the government was working with private syndicates (Girard, Parish, and Astor) – an early prototype of the investment banking relationship that would become standard in government finance.</p></li>
-<li><p><strong>The precedent of discount sales:</strong> While this initial loan was constrained to sales at par, the government quickly abandoned that restriction. The Sixteen Million Loan sold at 88%, the Seven and One-Half Million Loan at 88.25%, and the Six Percent Loans of 1814 at just 80% of face value – a progressive deterioration that reflected both the government’s desperation and the market’s declining confidence.</p></li>
+<li><p><strong>The precedent of discount sales:</strong> While this initial loan was constrained to sales at par, the government quickly abandoned that restriction. The Sixteen Million Loan sold at 88%, the Seven and One-Half Million Loan at 88.25%, the May 1814 loan at 88, and the August 1814 offering at just 80% of face value – a progressive deterioration that reflected both the government’s desperation and the market’s declining confidence.</p></li>
 </ol>
 </section>
 <section id="post-war-debt-consolidation">
@@ -1164,7 +1154,7 @@ During its lifetime on the secondary market, the bond’s average price was <spa
 <h3>Related Legislation<a class="headerlink" href="#related-legislation" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Act of March 14, 1812 (authorizing the $11 million loan and the Temporary Loan of 1812).</p></li>
-<li><p>Act of June 24, 1812 (authorizing the Exchanged Six Per Cent. Stock).</p></li>
+<li><p>Act of July 6, 1812, ch. 135, 2 Stat. 782 (authorizing a subscription of the old six per cent and deferred stocks for the Exchanged Six Per Cent. Stock).</p></li>
 <li><p>Act of February 8, 1813 (authorizing the $16 million loan).</p></li>
 <li><p>Act of August 2, 1813 (authorizing the $7.5 million loan).</p></li>
 <li><p>Act of March 24, 1814 (authorizing the $25 million loan).</p></li>
@@ -1231,7 +1221,8 @@ During its lifetime on the secondary market, the bond’s average price was <spa
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1322,8 +1313,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

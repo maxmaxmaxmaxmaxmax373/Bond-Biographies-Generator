@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="Bond Biography: 4th Liberty Loan" href="chapter_20169_4th_Liberty_Loan_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,15 +149,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -256,9 +245,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -370,24 +364,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -489,6 +475,13 @@ document.write(`
 <span class="n">BondQuant</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondQuant&#39;</span><span class="p">]</span>
 <span class="n">BondPrice</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondPrice&#39;</span><span class="p">]</span>
 <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Drop one-month prints flagged as data artifacts (each is described in the chapter text)</span>
+<span class="n">ARTIFACT_PRINTS</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">20090</span><span class="p">,</span> <span class="s1">&#39;1859-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20133</span><span class="p">,</span> <span class="s1">&#39;1919-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20170</span><span class="p">,</span> <span class="s1">&#39;1920-01-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20166</span><span class="p">,</span> <span class="s1">&#39;1920-05-31&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">_id</span><span class="p">,</span> <span class="n">_d</span> <span class="ow">in</span> <span class="n">ARTIFACT_PRINTS</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">_s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Average&#39;</span><span class="p">,</span> <span class="s1">&#39;Coupon&#39;</span><span class="p">,</span> <span class="s1">&#39;Registered&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">BondPrice</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">_d</span><span class="p">),</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">)</span>
 
 <span class="n">BondQuant_T</span> <span class="o">=</span> <span class="n">BondQuant</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <span class="n">BondPrice_T</span> <span class="o">=</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
@@ -842,7 +835,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/49c88545af219363bcfee6891610cd2b95132a5d02a1bbc6613d93bdbeaefb45.png" src="../_images/49c88545af219363bcfee6891610cd2b95132a5d02a1bbc6613d93bdbeaefb45.png" />
+<img alt="../_images/46e071239ec4361fb0797c917dba8c4f7d7bd1a3f6a500e592341e44a394ca36.png" src="../_images/46e071239ec4361fb0797c917dba8c4f7d7bd1a3f6a500e592341e44a394ca36.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -883,7 +876,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f3a53cce77fd4529212c73a970d0cf07d664d78470eefb489ad150df8f4f3adb.png" src="../_images/f3a53cce77fd4529212c73a970d0cf07d664d78470eefb489ad150df8f4f3adb.png" />
+<img alt="../_images/6f839893166b75cd83282099ccee723afa5e7e9cf005bfe8062fdb346b76a913.png" src="../_images/6f839893166b75cd83282099ccee723afa5e7e9cf005bfe8062fdb346b76a913.png" />
 </div>
 </div>
 <section id="detected-price-quantity-events">
@@ -899,12 +892,12 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>1920-01</strong></p></td>
-<td><p>Price drop</p></td>
+<td><p>Price drop (data artifact)</p></td>
 <td><p>-8.1%</p></td>
 <td><p><strong>Almost certainly a data artifact, not a market event.</strong> The <span class="math notranslate nohighlight">\(90.90 print implies a yield near 8% on a three-year Treasury note — and the price rebounds to \)</span>97.48 the very next month. Genuine short-note prices do not fall eight points and recover seven in sixty days. The <em>direction</em> is real — January 1920 brought a sharp Federal Reserve discount-rate increase, and prices did fall — but the magnitude points to a recording problem: possibly a misquoted series, a flat-versus-accrued price confusion, or a transcription error in the underlying newspaper source. The surrounding observations (<span class="math notranslate nohighlight">\(98.94 in December, \)</span>97.48 in February) bracket the plausible truth.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>1920-02</strong></p></td>
-<td><p>Price spike</p></td>
+<td><p>Price spike (reversal of the artifact)</p></td>
 <td><p>+7.2%</p></td>
 <td><p>The mirror image of the January anomaly — a “recovery” from a price the note probably never traded at. Taken together, the pair should be read as one questionable observation, not two events.</p></td>
 </tr>
@@ -921,9 +914,9 @@ document.write(`
 </section>
 <section id="price-volatility">
 <h2>Price Volatility<a class="headerlink" href="#price-volatility" title="Link to this heading">#</a></h2>
-<p><strong>Maximum drawdown:</strong> -9.1% (from peak on 1919-05-31 to trough on 1920-01-31)</p>
+<p><strong>Maximum drawdown:</strong> -4.6% (from peak on 1919-05-31 to trough on 1920-08-31, omitting the January 1920 print; with that print included, the figure would be -9.1%)</p>
 <p><strong>Average monthly return:</strong> 0.031%</p>
-<p>The headline drawdown should be read with the January 1920 caveat firmly in mind: the trough observation is the suspect <span class="math notranslate nohighlight">\(90.90 print. Measured to the note's sustained low of \)</span>95.40 (August 1920), the drawdown was about <strong>-4.6%</strong> — roughly a third of what the long 4th Liberty Loan suffered over the same tightening cycle, and a clean illustration of how short duration insulated holders. The rolling-volatility chart below is dominated by that single January observation; excluding it, the Victory 4 3/4s were among the most placid securities in the wartime cohort. Note also that a 12-month rolling window over a 38-month series leaves few independent readings — the chart is suggestive, not statistical.</p>
+<p>The headline drawdown omits the suspect <span class="math notranslate nohighlight">\(90.90 print of January 1920. Measured to the note's sustained low of \)</span>95.40 (August 1920), the drawdown was about <strong>-4.6%</strong> — roughly a third of what the long 4th Liberty Loan suffered over the same tightening cycle, and a clean illustration of how short duration insulated holders. The rolling-volatility chart below omits that January observation; without it, the Victory 4 3/4s were among the most placid securities in the wartime cohort. Note also that a 12-month rolling window over a 38-month series leaves few independent readings — the chart is suggestive, not statistical.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rolling volatility (12-month window)</span>
@@ -947,7 +940,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8d23ee4cb2fe00267ffbe5e2b009ecbad04e2020c73c10fb6e3ede930d03f19f.png" src="../_images/8d23ee4cb2fe00267ffbe5e2b009ecbad04e2020c73c10fb6e3ede930d03f19f.png" />
+<img alt="../_images/c2c2f3a918f655a24a8b60d237d96979db3bad2f1e21c229f1f715e93a39999a.png" src="../_images/c2c2f3a918f655a24a8b60d237d96979db3bad2f1e21c229f1f715e93a39999a.png" />
 </div>
 </div>
 </section>
@@ -1061,7 +1054,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/463ed04962918197abad57dc671a1aa9a9f366a146f5d2d48e563efee8133db9.png" src="../_images/463ed04962918197abad57dc671a1aa9a9f366a146f5d2d48e563efee8133db9.png" />
+<img alt="../_images/a0b3226b02c4b7e51d9cc4eac4e7aa0d028e182f81c181c6ddcb28d6f2b79f3d.png" src="../_images/a0b3226b02c4b7e51d9cc4eac4e7aa0d028e182f81c181c6ddcb28d6f2b79f3d.png" />
 </div>
 </div>
 <section id="reading-the-comparison">
@@ -1216,7 +1209,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1303,8 +1297,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

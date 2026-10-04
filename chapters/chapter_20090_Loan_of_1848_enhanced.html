@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Loan of 1847" href="chapter_20089_Loan_of_1847_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -425,6 +411,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secondary-market-prices">Secondary Market Prices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prices-in-greenbacks-and-in-gold">Prices in greenbacks and in gold</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detected-price-quantity-events">Detected Price/Quantity Events</a></li>
 </ul>
 </li>
@@ -459,6 +446,7 @@ document.write(`
 <p><em>An enhanced chapter from the Hall-Payne-Sargent US Federal Bond Database (2,857 issues, 1776–1960)</em></p>
 <p><strong>Bond ID (L1):</strong> 20090  |  <strong>Category:</strong> Interest Bearing &gt; Marketable &gt; Long Term Bond</p>
 <hr class="docutils" />
+<p><strong>Data note.</strong> Quotations from January 1862 to the end of the series (December 1865) are prices in greenbacks, while this bond’s coupons and principal were payable in coin. Wartime price movements therefore mix the gold premium with credit news.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -479,6 +467,13 @@ document.write(`
 <span class="n">BondQuant</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondQuant&#39;</span><span class="p">]</span>
 <span class="n">BondPrice</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondPrice&#39;</span><span class="p">]</span>
 <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Drop one-month prints flagged as data artifacts (each is described in the chapter text)</span>
+<span class="n">ARTIFACT_PRINTS</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">20090</span><span class="p">,</span> <span class="s1">&#39;1859-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20133</span><span class="p">,</span> <span class="s1">&#39;1919-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20170</span><span class="p">,</span> <span class="s1">&#39;1920-01-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20166</span><span class="p">,</span> <span class="s1">&#39;1920-05-31&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">_id</span><span class="p">,</span> <span class="n">_d</span> <span class="ow">in</span> <span class="n">ARTIFACT_PRINTS</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">_s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Average&#39;</span><span class="p">,</span> <span class="s1">&#39;Coupon&#39;</span><span class="p">,</span> <span class="s1">&#39;Registered&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">BondPrice</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">_d</span><span class="p">),</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">)</span>
 
 <span class="n">BondQuant_T</span> <span class="o">=</span> <span class="n">BondQuant</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <span class="n">BondPrice_T</span> <span class="o">=</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
@@ -503,7 +498,7 @@ document.write(`
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>The <strong>Loan of 1848</strong> was authorized by the Act of March 31, 1848, which empowered the Treasury to borrow up to $16 million on twenty-year stock bearing 6 per cent interest, payable semi-annually in coin and redeemable after twenty years. During its lifetime on the secondary market, the bond’s average price was $113.46, ranging from $88.00 to $133.56 (based on 168 monthly observations from November 1848 to December 1865). Peak outstanding reached $15.74 million on September 30, 1849 — nearly the full authorization. (The database records a first issue date of March 31, 1849, but the quantity series shows that subscribers had already paid in some $6.5 million by September 1848 and over $11 million by year-end; the stock was subscribed and paid for in installments beginning in mid-1848.)</p>
 <p>This was the last of the Mexican War loans, and the first of them floated after the shooting had stopped. The Treaty of Guadalupe Hidalgo was signed on February 2, 1848 and ratifications were exchanged that spring; under its terms the United States acquired the vast Mexican Cession and agreed to pay Mexico $15 million, besides assuming claims of American citizens against Mexico of up to $3¼ million. The war’s bills, however, did not stop with the war: the indemnity installments, the costs of winding down and withdrawing the army, and the floating debt of Treasury notes all had to be funded. Secretary of the Treasury Robert J. Walker asked Congress for one more loan, and the Act of March 31, 1848 — passed the very month the Senate acted on the treaty — supplied it. It is a nice irony of fiscal history that a bond floated to pay <em>for</em> a war was actually floated to pay <em>for peace</em>: a substantial share of the proceeds went, directly or indirectly, toward the payment promised to Mexico.</p>
-<p>What makes the Loan of 1848 distinctive in the arc of U.S. fiscal history is not what it financed but how it sold. Six years earlier, in 1842, the Treasury of the same government had been forced to hawk a nearly identical security — a twenty-year 6 per cent coin bond — at a <em>discount</em>, after the great houses of Europe refused to touch American paper at all (see the companion chapter on the Loan of 1842). In June 1848 the same instrument was put up at sealed-bid auction and the bids came in <em>above par</em>: the database records a price sold of 1.03, roughly $103 per $100 of face value. Bidders competed for the privilege of lending to the United States, the banking house of <strong>Corcoran &amp; Riggs</strong> took the lion’s share, and within months a substantial block of the bonds had been placed in London — the first significant return of European capital to new U.S. federal debt since the state-default scandal of the early 1840s. The credit-restoration story that begins with the humiliation of 1842 ends here, with a young republic that could not borrow a dollar in 1842 selling its bonds at a premium six years later, in the immediate aftermath of a war.</p>
+<p>What makes the Loan of 1848 distinctive in the arc of U.S. fiscal history is not what it financed but how it sold. Six years earlier, in 1842, the Treasury of the same government had been forced to hawk a nearly identical security — a twenty-year 6 per cent coin bond — at a <em>discount</em>, after the great houses of Europe refused to touch American paper at all (see the companion chapter on the Loan of 1842). In June 1848 the same instrument was put up at sealed-bid auction and the bids came in <em>above par</em>: the database records a price sold of 1.03, roughly $103 per $100 of face value. The banking house of <strong>Corcoran &amp; Riggs</strong> took about $14 million of the $16 million, and Corcoran then placed more than $3 million of the bonds in London — the return of European capital to new U.S. federal debt after the state-default scandal of the early 1840s (Cohen 1971). The credit-restoration story that begins with the humiliation of 1842 ends here, with a young republic that could not borrow a dollar in 1842 selling its bonds at a premium six years later, in the immediate aftermath of a war.</p>
 <p>The bond then lived a long and eventful life: through the California gold inflows and the surplus-rich early 1850s, when the Treasury bought back nearly half the issue at prices in the high teens above par; through the Panic of 1857, which ended the buybacks; through the secession winter, which drove the price to 88; through the Civil War, when its coin coupons were quoted in depreciating greenbacks; and finally to redemption at maturity in 1868, paid off on schedule by a government that had meanwhile borrowed sums beyond anything imaginable in 1848.</p>
 </section>
 <section id="historical-context">
@@ -578,7 +573,7 @@ document.write(`
 </div>
 <section id="a-war-ends-and-its-bill-arrives">
 <h3>A war ends, and its bill arrives<a class="headerlink" href="#a-war-ends-and-its-bill-arrives" title="Link to this heading">#</a></h3>
-<p>The Mexican War was financed almost entirely by borrowing — Treasury notes and three funded loans, the 6s of 1846, the $23 million loan of 1847, and this loan of 1848 — rather than by taxes. By early 1848 the fighting was over but the Treasury’s needs were not: the $15 million indemnity to Mexico, the assumed claims, and the expenses of demobilization all lay ahead. The Act of March 31, 1848 authorized the final $16 million. Unlike 1842, and unlike the anxious first war loans of 1846–47, the placement was a triumph. Federal revenue was recovering strongly under the Walker Tariff, the war had ended in a swift and (for the victor) inexpensive peace, and the market had absorbed each of the earlier war loans at improving prices. When the bids were opened in June 1848 the loan was awarded above par — about 103 — with Corcoran &amp; Riggs of Washington, who had been prominent in the war loans since 1846, taking the great bulk of the issue.</p>
+<p>The Mexican War was financed almost entirely by borrowing — Treasury notes and three funded loans, the 6s of 1846, the $23 million loan of 1847, and this loan of 1848 — rather than by taxes. By early 1848 the fighting was over but the Treasury’s needs were not: the $15 million indemnity to Mexico, the assumed claims, and the expenses of demobilization all lay ahead. The Act of March 31, 1848 authorized the final $16 million. Unlike 1842, and unlike the anxious first war loans of 1846–47, the placement was a triumph. Federal revenue was recovering strongly under the Walker Tariff, the war had ended in a swift and (for the victor) inexpensive peace, and the market had absorbed each of the earlier war loans at improving prices. When the bids were opened in June 1848 the loan was awarded above par — about 103 — with Corcoran &amp; Riggs of Washington, which had taken most of the public offering of the 1847 loan, taking about $14 million of the issue (Cohen 1971, pp. 49–51).</p>
 </section>
 <section id="gold-surpluses-and-the-buyback-decade">
 <h3>Gold, surpluses, and the buyback decade<a class="headerlink" href="#gold-surpluses-and-the-buyback-decade" title="Link to this heading">#</a></h3>
@@ -688,7 +683,7 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>Two features deserve emphasis. First, the terms are essentially identical to the Loan of 1842 — a twenty-year, non-callable, 6 per cent coin bond with semi-annual coupons. That makes the pair a controlled experiment in the price of reputation: the same government, offering the same security, was forced to accept 97½ in 1842 and was paid about 103 in 1848. Second, the <strong>premium sale</strong> itself. Selling a war loan above par was, for the United States of this era, an extraordinary event — the war loans of 1812–14 had gone off at deep discounts, and even the loan of 1846 had struggled at par. The 3 per cent premium of 1848 recorded, in a single number, the recovery of federal revenue, the profitable end of the war, and the market’s accumulated confidence in a government that had never missed a payment on its own debt.</p>
+<p>Two features deserve emphasis. First, the terms are essentially identical to the Loan of 1842 — a twenty-year, non-callable, 6 per cent coin bond with semi-annual coupons. That makes the pair a controlled experiment in the price of reputation: the same government, offering the same security, was forced to sell below par in 1842 (97½ in the database; about 99.5 on Bayley’s cash figures) and was paid about 103 in 1848. Second, the <strong>premium sale</strong> itself. Selling a war loan above par was, for the United States of this era, an extraordinary event — the war loans of 1812–14 had gone off at deep discounts, and even the loan of 1846 had struggled at par. The 3 per cent premium of 1848 recorded, in a single number, the recovery of federal revenue, the profitable end of the war, and the market’s accumulated confidence in a government that had never missed a payment on its own debt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display full bond features from database</span>
@@ -814,7 +809,7 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>The very first quotation in the database — 108⅛ in November 1848 — already tells most of the story: this bond began its market life eight points above par and stayed above par continuously for over twelve years, until the secession crisis. Note two warnings for readers of the chart below. First, the price sits at exactly $118.00 for nine consecutive months in 1857 while the Treasury’s buybacks were shrinking the float; quotations in such stretches look like dealers’ standing quotes rather than fresh transactions. Second, the single print of $133.56 in December 1859, more than 25 points above its neighbors on either side, is almost certainly an anomalous or misattributed quotation rather than a genuine market move — no historical event remotely justifies it, and the price returns to 106½ the following month.</p>
+<p>The very first quotation in the database — 108⅛ in November 1848 — already tells most of the story: this bond began its market life eight points above par and stayed above par continuously for over twelve years, until the secession crisis. Note two warnings for readers of the chart below. First, the price sits at exactly $118.00 for nine consecutive months in 1857 while the Treasury’s buybacks were shrinking the float; quotations in such stretches look like dealers’ standing quotes rather than fresh transactions. Second, the single print of $133.56 in December 1859, more than 25 points above its neighbors on either side, is almost certainly an anomalous or misattributed quotation rather than a genuine market move — no historical event remotely justifies it, and the price returns to 106½ the following month. The price charts omit the print.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Annotated price chart</span>
@@ -844,7 +839,40 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d126b4d41a48ab7cb18a55bd35f99653e154ad4b6a0d4ef0f876b6a141d11205.png" src="../_images/d126b4d41a48ab7cb18a55bd35f99653e154ad4b6a0d4ef0f876b6a141d11205.png" />
+<img alt="../_images/df6c356ca07b4bd0384de7841167d437939e8bd1d0b2097323e090b74aebb444.png" src="../_images/df6c356ca07b4bd0384de7841167d437939e8bd1d0b2097323e090b74aebb444.png" />
+</div>
+</div>
+<section id="prices-in-greenbacks-and-in-gold">
+<h3>Prices in greenbacks and in gold<a class="headerlink" href="#prices-in-greenbacks-and-in-gold" title="Link to this heading">#</a></h3>
+<p>From January 1862 to December 1878 the database quotes this bond in greenbacks, while its coupons were paid in coin. A greenback price therefore moves with the gold premium as well as with the bond’s credit. The chart below divides each greenback price by the greenback price of $100 in gold, which restates the quotation in gold dollars. Before 1862 and after 1878 the two units coincide.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Price in greenbacks and in gold units, 1860-1880</span>
+<span class="n">gold</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/gold_price_greenbacks_1862_1878.csv&#39;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)[</span><span class="s1">&#39;gold_price_greenbacks&#39;</span><span class="p">]</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">BondPrice_T</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="mi">20090</span><span class="p">,</span> <span class="s1">&#39;Average&#39;</span><span class="p">)],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;1860-01-01&#39;</span><span class="p">:</span><span class="s1">&#39;1880-12-31&#39;</span><span class="p">]</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gold</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">g</span><span class="p">[(</span><span class="n">p</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1862-01-01&#39;</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1878-12-31&#39;</span><span class="p">))]</span> <span class="o">=</span> <span class="mf">100.0</span>
+<span class="n">p_gold</span> <span class="o">=</span> <span class="n">p</span> <span class="o">/</span> <span class="p">(</span><span class="n">g</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1862-01-01&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;1878-12-31&#39;</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Greenback period&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Quoted price (greenbacks)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_gold</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">p_gold</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Price in gold dollars&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Loan of 1848 — Price in Greenbacks and in Gold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price per </span><span class="se">\\</span><span class="s1">$100 face value&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a6da90def73ee52999264a26e6b611b2e488747b52d65c12c35bad28c7763a1a.png" src="../_images/a6da90def73ee52999264a26e6b611b2e488747b52d65c12c35bad28c7763a1a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -885,9 +913,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05aacf2b64aa4234b89b630cf12e5c4e012895d924c18f16af63b64a57be849c.png" src="../_images/05aacf2b64aa4234b89b630cf12e5c4e012895d924c18f16af63b64a57be849c.png" />
+<img alt="../_images/efc113ca0a17549a49b2f820d62e89fdc73b0f97ab1edc5d2a3898fc6c9c70d0.png" src="../_images/efc113ca0a17549a49b2f820d62e89fdc73b0f97ab1edc5d2a3898fc6c9c70d0.png" />
 </div>
 </div>
+</section>
 <section id="detected-price-quantity-events">
 <h3>Detected Price/Quantity Events<a class="headerlink" href="#detected-price-quantity-events" title="Link to this heading">#</a></h3>
 <p>The following significant movements were auto-detected in the data, with causal interpretation:</p>
@@ -908,27 +937,27 @@ document.write(`
 <tr class="row-odd"><td><p>1857-12</p></td>
 <td><p>price drop</p></td>
 <td><p>-5.1%</p></td>
-<td><p>Panic of 1857. Quotations vanish for two months after September 1857 and the bond reappears at 112 — a step down from the long 118 plateau as the panic ended the Treasury surplus (and the buybacks it funded) and pushed the government back toward borrowing.</p></td>
+<td><p>(follows a data gap) Panic of 1857. Quotations vanish for two months after September 1857 and the bond reappears at 112 — a step down from the long 118 plateau as the panic ended the Treasury surplus (and the buybacks it funded) and pushed the government back toward borrowing.</p></td>
 </tr>
 <tr class="row-even"><td><p>1859-12</p></td>
 <td><p>price spike</p></td>
 <td><p>+25.4%</p></td>
-<td><p><strong>Data artifact.</strong> The December 1859 print of 133.56 sits between quotations of 106½ on either side. No news in December 1859 could move a seasoned 6 per cent bond by a quarter of its value for one month; this is almost certainly an erroneous or misattributed quotation and should not be read as a market event.</p></td>
+<td><p>(data defect) <strong>Data artifact.</strong> The December 1859 print of 133.56 sits between quotations of 106½ on either side. No news in December 1859 could move a seasoned 6 per cent bond by a quarter of its value for one month; this is almost certainly an erroneous or misattributed quotation and should not be read as a market event.</p></td>
 </tr>
 <tr class="row-odd"><td><p>1860-01</p></td>
 <td><p>price drop</p></td>
 <td><p>-20.2%</p></td>
-<td><p>The mirror image of the above: the series simply returns to its true level of about 106½.</p></td>
+<td><p>(data defect) The mirror image of the above: the series simply returns to its true level of about 106½.</p></td>
 </tr>
 <tr class="row-even"><td><p>1861-01</p></td>
 <td><p>price drop</p></td>
 <td><p>-8.3%</p></td>
-<td><p>Secession. South Carolina seceded in December 1860 and six more states followed within weeks; the bond fell to exactly par — its first touch of 100 since issue.</p></td>
+<td><p>(follows a data gap) Secession. South Carolina seceded in December 1860 and six more states followed within weeks; the bond fell to exactly par — its first touch of 100 since issue.</p></td>
 </tr>
 <tr class="row-odd"><td><p>1861-06</p></td>
 <td><p>price drop</p></td>
 <td><p>-10.0%</p></td>
-<td><p>War in earnest. After Fort Sumter (April 12) the market confronted the cost of a real war; the bond fell to 90, and to 88 by August, its all-time low.</p></td>
+<td><p>(follows a data gap) War in earnest. After Fort Sumter (April 12) the market confronted the cost of a real war; the bond fell to 90, and to 88 by August, its all-time low.</p></td>
 </tr>
 <tr class="row-even"><td><p>1862-05</p></td>
 <td><p>price spike</p></td>
@@ -958,9 +987,9 @@ document.write(`
 </section>
 <section id="price-volatility">
 <h2>Price Volatility<a class="headerlink" href="#price-volatility" title="Link to this heading">#</a></h2>
-<p><strong>Maximum drawdown:</strong> -34.1% (from the peak of $133.56 on December 31, 1859 to the trough of $88.00 on August 31, 1861)</p>
+<p><strong>Maximum drawdown:</strong> -28.5% (from the peak of $123⅛ in October 1853 to the trough of $88.00 on August 31, 1861, omitting the December 1859 print; with that print included, the figure would be -34.1%)</p>
 <p><strong>Average monthly return:</strong> 0.131%</p>
-<p>The headline drawdown figure needs an asterisk: its starting point is the anomalous December 1859 print discussed above. Measured from the bond’s genuine peak — $123⅛ in October 1853 — to the $88.00 trough of August and December 1861, the true maximum drawdown is about <strong>-28.5%</strong>, unfolding over eight years in three steps: the gentle easing of the mid-1850s, the post-panic step down of 1857–59, and the secession collapse of 1860–61. As with the Loan of 1842, the worst moment of this bond’s life came when the survival of the issuer itself was in question; and as with that bond, the floor (88, against 95 for the shorter-dated 1842 loan) still priced eventual payment in coin as far more likely than not.</p>
+<p>The drawdown, measured from the bond’s genuine peak of $123⅛ in October 1853 to the $88.00 trough of August and December 1861, unfolded over eight years in three steps: the gentle easing of the mid-1850s, the post-panic step down of 1857–59, and the secession collapse of 1860–61. As with the Loan of 1842, the worst moment of this bond’s life came when the survival of the issuer itself was in question; and as with that bond, the floor (88, against 95 for the shorter-dated 1842 loan) still priced eventual payment in coin as far more likely than not.</p>
 <p>The chart below shows the 12-month rolling standard deviation of prices. The visible peaks come in the placement and gold-rush years of 1848–50, the post-1857 adjustment, and above all in 1860–62; the eerily quiet stretch of 1856–57 partly reflects genuine stability and partly the nominal, standing quotations of a thinning market. The elevated volatility of 1862–65 is substantially a property of the greenback, not of the bond.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -985,7 +1014,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fd32bf3af61ca46c8bce0e30487a126f3d031a4fe8fccc819bfa968897f8f50c.png" src="../_images/fd32bf3af61ca46c8bce0e30487a126f3d031a4fe8fccc819bfa968897f8f50c.png" />
+<img alt="../_images/1d6ea84d5e89e7bfd5ecfb0d7fe9b7e821435338405db6d72afbda582bac4a57.png" src="../_images/1d6ea84d5e89e7bfd5ecfb0d7fe9b7e821435338405db6d72afbda582bac4a57.png" />
 </div>
 </div>
 </section>
@@ -1089,7 +1118,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/680fb73f45d59eaa7894c45457d8b4d6bb51808d0acf706777d8a3f945ae8a7e.png" src="../_images/680fb73f45d59eaa7894c45457d8b4d6bb51808d0acf706777d8a3f945ae8a7e.png" />
+<img alt="../_images/489ca49442fe45f8b601b361b4455bcb0861a2f106b4624c293a0ccb89b15de9.png" src="../_images/489ca49442fe45f8b601b361b4455bcb0861a2f106b4624c293a0ccb89b15de9.png" />
 </div>
 </div>
 <section id="reading-the-comparison">
@@ -1100,15 +1129,15 @@ document.write(`
 <section id="issuance-distribution-and-redemption">
 <h2>Issuance, Distribution, and Redemption<a class="headerlink" href="#issuance-distribution-and-redemption" title="Link to this heading">#</a></h2>
 <p>The bond was originally sold at about <strong>103</strong> (recorded in the database as 1.03 per $1 of face value).</p>
-<p><strong>How it was sold.</strong> The Treasury invited sealed bids, and when they were opened in June 1848 the offers ran above par — a spectacle without precedent for an American war loan. The dominant bidder was <strong>Corcoran &amp; Riggs</strong>, the Washington banking house of William W. Corcoran and George W. Riggs, which had risen to prominence as the principal contractor for the Mexican War loans and enjoyed a close working relationship with Secretary Walker’s Treasury. Corcoran &amp; Riggs took the great bulk of the $16 million at the premium price, expecting — correctly, as the price series shows — to resell at a further profit to banks, institutions, and investors at home and abroad.</p>
-<p><strong>The London placement.</strong> The boldest stroke came after the auction. In the late summer of 1848 Corcoran sailed for England to sell a large block of the loan in London — a market that, only six years earlier, had refused United States securities altogether. The trip was a gamble: London was itself unsettled by the European revolutions of 1848, and American credit still carried the stain of the state defaults. But Corcoran succeeded, placing several million dollars of the bonds with London houses, Baring Brothers prominent among them. It was the first substantial sale of a new United States loan in Europe since the 1830s, and contemporaries on both sides of the Atlantic recognized it as a landmark: the door slammed shut in 1842 had been reopened, and European capital would hold and trade American federal debt continuously from then on. The episode made Corcoran’s fortune and his reputation; the gallery of art he later endowed in Washington was built, in part, on the profits of the 6s of 1847 and 1848.</p>
+<p><strong>How it was sold.</strong> The Treasury invited sealed bids, and when they were opened in June 1848 the offers ran above par. The dominant bidder was <strong>Corcoran &amp; Riggs</strong>, the Washington banking house of William W. Corcoran and George W. Riggs, which had already taken most of the public offering of the 1847 loan. The firm took about $14 million of the $16 million (Cohen 1971, pp. 49–51).</p>
+<p><strong>The London placement.</strong> Corcoran had sold the 1847 loan almost entirely in the United States. When the domestic market sagged in the slump of 1848, Secretary Walker advanced him $5 million of Treasury funds to support the price and formally made him a government agent, and Corcoran carried the 1848 loan to Europe (Cohen 1971, pp. 54–55). Baring Brothers, George Peabody &amp; Co., and the Morgans first told him the bonds could not be sold abroad and tried to dissuade him. He went anyway. The London tranche — “more than $3 million,” roughly a fifth of the loan, with some more placed in Paris — was syndicated across six houses: Baring Brothers, George Peabody &amp; Co., Overend, Gurney &amp; Co., Denison &amp; Co., Samuel Jones Loyd, and James Morrison (Cohen 1971, pp. 54–58). The London sale itself roughly broke even once exchange was reckoned. The profit came at home, where news of the London placement restored confidence and let Corcoran sell his remaining stock at a premium (Goldstein 1998). Baring became a cooperative partner only afterward: “the demand for United States stock runs away with all we have or wish to sell,” it wrote him in 1849 (Cohen 1971, p. 57). Philip Hone wrote that Corcoran &amp; Riggs had “made a princely fortune by taking the whole of the last government six per cent loan.” The episode made Corcoran’s fortune and his reputation; the gallery of art he later endowed in Washington was built, in part, on the profits of the 6s of 1847 and 1848.</p>
 <p><strong>How it lived.</strong> Once distributed, the stock settled into the portfolios of banks, trustees, insurance companies, and foreign holders as a premium investment — semi-annual coin coupons, a long maturity, and an issuer whose credit was now beyond serious question. Through the 1850s its largest single buyer was the United States Treasury itself, which retired over 40 per cent of the issue at prices up to the low 120s out of surplus revenue.</p>
 <p><strong>How it ended.</strong> The $7.8 million still outstanding when the bond became redeemable on July 1, 1868 was paid off within months, in coin, by a government that had just emerged from the most expensive war in its history and was already engaged in the great postwar refunding debates. Redemption at par of a bond long held at a premium was simply the contract fulfilled; the small residue of never-presented certificates dwindled to $5,500 by 1872.</p>
 </section>
 <section id="implications-and-legacy">
 <h2>Implications and Legacy<a class="headerlink" href="#implications-and-legacy" title="Link to this heading">#</a></h2>
 <p>The Loan of 1848 is the quiet triumph of antebellum federal finance — a bond whose significance lies precisely in how uneventful its birth was.</p>
-<p><strong>It completed the restoration of American credit.</strong> The arc that begins with the Loan of 1842 — a 6 per cent coin bond forced out at 97½ after Europe’s bankers refused it — closes here, with the identical security commanding a premium at open auction six years later and selling in London within months. No pair of issues in the database better brackets the speed with which a sovereign’s reputation, once lost, could be rebuilt by revenue, victory, and punctual payment.</p>
+<p><strong>It completed the restoration of American credit.</strong> The arc that begins with the Loan of 1842 — a 6 per cent coin bond forced out below par after Europe’s bankers refused it — closes here, with the identical security commanding a premium at open auction six years later and selling in London within months. No pair of issues in the database better brackets the speed with which a sovereign’s reputation, once lost, could be rebuilt by revenue, victory, and punctual payment.</p>
 <p><strong>It showed that the United States could finance a war cheaply.</strong> The Mexican War was fought almost entirely on borrowed money, and the government’s borrowing terms <em>improved</em> as the war proceeded — culminating in this premium sale weeks after the peace treaty. The contrast with 1814, when the government sold 6s at 80 and 88 in a losing war, and the contrast to come in 1861, were both instructive: the market lent cheaply to a government whose revenues, and whose prospects of victory, it believed in.</p>
 <p><strong>It reopened the Atlantic capital market.</strong> Corcoran’s London placement of 1848 re-established the channel through which European savings flowed into American federal debt. The channel mattered enormously within a generation: the Union’s wartime and postwar loans found European buyers in part because the market relationships severed in 1842 had been rebuilt in 1848–53.</p>
 <p><strong>It embodied the surplus problem of the 1850s.</strong> The Treasury’s repurchase of over $6.8 million of this bond at up to 123 illustrates a policy dilemma peculiar to the era: a government with excess revenue, no central bank, and a fixed stock of non-callable debt could reduce the debt only by paying whatever premium the market asked. The buybacks of 1852–57 were at once debt management, monetary policy (returning idle specie to the banks), and an expensive lesson that later Treasuries absorbed — the callable features of postwar refunding loans owe something to the experience of paying 120 for 6s.</p>
@@ -1132,6 +1161,7 @@ document.write(`
 <li><p>Payne, J., Szőke, B., Hall, G. &amp; Sargent, T. (2025). “Costs of Financing US Federal Debt: 1791–1933.” <em>Quarterly Journal of Economics</em>. (Source database for all price and quantity series in this chapter.)</p></li>
 <li><p>Hall, G. &amp; Sargent, T. — companion studies of U.S. fiscal history using the federal bond database.</p></li>
 <li><p>Cohen, H. (1971). <em>Business and Politics in America from the Age of Jackson to the Civil War: The Career Biography of W. W. Corcoran</em>. Westport, Conn.: Greenwood. (The standard account of Corcoran &amp; Riggs, the Mexican War loan contracts, and the 1848 London placement.)</p></li>
+<li><p>Goldstein, M. L. (1998). <em>Capital and Culture: William Wilson Corcoran and the Ascent of Washington, 1828–1874</em>. PhD dissertation, University of Maryland. (On the London syndicate and the home-market profit of the 1848 loan.)</p></li>
 <li><p>McGrane, R. C. (1935). <em>Foreign Bondholders and American State Debts</em>. New York: Macmillan. (On the state-default crisis of 1841–42 that forms the backdrop to this loan’s premium sale.)</p></li>
 </ul>
 </section>
@@ -1202,7 +1232,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1227,6 +1258,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secondary-market-prices">Secondary Market Prices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prices-in-greenbacks-and-in-gold">Prices in greenbacks and in gold</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detected-price-quantity-events">Detected Price/Quantity Events</a></li>
 </ul>
 </li>
@@ -1284,8 +1316,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Loan of 1904" href="chapter_20128_Loan_of_1904_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -571,7 +557,7 @@ document.write(`
 <section id="february-1895-the-belmontmorgan-contract">
 <h3>February 1895: the Belmont–Morgan contract<a class="headerlink" href="#february-1895-the-belmontmorgan-contract" title="Link to this heading">#</a></h3>
 <p>Congress, split between gold and silver men, refused every administration request for authority to sell explicitly <em>gold</em> bonds. On February 8, 1895, Cleveland and Carlisle therefore signed a contract of a very different kind, negotiated in person at the White House with <strong>J. Pierpont Morgan</strong> and <strong>August Belmont, Jr.</strong> (whose house acted for the London and Paris Rothschilds). The syndicate agreed to <em>sell the Treasury approximately 3.5 million ounces of gold coin</em> — roughly $65 million — and to take payment not in cash but in about <strong>$62.3 million of 4 percent thirty-year coin bonds at 104½</strong>, an effective yield to the syndicate of about 3¾ percent. Two features made the contract unique in American finance. First, <strong>at least half of the gold was to come from Europe</strong>, attacking the drain at its source. Second, the syndicate covenanted, so far as lay within its power, to <strong>protect the Treasury against gold withdrawals</strong> for the duration of the contract — in effect, a private banking syndicate undertook to manage the foreign exchanges of the United States, and for several months it did so successfully. The legal basis Morgan himself is said to have supplied in the White House meeting: an all-but-forgotten Civil War provision (Section 3700 of the Revised Statutes) permitting the Secretary of the Treasury to purchase coin with bonds on such terms as he found most advantageous.</p>
-<p>The contract contained one more clause that measures the politics of the moment. If Congress would authorize bonds payable <em>explicitly in gold</em> within a short window, the syndicate would accept them at a 3 percent coupon instead of 4. The House voted the gold-bond bill down within the week, and Cleveland later reckoned that this refusal — the price of the word “coin” over the word “gold” — cost the taxpayers roughly $16 million in extra interest over the loan’s life.</p>
+<p>The contract contained one more clause that measures the politics of the moment. If Congress would authorize bonds payable <em>explicitly in gold</em> within a short window, the syndicate would accept them at a 3 percent coupon instead of 4. Cleveland’s message to Congress of February 8, 1895 reported the clause and put the saving at $539,159 a year, or $16,174,770 over thirty years — the price of the word “coin” over the word “gold.” Congress did not authorize the gold bonds.</p>
 <p>The operation worked. The gold came in, largely from abroad; the reserve recovered; the exchanges were held; the immediate crisis passed. It was also spectacularly profitable for the underwriters. The syndicate offered the bonds publicly on February 20, 1895 at <strong>112¼</strong> — nearly eight points above its cost — and the subscription books closed almost immediately, reportedly within about twenty minutes in London and within a couple of hours in New York; the price in the open market moved higher still, and our series opens in March 1895 at $120.50. How much the syndicate ultimately cleared has never been established — its own accounts were not disclosed, and estimates ranged at the time, and range still, from well under $2 million to figures many times that — but the <em>visible</em> eight-point markup was enough. To the silver and populist press, and to a large part of the Democratic party, the episode was proof that the government had been rescued — or fleeced — by a secret bargain with Morgan and the Rothschilds. Joseph Pulitzer’s <em>World</em> hammered the deal daily and insisted that a public offering would have done better; congressional investigation followed; and William Jennings Bryan was among those who denounced the contract on the floor of the House. Cleveland never conceded an inch, maintaining to the end of his life that the contract had saved the nation’s credit at the only terms obtainable in the time available.</p>
 </section>
 <section id="january-1896-the-popular-loan">
@@ -580,7 +566,7 @@ document.write(`
 </section>
 <section id="the-bond-as-a-gold-risk-barometer-18951896">
 <h3>The bond as a gold-risk barometer, 1895–1896<a class="headerlink" href="#the-bond-as-a-gold-risk-barometer-18951896" title="Link to this heading">#</a></h3>
-<p>Because the Loan of 1925 was payable in “coin,” its price embodied the market’s estimate of whether that coin would be gold or, someday, depreciated silver. The series shows exactly what that meant in practice. From $123–124 in mid-1895 the price sagged as the reserve crisis rebuilt, dropping to $114 in January 1896; it recovered on the success of the popular loan, then sagged again to its early-life low of about <strong>$113 in July–August 1896</strong> — the weeks in which the Democratic convention adopted a free-silver platform and nominated Bryan on the “Cross of Gold” speech. A Bryan victory was understood to mean silver payments; a thirty-year 4 percent bond had more to lose from that than almost any security in the market. McKinley’s victory on November 3, 1896 resolved the question: the price regained $120 by December and never looked back, climbing with barely a pause to $130 by 1899.</p>
+<p>Because the Loan of 1925 was payable in “coin,” its price embodied the market’s estimate of whether that coin would be gold or, someday, depreciated silver. The series shows exactly what that meant in practice. From $123–124 in mid-1895 the price sagged as the reserve crisis rebuilt, dropping to $114 in January 1896; it recovered on the success of the popular loan, then sagged again to its early-life low of about <strong>$113 in July–August 1896</strong> — the weeks in which the Democratic convention adopted a free-silver platform and nominated Bryan on the “Cross of Gold” speech. A Bryan victory was understood to mean silver payments. Between June and August 1896 the 4s lost about 2.8 percent of their price, slightly less than the 3.7 percent lost by the ten-year 5s of 1904 (Bond 20128); the shorter bond’s yield rose more. McKinley’s victory on November 3, 1896 resolved the question: the price regained $120 by December and never looked back, climbing with barely a pause to $130 by 1899.</p>
 </section>
 <section id="the-calm-after-1900">
 <h3>The calm after 1900<a class="headerlink" href="#the-calm-after-1900" title="Link to this heading">#</a></h3>
@@ -1102,6 +1088,7 @@ document.write(`
 <li><p><em>Act of January 14, 1875</em> (Resumption Act), the borrowing authority for the 1894–96 bond sales; bond descriptions per the <em>Refunding Act of July 14, 1870</em>.</p></li>
 <li><p><em>Annual Reports of the Secretary of the Treasury</em>, 1894–1897 (the reports of John G. Carlisle on the gold-reserve crisis and the four bond sales) and 1925 (Andrew W. Mellon, on the retirement of the loan at maturity).</p></li>
 <li><p>U.S. Senate (1896). <em>Investigation of the Sale of Bonds</em> — testimony on the February 1895 syndicate contract, 54th Congress.</p></li>
+<li><p>Cleveland, G. (1895). Special message to Congress, February 8, 1895 (the syndicate contract and the 3 percent gold-bond option).</p></li>
 <li><p>Cleveland, G. (1904). <em>Presidential Problems</em>. New York: Century Co. (Cleveland’s own defense of the bond sales.)</p></li>
 </ul>
 </section>
@@ -1184,7 +1171,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1266,8 +1254,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

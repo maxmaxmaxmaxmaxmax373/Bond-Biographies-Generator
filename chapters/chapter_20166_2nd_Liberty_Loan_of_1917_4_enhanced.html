@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="Bond Biography: 1st Liberty Loan Converted to 4.25%" href="chapter_20164_1st_Liberty_Loan_Converted_to_425_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,15 +149,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -256,9 +245,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -370,24 +364,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -500,6 +486,13 @@ document.write(`
 <span class="n">BondQuant</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondQuant&#39;</span><span class="p">]</span>
 <span class="n">BondPrice</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondPrice&#39;</span><span class="p">]</span>
 <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Drop one-month prints flagged as data artifacts (each is described in the chapter text)</span>
+<span class="n">ARTIFACT_PRINTS</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">20090</span><span class="p">,</span> <span class="s1">&#39;1859-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20133</span><span class="p">,</span> <span class="s1">&#39;1919-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20170</span><span class="p">,</span> <span class="s1">&#39;1920-01-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20166</span><span class="p">,</span> <span class="s1">&#39;1920-05-31&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">_id</span><span class="p">,</span> <span class="n">_d</span> <span class="ow">in</span> <span class="n">ARTIFACT_PRINTS</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">_s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Average&#39;</span><span class="p">,</span> <span class="s1">&#39;Coupon&#39;</span><span class="p">,</span> <span class="s1">&#39;Registered&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">BondPrice</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">_d</span><span class="p">),</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">)</span>
 
 <span class="n">BondQuant_T</span> <span class="o">=</span> <span class="n">BondQuant</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <span class="n">BondPrice_T</span> <span class="o">=</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
@@ -785,7 +778,7 @@ document.write(`
 <h3>Quantity Analysis<a class="headerlink" href="#quantity-analysis" title="Link to this heading">#</a></h3>
 <p>Three forces drove the quantity pattern:</p>
 <p><strong>1. Installment-driven issuance (October 1917 – March 1918).</strong> Liberty Loan subscribers did not pay all at once; the standard schedule spread payment over several months. The database records <span class="math notranslate nohighlight">\(267 million outstanding at the end of October 1917, \)</span>2.8 billion by November, <span class="math notranslate nohighlight">\(3.45 billion by December, and the full **\)</span>3.81 billion** by early 1918. The huge auto-detected “quantity increase” of November 1917 (+952.7%) is simply this installment schedule at work, not a new borrowing decision.</p>
-<p><strong>2. Conversion into the 4.25% Seconds (1918–1921).</strong> The Second Liberty Loan carried a one-time conversion privilege: if a later loan bore a higher rate, holders could exchange into it. The <strong>Third Liberty Loan of April 1918</strong> set that higher rate at 4.25%, triggering the privilege. The exchange shows up in the data as the collapse of public holdings from <span class="math notranslate nohighlight">\(3.64 billion in October 1918 to **\)</span>822 million in November 1918** – a 77% single-month drop – mirrored almost dollar-for-dollar by the appearance of $2.8 billion of “2nd Liberty Loan Converted to 4.25%” (ID 20167) in the same month. Holdings of the unconverted 4s then continued to leak into the 4.25s for years: the 20167 series keeps growing through 1920–21 exactly as the 20166 series shrinks. Note that November 1918 is when the database <em>records</em> the bulk exchange; conversions were executed over the months around it.</p>
+<p><strong>2. Conversion into the 4.25% Seconds (1918–1921).</strong> The Second Liberty Loan carried a conversion privilege: if a later loan bore a higher rate, holders could exchange into it. The <strong>Third Liberty Loan of April 1918</strong> set that higher rate at 4.25%, triggering the privilege. The exchange shows up in the data as the collapse of public holdings from <span class="math notranslate nohighlight">\(3.64 billion in October 1918 to **\)</span>822 million in November 1918** – a 77% single-month drop – mirrored almost dollar-for-dollar by the appearance of $2.8 billion of “2nd Liberty Loan Converted to 4.25%” (ID 20167) in the same month. Holdings of the unconverted 4s then continued to leak into the 4.25s for years: the 20167 series keeps growing through 1920–21 exactly as the 20166 series shrinks. Note that November 1918 is when the database <em>records</em> the bulk exchange; conversions were executed over the months around it.</p>
 <p><strong>3. Call and redemption (1927).</strong> Under Andrew Mellon’s refunding program, the Treasury exercised the call option at the first legal opportunity: the Seconds – both the residual 4s and the huge 4.25% converted issue – were called for redemption on <strong>November 15, 1927</strong>, with holders offered the chance to refund into new lower-coupon Treasury issues. The public-holdings series accordingly ends in October 1927 at about <span class="math notranslate nohighlight">\(17 million. The &quot;Total Outstanding&quot; residual that dwindles from ~\)</span>1.4 million in 1929 to ~$0.6 million in 1935 represents called bonds whose owners never presented them for payment – certificates lost, forgotten, or kept as souvenirs, on which interest had ceased.</p>
 <p>The bond was thus refinanced twice over its life: first <em>upward</em> in coupon (into the 4.25s, at the holders’ option, to protect them), then <em>downward</em> (into cheaper Treasury notes, at the government’s option, to save the taxpayer money). The two refinancings bracket the interest-rate cycle of 1917–1927 almost perfectly.</p>
 </section>
@@ -857,7 +850,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05ebe2f6cc44b4ec33a277d99d1c4e99398dd6ec368bc726953287d5dcbd4246.png" src="../_images/05ebe2f6cc44b4ec33a277d99d1c4e99398dd6ec368bc726953287d5dcbd4246.png" />
+<img alt="../_images/0b5f44d7e05454c1ff1a0a35548916a09a140782c0bbfebe0d13374bab33df6e.png" src="../_images/0b5f44d7e05454c1ff1a0a35548916a09a140782c0bbfebe0d13374bab33df6e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -898,7 +891,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/61346dc8828c2d744bef6aa3c1df7b0bda9839feaeb48d052315cc45d3cc15b9.png" src="../_images/61346dc8828c2d744bef6aa3c1df7b0bda9839feaeb48d052315cc45d3cc15b9.png" />
+<img alt="../_images/92b3993eed10ef165525d41fc338eddb1524eb5962530e8d4de09ea0a814a059.png" src="../_images/92b3993eed10ef165525d41fc338eddb1524eb5962530e8d4de09ea0a814a059.png" />
 </div>
 </div>
 <section id="detected-price-quantity-events">
@@ -929,7 +922,7 @@ document.write(`
 <td><p><strong>Mass conversion.</strong> Roughly $2.8 billion of 4% Seconds were exchanged for the 4.25% converted Seconds (ID 20167), the privilege having been triggered by the Third Liberty Loan’s 4.25% coupon. The database records the bulk exchange in November 1918, the month of the Armistice.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>1920-05</strong></p></td>
-<td><p>Price spike</p></td>
+<td><p>Price spike (data artifact)</p></td>
 <td><p>+13.8%</p></td>
 <td><p><strong>Almost certainly a data artifact.</strong> The May 1920 quote of <span class="math notranslate nohighlight">\(97.14 sits between \)</span>85.40 (April) and $84.64 (June); no plausible event supports a one-month round trip of +14%/-13% at the bottom of a bear market. The observation likely reflects a transcription or source-quotation issue (for example, a quote picked up from a different Liberty issue) rather than a genuine market move.</p></td>
 </tr>
@@ -939,7 +932,7 @@ document.write(`
 <td><p>Continued conversion of residual 4s into the 4.25s: public holdings of this bond fell from <span class="math notranslate nohighlight">\(463M to \)</span>293M while holdings of ID 20167 rose by a comparable amount in the same months.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>1920-06</strong></p></td>
-<td><p>Price drop</p></td>
+<td><p>Price drop (reversal of the artifact)</p></td>
 <td><p>-12.9%</p></td>
 <td><p>The mirror image of the May “spike”: the price simply returned to its true trend near <span class="math notranslate nohighlight">\(84--85 as the anomalous May observation dropped out. The genuine economic story is the grinding decline to the August 1920 low of \)</span>84.36 under 7% discount rates.</p></td>
 </tr>
@@ -953,7 +946,7 @@ document.write(`
 <h2>Price Volatility<a class="headerlink" href="#price-volatility" title="Link to this heading">#</a></h2>
 <p><strong>Maximum drawdown:</strong> -15.6% (from peak on 1917-10-31 to trough on 1920-08-31)</p>
 <p><strong>Average monthly return:</strong> 0.027%</p>
-<p>The chart below shows the 12-month rolling standard deviation of prices, indicating periods of high and low price stability. Volatility peaks around 1920–21 – partly reflecting the genuine violence of the rate cycle, and partly inflated by the anomalous May 1920 observation discussed above. The placid readings of 1923–25 show a bond that had become, once again, a boring near-par government security awaiting its call.</p>
+<p>The chart below shows the 12-month rolling standard deviation of prices, indicating periods of high and low price stability. Volatility peaks around 1920–21, reflecting the violence of the rate cycle. The chart omits the anomalous May 1920 observation discussed above. The placid readings of 1923–25 show a bond that had become, once again, a boring near-par government security awaiting its call.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rolling volatility (12-month window)</span>
@@ -977,7 +970,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fb5552ebdcd3e7be7516892efffa962b1106e0d073b421c40885e4c0cb27e9f6.png" src="../_images/fb5552ebdcd3e7be7516892efffa962b1106e0d073b421c40885e4c0cb27e9f6.png" />
+<img alt="../_images/026ee798ec15c3010e0810ec9212ea3188409fe943cf33c209dcb5e5d587b592.png" src="../_images/026ee798ec15c3010e0810ec9212ea3188409fe943cf33c209dcb5e5d587b592.png" />
 </div>
 </div>
 </section>
@@ -1091,7 +1084,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ecc229784964a46f997044daf96f59497ce74aafdd1a1f8a01cab87d26922b95.png" src="../_images/ecc229784964a46f997044daf96f59497ce74aafdd1a1f8a01cab87d26922b95.png" />
+<img alt="../_images/f4c38cdb28ac84d685e5f1665e18bbeeb3992a7972961831f037daca56662efe.png" src="../_images/f4c38cdb28ac84d685e5f1665e18bbeeb3992a7972961831f037daca56662efe.png" />
 </div>
 </div>
 <section id="reading-the-comparison">
@@ -1242,7 +1235,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1335,8 +1329,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

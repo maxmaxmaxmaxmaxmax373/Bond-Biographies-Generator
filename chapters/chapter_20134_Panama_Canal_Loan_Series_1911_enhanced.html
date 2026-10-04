@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Panama Canal Loan (Series 1908)" href="chapter_20133_Panama_Canal_Loan_Series_1908_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -479,6 +465,13 @@ document.write(`
 <span class="n">BondPrice</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondPrice&#39;</span><span class="p">]</span>
 <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
+<span class="c1"># Drop one-month prints flagged as data artifacts (each is described in the chapter text)</span>
+<span class="n">ARTIFACT_PRINTS</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">20090</span><span class="p">,</span> <span class="s1">&#39;1859-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20133</span><span class="p">,</span> <span class="s1">&#39;1919-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20170</span><span class="p">,</span> <span class="s1">&#39;1920-01-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20166</span><span class="p">,</span> <span class="s1">&#39;1920-05-31&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">_id</span><span class="p">,</span> <span class="n">_d</span> <span class="ow">in</span> <span class="n">ARTIFACT_PRINTS</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">_s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Average&#39;</span><span class="p">,</span> <span class="s1">&#39;Coupon&#39;</span><span class="p">,</span> <span class="s1">&#39;Registered&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">BondPrice</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">_d</span><span class="p">),</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">)</span>
+
 <span class="n">BondQuant_T</span> <span class="o">=</span> <span class="n">BondQuant</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <span class="n">BondPrice_T</span> <span class="o">=</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 
@@ -501,8 +494,8 @@ document.write(`
 <section id="overview-the-experiment-of-1911">
 <h2>Overview: The Experiment of 1911<a class="headerlink" href="#overview-the-experiment-of-1911" title="Link to this heading">#</a></h2>
 <p>The <strong>Panama Canal Loan (Series 1911)</strong> was authorized by the Act of August 5, 1909 and first issued on May 16, 1911, with a coupon rate of 3.0%. During its life on the secondary market as recorded in this database, the bond’s average price was $92.91, ranging from $74.00 to $103.22 (157 monthly observations from June 1911 to December 1925). Outstanding quantity reached its $50 million peak by November 1911 and remained essentially unchanged through the end of the database in June 1960, with the bonds payable June 1, 1961.</p>
-<p>Behind those bland statistics lies one of the most instructive experiments in this database. The third Panama Canal issue was, deliberately, everything its two predecessors were not. The Panama 2s of 1906 and 1908 — like the great 2 percent Consols of 1930 before them — carried the <strong>circulation privilege</strong>: national banks could deposit them with the Treasurer as security for their circulating notes, and that franchise, not the government’s credit, set their price. A 2 percent bond stood at par because a bank could turn it into currency. The Act of August 5, 1909 broke with that machinery. It authorized additional canal bonds at a coupon of up to 3 percent and <strong>expressly denied them the circulation privilege</strong>: the new bonds could not serve as security for national bank notes. When Secretary of the Treasury <strong>Franklin MacVeagh</strong> brought $50 million of fifty-year 3s to market in June 1911 by popular subscription, the United States was doing something it had scarcely attempted since the Civil War era — asking the open market what a long federal bond was worth <em>on its investment merits alone</em>, with no regulatory subsidy attached.</p>
-<p>The market’s answer was emphatic. The offering was heavily oversubscribed and the bonds were awarded at an average price of about <strong>$102.58</strong> per $100 of face value (the database’s recorded price sold), an approximate yield to the 1961 maturity of a little under 2.9 percent — at the time the cheapest <em>unsubsidized</em> long-term money any government in the world could raise. That figure, unlike the sub-2-percent quoted “yields” on the propped 2s, was a genuine market interest rate. The price history that follows is therefore uniquely valuable: for the years before the Liberty Loans, the Panama 3s of 1911 are among the cleanest reads in this database of the true long-term borrowing cost of the United States — and after 1917 they record, without cushioning, what war finance and postwar deflation did to every 3 percent promise. The companion chapter on the <em>Consols of 1930</em> (Bond ID 20131) tells the story of the administered world this bond deliberately left behind; the two chapters are best read together.</p>
+<p>Behind those bland statistics lies one of the most instructive experiments in this database. The third Panama Canal issue was, deliberately, everything its two predecessors were not. The Panama 2s of 1906 and 1908 — like the great 2 percent Consols of 1930 before them — carried the <strong>circulation privilege</strong>: national banks could deposit them with the Treasurer as security for their circulating notes, and that franchise, not the government’s credit, set their price. A 2 percent bond stood at par because a bank could turn it into currency. Two statutes broke with that machinery. Section 39 of the Act of August 5, 1909 authorized $290,569,000 of additional canal bonds at a coupon of up to 3 percent and repealed the Spooner Act’s 2 percent authority. As written, the 1909 Act left the new bonds eligible as note collateral, a point Secretary MacVeagh’s 1910 annual report raised with Congress. The Act of March 2, 1911 closed it: it authorized the Secretary to insert in the bonds a provision that they “shall not be receivable by the Treasurer of the United States as security for the issue of circulating notes to national banks.” When Secretary of the Treasury <strong>Franklin MacVeagh</strong> brought $50 million of fifty-year 3s to market in June 1911 by popular subscription, the United States was doing something it had scarcely attempted since the Civil War era — asking the open market what a long federal bond was worth <em>on its investment merits alone</em>, with no regulatory subsidy attached.</p>
+<p>The market’s answer was emphatic. Bids totaled $212,085,200 for the $50 million offered, and the bonds were awarded at an average price of <strong>$102.5825</strong> per $100 of face value (the database’s recorded price sold), a yield to the 1961 maturity of 2.9019 percent by the Treasury’s reckoning (<em>Annual Report of the Secretary of the Treasury</em>, 1911, p. 5) — at the time the cheapest <em>unsubsidized</em> long-term money any government in the world could raise. That figure, unlike the sub-2-percent quoted “yields” on the propped 2s, was a genuine market interest rate. The price history that follows is therefore uniquely valuable: for the years before the Liberty Loans, the Panama 3s of 1911 are among the cleanest reads in this database of the true long-term borrowing cost of the United States — and after 1917 they record, without cushioning, what war finance and postwar deflation did to every 3 percent promise. The companion chapter on the <em>Consols of 1930</em> (Bond ID 20131) tells the story of the administered world this bond deliberately left behind; the two chapters are best read together.</p>
 </section>
 <section id="historical-context">
 <h2>Historical Context<a class="headerlink" href="#historical-context" title="Link to this heading">#</a></h2>
@@ -516,38 +509,42 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p>1909-08-05</p></td>
-<td><p>Authorizing act: 3% canal bonds <em>without</em> the circulation privilege</p></td>
+<td><p>Authorizing act (§39): canal bonds at up to 3%</p></td>
 <td><p>Legislation</p></td>
 </tr>
-<tr class="row-odd"><td><p>1911-06</p></td>
-<td><p>Popular subscription sale; ~$50 million awarded at a premium</p></td>
+<tr class="row-odd"><td><p>1911-03-02</p></td>
+<td><p>Act authorizing exclusion of the §39 bonds from note collateral</p></td>
+<td><p>Legislation</p></td>
+</tr>
+<tr class="row-even"><td><p>1911-06</p></td>
+<td><p>Popular subscription sale; $50 million awarded at 102.5825</p></td>
 <td><p>Fiscal</p></td>
 </tr>
-<tr class="row-even"><td><p>1913-12-23</p></td>
+<tr class="row-odd"><td><p>1913-12-23</p></td>
 <td><p>Federal Reserve Act</p></td>
 <td><p>Legislation</p></td>
 </tr>
-<tr class="row-odd"><td><p>1917-04-06 to 1918-11-11</p></td>
+<tr class="row-even"><td><p>1917-04-06 to 1918-11-11</p></td>
 <td><p>World War I (US participation)</p></td>
 <td><p>War</p></td>
 </tr>
-<tr class="row-even"><td><p>1917-04-24</p></td>
+<tr class="row-odd"><td><p>1917-04-24</p></td>
 <td><p>First Liberty Loan Act</p></td>
 <td><p>Legislation</p></td>
 </tr>
-<tr class="row-odd"><td><p>1920-01-01 to 1921-07-01</p></td>
+<tr class="row-even"><td><p>1920-01-01 to 1921-07-01</p></td>
 <td><p>Depression of 1920–21; long-term rates peak</p></td>
 <td><p>Crisis</p></td>
 </tr>
-<tr class="row-even"><td><p>1929-10-29 to 1933-03-01</p></td>
+<tr class="row-odd"><td><p>1929-10-29 to 1933-03-01</p></td>
 <td><p>Great Depression onset</p></td>
 <td><p>Crisis</p></td>
 </tr>
-<tr class="row-odd"><td><p>1933-06-05</p></td>
+<tr class="row-even"><td><p>1933-06-05</p></td>
 <td><p>Joint Resolution abrogating gold clauses</p></td>
 <td><p>Legislation</p></td>
 </tr>
-<tr class="row-even"><td><p>1961-06-01</p></td>
+<tr class="row-odd"><td><p>1961-06-01</p></td>
 <td><p>Bonds payable (beyond the database window)</p></td>
 <td><p>Fiscal</p></td>
 </tr>
@@ -556,11 +553,11 @@ document.write(`
 </div>
 <section id="why-congress-dropped-the-circulation-privilege">
 <h3>Why Congress dropped the circulation privilege<a class="headerlink" href="#why-congress-dropped-the-circulation-privilege" title="Link to this heading">#</a></h3>
-<p>By 1909 the bond-secured national bank note had few defenders left. The premium that the 2 percent Consols and the first two Panama series commanded was understood, by Treasury officials and financial writers alike, to be a <strong>hidden subsidy from note-issue economics</strong>: banks bid a 2 percent bond to par and above because the deposited bond generated circulating notes that could be lent at market rates. The arrangement made the Treasury’s borrowing look artificially cheap while hard-wiring the nation’s currency supply to the stock of eligible federal debt — an inelasticity the Panic of 1907 had just exposed brutally. Adding $50 million more of privilege-bearing 2s would have meant $50 million more of bond-secured currency at the very moment Congress, through the Aldrich–Vreeland Act of 1908 and the National Monetary Commission, was groping toward an elastic currency on entirely different principles. The 1909 act’s solution was to raise the coupon to 3 percent and cut the cord: the new canal bonds would have to sell on their merits, and the money supply would be no larger for it. What the government gave up in coupon it gained in honesty — for the first time in decades, a Treasury bond price would mean what it appeared to mean.</p>
+<p>By 1909 the bond-secured national bank note had few defenders left. The premium that the 2 percent Consols and the first two Panama series commanded was understood, by Treasury officials and financial writers alike, to be a <strong>hidden subsidy from note-issue economics</strong>: banks bid a 2 percent bond to par and above because the deposited bond generated circulating notes that could be lent at market rates. The arrangement made the Treasury’s borrowing look artificially cheap while hard-wiring the nation’s currency supply to the stock of eligible federal debt — an inelasticity the Panic of 1907 had just exposed brutally. Adding $50 million more of privilege-bearing 2s would have meant $50 million more of bond-secured currency at the very moment Congress, through the Aldrich–Vreeland Act of 1908 and the National Monetary Commission, was groping toward an elastic currency on entirely different principles. The 1909 act raised the coupon ceiling to 3 percent; the 1911 act cut the cord: the new canal bonds would have to sell on their merits, and the money supply would be no larger for it. What the government gave up in coupon it gained in honesty — for the first time in decades, a Treasury bond price would mean what it appeared to mean.</p>
 </section>
 <section id="world-war-i-a-3-percent-promise-meets-414-percent-money">
 <h3>World War I: a 3 percent promise meets 4¼ percent money<a class="headerlink" href="#world-war-i-a-3-percent-promise-meets-414-percent-money" title="Link to this heading">#</a></h3>
-<p>American entry into the war in April 1917 remade the government bond market overnight. The Liberty Loan Acts authorized borrowing on a scale that dwarfed the entire pre-war debt, at coupons of 3½ and then 4 and 4¼ percent. A fifty-year 3 percent bond with no privilege attached had nothing to shield it: as the First Liberty Loan came to market, the Panama 3s fell from about $101 in January 1917 to $90 in May and <strong>$80 by June 1917</strong>, and they sat at or near 80 through the spring of 1918 — a price implying a long-term yield of roughly 3.9 percent, in line with the new Liberty coupons after allowing for the Panama bonds’ broader tax exemption. The contrast with the propped siblings is the whole lesson: over 1917–18 the circulation-privilege Panama 2s never traded below the mid-90s, while the unpropped 3s lost a fifth of their value. The 2s were shielded by their note-collateral franchise; the 3s took the full force of the market repricing, exactly as an honest price should.</p>
+<p>American entry into the war in April 1917 remade the government bond market overnight. The Liberty Loan Acts authorized borrowing on a scale that dwarfed the entire pre-war debt, at coupons of 3½ and then 4 and 4¼ percent. A fifty-year 3 percent bond with no privilege attached had nothing to shield it: as the First Liberty Loan came to market, the Panama 3s fell from about $101 in January 1917 to $90 in May and <strong>$80 by June 1917</strong>, and they sat at or near 80 through the spring of 1918 — a price implying a long-term yield of roughly 3.9 percent, in line with the new Liberty coupons after allowing for the Panama bonds’ broader tax exemption. Over 1917–18 the circulation-privilege Panama 2s never traded below the mid-90s, while the unpropped 3s lost a fifth of their value. The note-collateral franchise accounts for part of that contrast. Maturity and call terms account for the rest: the 3s were a non-callable fifty-year bond, while the 2s were already redeemable at the Treasury’s option and so traded more like short paper.</p>
 </section>
 <section id="the-depression-of-192021-the-bottom-of-the-market">
 <h3>The Depression of 1920–21: the bottom of the market<a class="headerlink" href="#the-depression-of-192021-the-bottom-of-the-market" title="Link to this heading">#</a></h3>
@@ -651,7 +648,7 @@ document.write(`
 <td><p>No</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Circulation Privilege</strong></p></td>
-<td><p><strong>None</strong> — expressly denied by the 1909 act; not eligible as security for national bank notes</p></td>
+<td><p><strong>None</strong> — excluded under the Act of March 2, 1911; not eligible as security for national bank notes</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Amount Issued</strong></p></td>
 <td><p>$50 million</p></td>
@@ -660,7 +657,7 @@ document.write(`
 <td><p>~$102.58 per $100 (database: 1.025825), by popular subscription</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Tax Status</strong></p></td>
-<td><p>Exempt from all federal taxes, as was standard for pre-war Treasury issues</p></td>
+<td><p>Exempt from all federal taxes and from state and local taxation (Act of August 5, 1909, §39)</p></td>
 </tr>
 </tbody>
 </table>
@@ -876,7 +873,7 @@ document.write(`
 <tr class="row-odd"><td><p><strong>1917-06</strong></p></td>
 <td><p>Price drop</p></td>
 <td><p>−11.1%</p></td>
-<td><p>The repricing completes: from $90 to $80 in a month as the First Liberty Loan closed. The 3s then held at or near 80 into 1918. The propped Panama 2s, meanwhile, never fell below the mid-90s — the clearest single demonstration in these data of what the circulation privilege was worth.</p></td>
+<td><p>The repricing completes: from $90 to $80 in a month as the First Liberty Loan closed. The 3s then held at a flat 80 through September 1917 and again from February to April 1918, prints that may be stale. The propped Panama 2s, meanwhile, never fell below the mid-90s; the privilege and the 2s’ shorter effective maturity both contributed.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>1918-05</strong></p></td>
 <td><p>Price spike</p></td>
@@ -894,7 +891,7 @@ document.write(`
 <td><p>The turn. Deflation broke, the Fed eased, and long rates began the great decline of 1921–22; the 3s never saw the 70s again after 1921.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>1922-07</strong></p></td>
-<td><p>Price spike</p></td>
+<td><p>Price spike (partly stale print)</p></td>
 <td><p>+15.2%</p></td>
 <td><p>Partly real, partly artifact. The 1922 rally in long-term governments was genuine and substantial, but a 12-point jump in one month (79 to 91) almost certainly also reflects stale or thin quotations in the preceding months — the May–June 1922 prints of 79 sit oddly below the 83–83¼ quotes of the winter. We attribute the step’s size to quotation infrequency in a small, tightly held issue rather than to any single event.</p></td>
 </tr>
@@ -1045,13 +1042,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/33353f1e40b2f8aa273031fab8c0335d79dfead24839aa3f34c6e5b5db87ee47.png" src="../_images/33353f1e40b2f8aa273031fab8c0335d79dfead24839aa3f34c6e5b5db87ee47.png" />
+<img alt="../_images/4a8328a4d148ac1fed414dbb3f08dc4a658bb79ee94bb93265000bc63a978ff1.png" src="../_images/4a8328a4d148ac1fed414dbb3f08dc4a658bb79ee94bb93265000bc63a978ff1.png" />
 </div>
 </div>
 <section id="reading-the-comparison">
 <h3>Reading the Comparison<a class="headerlink" href="#reading-the-comparison" title="Link to this heading">#</a></h3>
-<p>Between 1911 and 1916 the picture is upside down by any ordinary logic: the <strong>2 percent</strong> Panama bonds trade at or near par while the <strong>3 percent</strong> Panama bond trades only a point or two higher, at 101–103. A market pricing on investment merits alone would put a 3 percent fifty-year bond far above a 2 percent bond of the same credit; instead the coupon gap of a full percentage point bought barely two points of price. The difference is the capitalized value of the note-issue franchise attached to the 2s — the hidden subsidy made visible. In yield terms, the 2s “yielded” around 2 percent and the 3s a bit under 3 percent; only the second number was a market interest rate, and the wedge between them is a direct measure of what the circulation privilege was worth to a bank.</p>
-<p>The war years turn the contrast into a stress test. From early 1917 the unprotected 3s fall twenty points to 80, while the privileged 2s barely dip below 96: their holders were banks that needed them as note collateral and would not sell at any price the market was likely to offer. Then, in the 1920–21 squeeze, both series sag — but the 3s, priced on merits, fall to 74 while the 2s again hold in the 90s. Whatever else the circulation privilege did, it manufactured price stability; the cost was that the 2s’ prices carried almost no information. For the yield-curve construction in Payne, Szőke, Hall &amp; Sargent (2025), that is precisely why the 3s of 1911 matter: in the narrow window between 1911 and 1917 they are one of the very few long federal bonds whose price can be read at face value. The chapters on the Series 1906 and Series 1908 bonds tell the propped side of this story from within; this chapter is the control group.</p>
+<p>Between 1911 and 1916 the picture is upside down by any ordinary logic: the <strong>2 percent</strong> Panama bonds trade at or near par while the <strong>3 percent</strong> Panama bond trades only a point or two higher, at 101–103. A market pricing on investment merits alone would put a 3 percent fifty-year bond far above a 2 percent bond of the same credit; instead the coupon gap of a full percentage point bought barely two points of price. The difference is the capitalized value of the note-issue franchise attached to the 2s — the hidden subsidy made visible. In yield terms, the 2s “yielded” around 2 percent and the 3s a bit under 3 percent, a gap of about 0.8 to 1.0 percentage point between 1911 and 1916; only the second number was a market interest rate, and in those years the wedge between them is the cleanest measure in the database of what the circulation privilege was worth to a bank.</p>
+<p>The war years turn the contrast into a stress test. From early 1917 the unprotected 3s fall twenty points to 80, while the privileged 2s barely dip below 96: their holders were banks that needed them as note collateral and would not sell at any price the market was likely to offer. Then, in the 1920–21 squeeze, both series sag — but the 3s, priced on merits, fall to 74 while the 2s again hold in the 90s. After 1917 the gap measures more than the privilege. The 2s had passed their optional redemption dates and could be called at par at any time, while the 3s were a non-callable fifty-year bond; much of the post-1917 divergence is the difference in duration. Even so, the 2s’ prices carried little information about long-term rates. For the yield-curve construction in Payne, Szőke, Hall &amp; Sargent (2025), that is precisely why the 3s of 1911 matter: in the narrow window between 1911 and 1917 they are one of the very few long federal bonds whose price can be read at face value. The chapters on the Series 1906 and Series 1908 bonds tell the propped side of this story from within; this chapter is the control group.</p>
 </section>
 </section>
 <section id="issuance-distribution-and-redemption">
@@ -1072,10 +1069,11 @@ document.write(`
 <section id="primary-sources">
 <h3>Primary Sources<a class="headerlink" href="#primary-sources" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><em>Act of August 5, 1909</em> (Payne–Aldrich Tariff Act), the provision authorizing additional Panama Canal bonds at up to 3 percent interest and denying them eligibility as security for national bank note circulation.</p></li>
+<li><p><em>Act of August 5, 1909</em> (Payne–Aldrich Tariff Act), §39, authorizing $290,569,000 of additional Panama Canal bonds at up to 3 percent interest, tax-exempt, and repealing the 2 percent authority.</p></li>
+<li><p><em>Act of March 2, 1911</em>, authorizing the Secretary to make the §39 bonds unreceivable as security for national bank note circulation.</p></li>
 <li><p><em>Spooner Act of June 28, 1902</em> (the original Panama Canal bond authorization) and the <em>Act of December 21, 1905</em>, under which the Series 1906 and 1908 2 percent bonds were issued.</p></li>
 <li><p><em>Joint Resolution of June 5, 1933</em> (abrogation of gold clauses).</p></li>
-<li><p><em>Annual Reports of the Secretary of the Treasury</em>, 1909–1912 (Secretary Franklin MacVeagh, on the 1911 offering and its terms) and subsequent years.</p></li>
+<li><p><em>Annual Reports of the Secretary of the Treasury</em>, 1909–1912 (Secretary Franklin MacVeagh: the 1910 report, pp. 3–4, on the privilege the 1909 Act left attached; the 1911 report, p. 5, on the June 1911 sale) and subsequent years.</p></li>
 <li><p><em>Annual Reports of the Comptroller of the Currency</em> (bonds eligible and ineligible as security for circulation).</p></li>
 </ul>
 </section>
@@ -1159,7 +1157,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1240,8 +1239,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

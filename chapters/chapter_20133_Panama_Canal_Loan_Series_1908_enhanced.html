@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Panama Canal Loan (Series 1906)" href="chapter_20132_Panama_Canal_Loan_Series_1906_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -479,6 +465,13 @@ document.write(`
 <span class="n">BondPrice</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondPrice&#39;</span><span class="p">]</span>
 <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
+<span class="c1"># Drop one-month prints flagged as data artifacts (each is described in the chapter text)</span>
+<span class="n">ARTIFACT_PRINTS</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">20090</span><span class="p">,</span> <span class="s1">&#39;1859-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20133</span><span class="p">,</span> <span class="s1">&#39;1919-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20170</span><span class="p">,</span> <span class="s1">&#39;1920-01-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20166</span><span class="p">,</span> <span class="s1">&#39;1920-05-31&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">_id</span><span class="p">,</span> <span class="n">_d</span> <span class="ow">in</span> <span class="n">ARTIFACT_PRINTS</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">_s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Average&#39;</span><span class="p">,</span> <span class="s1">&#39;Coupon&#39;</span><span class="p">,</span> <span class="s1">&#39;Registered&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">BondPrice</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">_d</span><span class="p">),</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">)</span>
+
 <span class="n">BondQuant_T</span> <span class="o">=</span> <span class="n">BondQuant</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <span class="n">BondPrice_T</span> <span class="o">=</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 
@@ -501,7 +494,7 @@ document.write(`
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>The <strong>Panama Canal Loan (Series 1908)</strong> — Bond ID 20133 in our database — was the second installment of the canal debt authorized by the <strong>Spooner Act of June 28, 1902</strong>, which empowered the President to acquire and build an isthmian canal and authorized up to <strong>$130 million of 2 percent gold bonds</strong> to pay for it. The origins of that authorization — the choice of Panama over Nicaragua, the purchase of the French company’s assets, the payment to the new Republic of Panama — belong to the first series of 1906, and this book’s chapter on the <em>Panama Canal Loan (Series 1906)</em> tells that story in full. By 1908 the questions of route and title were settled; what remained was earthmoving on an unprecedented scale, and earthmoving cost money. As construction expenditures mounted and the Treasury’s cash position — strained by the deposits it had pushed into the banking system during the Panic of 1907 — needed replenishing, Secretary of the Treasury <strong>George B. Cortelyou</strong> returned to the Spooner authorization and offered a further <strong>$30 million</strong> of the canal 2s in <strong>November 1908</strong>. The bonds were dated November 1908, ran thirty years to <strong>November 1, 1938</strong>, and were redeemable at the government’s option after <strong>November 1, 1918</strong>.</p>
-<p>Like its 1906 predecessor and the great <strong>2 percent Consols of 1930</strong>, the Series 1908 loan was a bond that no ordinary investor would buy on its coupon. Its salability at and above par rested on the <strong>circulation privilege</strong>: national banks could deposit the bonds with the Treasurer as security for their circulating notes and pay only the reduced one-half of one percent tax on circulation so secured. That regulatory machinery — how it worked, and how it made a 2 percent bond trade like a franchise license rather than a loan — is set out in this book’s chapter on the <em>Consols of 1930</em> (Bond ID 20131), which readers should treat as the essential companion to this one. What is distinctive about the 1908 series is its <em>moment</em>: it was placed in the immediate shadow of the Panic of 1907 and the Aldrich–Vreeland Act, at the precise juncture when the bond-secured currency system it fed had just been indicted by events and placed under study by the National Monetary Commission. The offering nonetheless succeeded handsomely — sold at an average of about <strong>$102.99 per $100</strong> — and the bond then settled into one of the quietest lives in the database: 140 monthly price observations that never stray more than a few dollars from par, a quantity series that moves exactly once, and an exit in 1935 as a footnote to the retirement of the national bank note. This is the biography of a middle child — overshadowed by its 1906 elder and its 3 percent 1911 junior, and eloquent precisely because so little ever happened to it.</p>
+<p>Like its 1906 predecessor and the great <strong>2 percent Consols of 1930</strong>, the Series 1908 loan was a bond that no ordinary investor would buy on its coupon. Its salability at and above par rested on the <strong>circulation privilege</strong>: national banks could deposit the bonds with the Treasurer as security for their circulating notes and pay only the reduced one-half of one percent tax on circulation so secured. That regulatory machinery — how it worked, and how it made a 2 percent bond trade like a franchise license rather than a loan — is set out in this book’s chapter on the <em>Consols of 1930</em> (Bond ID 20131), which readers should treat as the essential companion to this one. What is distinctive about the 1908 series is its <em>moment</em>: it was placed in the immediate shadow of the Panic of 1907 and the Aldrich–Vreeland Act, at the precise juncture when the bond-secured currency system it fed had just been indicted by events and placed under study by the National Monetary Commission. The offering nonetheless succeeded handsomely — sold at an average of <strong>$102.436 per $100</strong> — and the bond then settled into one of the quietest lives in the database: 140 monthly price observations that never stray more than a few dollars from par, a quantity series that moves exactly once, and an exit in 1935 as a footnote to the retirement of the national bank note. This is the biography of a middle child — overshadowed by its 1906 elder and its 3 percent 1911 junior, and eloquent precisely because so little ever happened to it.</p>
 </section>
 <section id="historical-context-born-of-a-panic-retired-by-a-new-deal">
 <h2>Historical Context: Born of a Panic, Retired by a New Deal<a class="headerlink" href="#historical-context-born-of-a-panic-retired-by-a-new-deal" title="Link to this heading">#</a></h2>
@@ -555,11 +548,11 @@ document.write(`
 </div>
 <section id="the-post-panic-placement-of-1908">
 <h3>The post-Panic placement of 1908<a class="headerlink" href="#the-post-panic-placement-of-1908" title="Link to this heading">#</a></h3>
-<p>The Panic of October 1907 ended before this bond existed, but it presided over the bond’s birth. The panic had exposed the central defect of the national banking system — a currency backed by government bonds could not expand when depositors demanded cash — and Congress answered in May 1908 with the <strong>Aldrich–Vreeland Act</strong>, which authorized emergency currency against broader collateral and created the National Monetary Commission whose studies would lead, five years later, to the Federal Reserve Act. Secretary Cortelyou, who had directed the Treasury’s crisis response in the autumn of 1907 by depositing public money in the New York banks, thus brought the Series 1908 loan to market at a peculiar moment: the bond-secured note system stood formally indicted, yet nothing had replaced it, and the banks’ appetite for circulation collateral remained entirely intact. Indeed, by late 1908 money was easy, the panic’s liquidation had left banks with ample reserves, and eligible 2 percent bonds were scarce — the Consols and the Series 1906 Panama 2s were largely locked in the Treasurer’s vaults. The November 1908 offering of $30 million was accordingly a comfortable success: subscriptions exceeded the amount offered many times over, allotments went overwhelmingly to national banks, and the average price realized — about <strong>$102.99 per $100</strong>, recorded in our database’s <code class="docutils literal notranslate"><span class="pre">Price</span> <span class="pre">Sold</span></code> field — stood within a couple of points of where the seasoned Consols were then quoted. A 2 percent thirty-year bond selling at a premium twelve months after the worst banking panic in a generation is, on investment logic, absurd; on franchise logic it was routine. The proceeds went to the canal, whose construction under the Army engineers was then reaching full stride.</p>
+<p>The Panic of October 1907 ended before this bond existed, but it presided over the bond’s birth. The panic had exposed the central defect of the national banking system — a currency backed by government bonds could not expand when depositors demanded cash — and Congress answered in May 1908 with the <strong>Aldrich–Vreeland Act</strong>, which authorized emergency currency against broader collateral and created the National Monetary Commission whose studies would lead, five years later, to the Federal Reserve Act. Secretary Cortelyou, who had directed the Treasury’s crisis response in the autumn of 1907 by depositing public money in the New York banks, thus brought the Series 1908 loan to market at a peculiar moment: the bond-secured note system stood formally indicted, yet nothing had replaced it, and the banks’ appetite for circulation collateral remained entirely intact. Indeed, by late 1908 money was easy, the panic’s liquidation had left banks with ample reserves, and eligible 2 percent bonds were scarce — the Consols and the Series 1906 Panama 2s were largely locked in the Treasurer’s vaults. The November 1908 offering of $30 million was accordingly a comfortable success: subscriptions exceeded the amount offered many times over, allotments went overwhelmingly to national banks, and the average price realized — <strong>$102.436 per $100</strong> (Treasury Department, <em>Information Respecting United States Bonds</em>, 1915, p. 17) — stood about a point below the seasoned Consols, then quoted near 103½. The database’s <code class="docutils literal notranslate"><span class="pre">Price</span> <span class="pre">Sold</span></code> field for this bond records 102.99; that figure is the average price of Cortelyou’s November 1907 panic sale, which belonged to the Series 1906 loan. A 2 percent thirty-year bond selling at a premium twelve months after the worst banking panic in a generation is, on investment logic, absurd; on franchise logic it was routine. The proceeds went to the canal, whose construction under the Army engineers was then reaching full stride.</p>
 </section>
 <section id="the-circulation-privilege-as-the-price-maker">
 <h3>The circulation privilege as the price-maker<a class="headerlink" href="#the-circulation-privilege-as-the-price-maker" title="Link to this heading">#</a></h3>
-<p>For the mechanics of circulation-privilege pricing — why banks would bid a 2 percent bond to par and beyond, and why the quoted yield on these bonds should never be read as a market interest rate — see the <em>Consols of 1930</em> chapter; the Series 1908 bond obeyed the same arithmetic in miniature. Our price series opens in February 1909 at <strong>$101</strong> and spends the pre-war years drifting between par and about <strong>$101¼</strong>, a shade below the larger and more liquid Consols, with early quotations sparse — the bond’s holders were banks with no reason to trade. The instructive contrast is with the third member of the family: when Congress, in the payable-in-gold act of August 5, 1909, allowed the remaining Spooner-Act borrowing to proceed at 3 percent <em>without</em> the circulation privilege, the resulting <strong>Series 1911 3s</strong> sold barely above par — a full percentage point of coupon, in effect, was the market’s measure of what the note-issuing franchise attached to the 2s was worth. That comparison, visible in the related-bonds chart below, is treated from the 1911 side in its own chapter.</p>
+<p>For the mechanics of circulation-privilege pricing — why banks would bid a 2 percent bond to par and beyond, and why the quoted yield on these bonds should never be read as a market interest rate — see the <em>Consols of 1930</em> chapter; the Series 1908 bond obeyed the same arithmetic in miniature. Our price series opens in February 1909 at <strong>$101</strong> and spends the pre-war years drifting between par and about <strong>$101¼</strong>, a shade below the larger and more liquid Consols, with early quotations sparse — the bond’s holders were banks with no reason to trade. The instructive contrast is with the third member of the family: Section 39 of the Act of August 5, 1909 authorized the remaining canal borrowing at up to 3 percent and repealed the Spooner Act’s 2 percent authority; the Act of March 2, 1911 then let the Secretary write into the new bonds a clause barring them as security for national bank notes. The resulting <strong>Series 1911 3s</strong>, sold <em>without</em> the circulation privilege, brought 102.58, about 2.9 percent to their 1961 maturity — a full percentage point of coupon, in effect, was the market’s measure of what the note-issuing franchise attached to the 2s was worth. That comparison, visible in the related-bonds chart below, is treated from the 1911 side in its own chapter.</p>
 </section>
 <section id="the-federal-reserve-act-and-the-family-s-obsolescence">
 <h3>The Federal Reserve Act and the family’s obsolescence<a class="headerlink" href="#the-federal-reserve-act-and-the-family-s-obsolescence" title="Link to this heading">#</a></h3>
@@ -648,7 +641,7 @@ document.write(`
 <td><p>Gold coin</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Price Sold</strong></p></td>
-<td><p>≈ $102.99 per $100 (average realized at the November 1908 offering)</p></td>
+<td><p>102.436 per $100 at the November 1908 sale (Treasury, 1915, p. 17). The database field was corrected to this value on 4 October 2026; it had read 102.99, the average price of the November 1907 sale of Series 1906 bonds</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Amount Issued</strong></p></td>
 <td><p>$30.0 million</p></td>
@@ -694,7 +687,7 @@ document.write(`
   Callable                       1.0
   Coin                           1.0
   Authorized Amount              nan
-  Price Sold                     1.0299
+  Price Sold                     1.02436
 </pre></div>
 </div>
 </div>
@@ -801,7 +794,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0b3db57594b4d7c781b476f15c42397b4629c9d9b5448669eaf2dad1a37a0c54.png" src="../_images/0b3db57594b4d7c781b476f15c42397b4629c9d9b5448669eaf2dad1a37a0c54.png" />
+<img alt="../_images/7a05e02ebb3a5ff7340375918de6c9d1ecd6a0bda8f601895f00ee2d999db9df.png" src="../_images/7a05e02ebb3a5ff7340375918de6c9d1ecd6a0bda8f601895f00ee2d999db9df.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -842,7 +835,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dedc8df749f00264b854f59b1b2f6a742bc43eaf515cd7584cadb0931e897b9a.png" src="../_images/dedc8df749f00264b854f59b1b2f6a742bc43eaf515cd7584cadb0931e897b9a.png" />
+<img alt="../_images/6f683cf1650fed1543595e911bbb0eac979f643ca99cc29fef991c15019ce71c.png" src="../_images/6f683cf1650fed1543595e911bbb0eac979f643ca99cc29fef991c15019ce71c.png" />
 </div>
 </div>
 <section id="detected-price-quantity-events-explained">
@@ -858,27 +851,27 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>1919-12</strong></p></td>
-<td><p>Price drop</p></td>
+<td><p>Price drop (data artifact)</p></td>
 <td><p>−9.1%</p></td>
 <td><p>The quotation falls from $99½ to $90½ in a single month…</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>1920-01</strong></p></td>
-<td><p>Price spike</p></td>
+<td><p>Price spike (reversal of the artifact)</p></td>
 <td><p>+10.5%</p></td>
 <td><p>…and returns to $100.00 the next.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>A genuine nine-point collapse and full recovery inside two months would be extraordinary for any government bond, let alone one whose price was administratively propped and whose float was minuscule. Nothing in the bond’s fundamentals — credit, coupon, privilege, or quantity — changed in December 1919, and no comparable move appears in the Consols or the Series 1906 2s. The December 1919 print of $90½ is best read as a <strong>quotation artifact of an extremely thin market</strong>: a stray or flat-quoted transaction, or a recording anomaly, in a security that sometimes went months without a trade (note the gaps elsewhere in the series). Year-end 1919 was, to be sure, a moment of severe money-market strain — call rates spiked as the Federal Reserve began tightening into the 1920–21 depression — and a forced sale at a concession is not impossible; but the instant, complete reversal argues against reading any durable repricing into it. We flag it rather than explain it away with a story the evidence cannot support.</p>
+<p>A genuine nine-point collapse and full recovery inside two months would be extraordinary for any government bond, let alone one whose price was administratively propped and whose float was minuscule. Nothing in the bond’s fundamentals — credit, coupon, privilege, or quantity — changed in December 1919, and no comparable move appears in the Consols or the Series 1906 2s. The December 1919 print of $90½ is best read as a <strong>quotation artifact of an extremely thin market</strong>: a stray or flat-quoted transaction, or a recording anomaly, in a security that sometimes went months without a trade (note the gaps elsewhere in the series). Year-end 1919 was, to be sure, a moment of severe money-market strain — call rates spiked as the Federal Reserve began tightening into the 1920–21 depression — and a forced sale at a concession is not impossible; but the instant, complete reversal argues against reading any durable repricing into it. We flag it rather than explain it away with a story the evidence cannot support. The charts and the drawdown statistic in this chapter omit the December 1919 print.</p>
 <p>The movements the detector <em>ignores</em> are the historically meaningful ones: the slide from $100 to $96½ in the autumn of <strong>1913</strong>, as the Federal Reserve Act threatened the circulation privilege; the long wartime residence in the high 90s, when Liberty coupons made a 2 percent bond an anachronism; and the climb to $103½ in <strong>1924</strong>, when easy money made the note-issuing franchise unusually profitable and banks bid up the scarce stock of eligible 2s — the same franchise repricing that lifted the Consols above $106 in 1919. Each of these unfolded too gradually to register as an “event,” which is itself a fact about how this bond’s price was made.</p>
 </section>
 </section>
 <section id="price-volatility">
 <h2>Price Volatility<a class="headerlink" href="#price-volatility" title="Link to this heading">#</a></h2>
-<p><strong>Maximum drawdown:</strong> −10.6% (from the peak of $101.25 on March 31, 1911 to the trough of $90.50 on December 31, 1919 — and more than half of that “trough” is the single aberrant quotation discussed above)</p>
+<p><strong>Maximum drawdown:</strong> −5.4% (from the peak of $101.25 on March 31, 1911 to the trough of $95.75 on May 31, 1917, omitting the December 1919 print; with that print included, the figure would be −10.6%)</p>
 <p><strong>Average monthly return:</strong> 0.006%</p>
-<p>By the standards of this database these are among the most placid numbers on record — compare the −27.9 percent wartime collapse of the Louisiana Sixes — and setting aside the December 1919 print, the bond’s true range over seventeen years was barely seven dollars. The rolling-volatility chart below is correspondingly flat, with two interpretable flares: the repricing around the Federal Reserve legislation of 1913–14, and the spike manufactured by the 1919–20 quotation whipsaw. The Panic-scarred birth year, the World War, and the 1920–21 depression — events that convulsed every open market in New York — barely register. When a bond’s marginal holder is a regulated bank doing franchise arithmetic rather than a speculator, its volatility measures the stability of the <em>regulation</em>, not of the market.</p>
+<p>By the standards of this database these are among the most placid numbers on record — compare the −27.9 percent wartime collapse of the Louisiana Sixes — and setting aside the December 1919 print, the bond’s true range over seventeen years was barely seven dollars. The rolling-volatility chart below is correspondingly flat, with one interpretable flare: the repricing around the Federal Reserve legislation of 1913–14. The chart omits the December 1919 print. The Panic-scarred birth year, the World War, and the 1920–21 depression — events that convulsed every open market in New York — barely register. When a bond’s marginal holder is a regulated bank doing franchise arithmetic rather than a speculator, its volatility measures the stability of the <em>regulation</em>, not of the market.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rolling volatility (12-month window)</span>
@@ -902,7 +895,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/275750c5dbe5c277a2272556000d2488721c392ff9c7df140be1b5de170b5c44.png" src="../_images/275750c5dbe5c277a2272556000d2488721c392ff9c7df140be1b5de170b5c44.png" />
+<img alt="../_images/0a85ba5e9de6f03b4d98dd9bc4be8ff721e7d9573bd230ae0b650bb2450eb782.png" src="../_images/0a85ba5e9de6f03b4d98dd9bc4be8ff721e7d9573bd230ae0b650bb2450eb782.png" />
 </div>
 </div>
 </section>
@@ -1016,12 +1009,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5914d8e5e11e5d8fb650cfb256e7ed3bd4efea7d3781be080ee0f54625e08b49.png" src="../_images/5914d8e5e11e5d8fb650cfb256e7ed3bd4efea7d3781be080ee0f54625e08b49.png" />
+<img alt="../_images/e48365439db3b9a569ead57c559f98a67b939297c4efa057c59777e911050c32.png" src="../_images/e48365439db3b9a569ead57c559f98a67b939297c4efa057c59777e911050c32.png" />
 </div>
 </div>
 <section id="reading-the-comparison">
 <h3>Reading the Comparison<a class="headerlink" href="#reading-the-comparison" title="Link to this heading">#</a></h3>
-<p>The chart is a controlled experiment in what the circulation privilege was worth. The <strong>Series 1908 2s</strong>, the <strong>Series 1906 2s</strong>, and the <strong>Consols of 1930</strong> move as one security in three sizes: all hug par, all dip together below par around the Federal Reserve legislation of 1913 and through the war, and all recover above par in the easy-money stretches afterward. Where they diverge from one another the differences are of a dollar or two — liquidity and idiosyncratic quotation, not economics. The <strong>Series 1911 3s</strong>, by contrast, bought their place near par with an extra percentage point of coupon, having been shorn of the privilege; and the little <strong>Funded Loan of 1891 continued at 2 percent</strong> shows what a 2 percent claim looked like in this era when priced closer to investment merits. The vertical distance between the 2s and where a privilege-free 2 percent bond “should” have traded — on the order of twenty to thirty points — is the capitalized value of the national bank note franchise, and it is why the Payne–Szőke–Hall–Sargent database cautions against building pre-1918 yield curves naively on these issues. A fuller side-by-side treatment of the family’s pricing appears in the <em>Consols of 1930</em> chapter.</p>
+<p>The chart is a controlled experiment in what the circulation privilege was worth. The <strong>Series 1908 2s</strong>, the <strong>Series 1906 2s</strong>, and the <strong>Consols of 1930</strong> move as one security in three sizes: all hug par, all dip together below par around the Federal Reserve legislation of 1913 and through the war, and all recover above par in the easy-money stretches afterward. Where they diverge from one another the differences are of a dollar or two — liquidity and idiosyncratic quotation, not economics. The <strong>Series 1911 3s</strong>, by contrast, bought their place near par with an extra percentage point of coupon, having been shorn of the privilege; and the little <strong>Funded Loan of 1891 continued at 2 percent</strong> shows what a 2 percent claim looked like in this era when priced closer to investment merits. The vertical distance between the 2s and where a privilege-free 2 percent bond “should” have traded — about 15 to 18 points before 1917, pricing a 2 percent bond at the 3s’ yield of about 2.9 percent — is the capitalized value of the national bank note franchise, and it is why the Payne–Szőke–Hall–Sargent database cautions against building pre-1918 yield curves naively on these issues. A fuller side-by-side treatment of the family’s pricing appears in the <em>Consols of 1930</em> chapter.</p>
 </section>
 </section>
 <section id="issuance-distribution-and-redemption">
@@ -1032,8 +1025,8 @@ document.write(`
 </section>
 <section id="implications-and-legacy">
 <h2>Implications and Legacy<a class="headerlink" href="#implications-and-legacy" title="Link to this heading">#</a></h2>
-<p><strong>A stress test the franchise passed.</strong> The most interesting fact about the Series 1908 loan is the date on its face. It was sold at a premium — a 2 percent coupon commanding $103 — twelve months after the Panic of 1907 had demonstrated, at enormous cost, that the bond-secured currency these bonds existed to serve was a defective design; six months after Congress had said so in the Aldrich–Vreeland Act; and while the National Monetary Commission was drafting the indictment in detail. The market, in other words, priced the circulation franchise as durable even as its abolition was being studied — and the market was right for another quarter century. Regulatory rents die slowly, and the price of this bond is a 27-year measurement of exactly how slowly.</p>
-<p><strong>The canal on the installment plan.</strong> With the Series 1906 and 1908 sales the Treasury had raised $84.6 million of the Spooner Act’s $130 million at 2 percent — a rate no other sovereign could touch, achievable only because the bonds were bundled with a bank-note license. That the <em>next</em> installment, the Series 1911, had to carry 3 percent once Congress withheld the privilege is the cleanest natural experiment in the database on what the bundling was worth. The Panama story from the canal’s side — the diplomacy, the French company, the earthmoving — belongs to the Series 1906 chapter; the Series 1908 contribution to it was simply $30.9 million of cash, delivered without drama at a moment when drama might have been expected.</p>
+<p><strong>A stress test the franchise passed.</strong> The most interesting fact about the Series 1908 loan is the date on its face. It was sold at a premium — a 2 percent coupon commanding $102.44 — twelve months after the Panic of 1907 had demonstrated, at enormous cost, that the bond-secured currency these bonds existed to serve was a defective design; six months after Congress had said so in the Aldrich–Vreeland Act; and while the National Monetary Commission was drafting the indictment in detail. The market, in other words, priced the circulation franchise as durable even as its abolition was being studied — and the market was right for another quarter century. Regulatory rents die slowly, and the price of this bond is a 27-year measurement of exactly how slowly.</p>
+<p><strong>The canal on the installment plan.</strong> With the Series 1906 and 1908 sales the Treasury had raised $84.6 million of the Spooner Act’s $130 million at 2 percent — a rate no other sovereign could touch, achievable only because the bonds were bundled with a bank-note license. That the <em>next</em> installment, the Series 1911, had to carry 3 percent once Congress withheld the privilege is the cleanest natural experiment in the database on what the bundling was worth. The Panama story from the canal’s side — the diplomacy, the French company, the earthmoving — belongs to the Series 1906 chapter; the Series 1908 contribution to it was simply $30.7 million of cash, delivered without drama at a moment when drama might have been expected.</p>
 <p><strong>A well-behaved data problem.</strong> For users of the Hall–Payne–Sargent database, this bond is a compact object lesson in two recurring cautions. First, its quoted yield — around 2 percent or below for most of its quoted life — is not the riskless rate of the United States; it is a bond price with a franchise value inside it, which is why Payne, Szőke, Hall &amp; Sargent (2025) exclude the circulation-privilege 2s from clean measures of the government’s borrowing cost. Second, its single detected “event” — the December 1919 plunge and January 1920 recovery — is almost certainly an artifact of thin quotation rather than a market episode: a reminder that in small, immobilized issues, the price series records the sociology of quotation as well as the economics of valuation.</p>
 <p><strong>The quiet middle child.</strong> Between the 1906 series, which carries the canal’s origin story, and the 1911 series, which marks the privilege’s end, the 1908 series owns only its moment of birth — the post-Panic placement — and its long, nearly eventless middle age. But the eventlessness is the historical finding. Through a world war, a postwar deflation, and the passing of its own redemption date, the bond’s price barely moved and its quantity moved once, because both were fixed not by markets but by an interlocking set of statutes. When the statutes changed in 1913 the price dipped; when they were unwound in 1935 the bond vanished. Few securities in the database demonstrate so purely that a government bond can be, for its whole life, a piece of monetary plumbing — and that the plumbing, while it lasted, never leaked: every coupon and every dollar of principal was paid in full.</p>
 </section>
@@ -1043,7 +1036,9 @@ document.write(`
 <h3>Primary Sources<a class="headerlink" href="#primary-sources" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><em>An Act to provide for the construction of a canal connecting the waters of the Atlantic and Pacific oceans</em> (Spooner Act), June 28, 1902 (authorizing up to $130 million of 2 percent bonds).</p></li>
-<li><p><em>An Act of August 5, 1909</em> (authorizing the remaining Panama Canal borrowing at 3 percent, without the circulation privilege — the basis of the Series 1911).</p></li>
+<li><p><em>Act of August 5, 1909</em>, §39 (authorizing $290,569,000 of further Panama Canal bonds at up to 3 percent and repealing the 2 percent authority — the basis of the Series 1911).</p></li>
+<li><p><em>Act of March 2, 1911</em> (authorizing the Secretary to make bonds issued under §39 of the 1909 Act unreceivable as security for national bank notes).</p></li>
+<li><p>Treasury Department (1915). <em>Information Respecting United States Bonds…</em>, p. 17 (sale prices of the Panama loans).</p></li>
 <li><p><em>Gold Standard Act</em>, March 14, 1900 (the ½ percent circulation tax on 2 percent bonds).</p></li>
 <li><p><em>Federal Reserve Act</em>, December 23, 1913, especially Section 18 (refunding of the 2 percent bonds).</p></li>
 <li><p><em>Joint Resolution of June 5, 1933</em> (abrogation of gold clauses) and <em>Gold Reserve Act of January 30, 1934</em>.</p></li>
@@ -1129,7 +1124,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1210,8 +1206,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

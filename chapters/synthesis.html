@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -65,6 +68,7 @@
     <link rel="prev" title="Bond Biography: Victory Liberty Loan (3 3/4%)" href="chapter_20171_Victory_Liberty_Loan_3_34_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -80,19 +84,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -108,8 +100,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,15 +148,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -255,9 +244,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -369,24 +363,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -444,7 +430,7 @@ ask what moved the measurements.</p>
 <p>Six findings organize the chapter. (i) A price cannot be read until its unit of account
 is identified; for roughly a quarter of the sample the unit is not what it appears to
 be. (ii) Several of the largest issues in the collection were priced by regulation
-rather than by time preference, and one deliberate design change in 1909 lets us
+rather than by time preference, and one deliberate design change of 1909–1911 lets us
 measure the difference. (iii) Much of what looks like price <em>drift</em> is the mechanical
 arithmetic of embedded options and finite maturities, not news about credit. (iv) The
 terms on which the Treasury could <em>sell</em> debt — primary-market prices and coupons —
@@ -461,8 +447,8 @@ meant. Three episodes in the collection turn on this point.</p>
 <p>First, the Civil War. After specie payments were suspended in December 1861, the
 quotations in the database are greenback prices of bonds whose coupons — and, after
 the Public Credit Act of 1869, principal — were payable in coin. The Loan of February
-1861 traded at 107–114 in 1864 while the gold premium exceeded 100 percent; in gold
-units the bond stood near 50. The biographies of the wartime issues (the February 1861
+1861 traded at 106–114 in 1864; in the second half of that year the gold premium
+exceeded 100 percent, and in gold units the bond stood near or below 50. The biographies of the wartime issues (the February 1861
 loan, the Five-Twenties, the Ten-Forties) therefore read every wartime movement twice:
 once as a statement about Union credit, once as a statement about the greenback. Most
 of the drama belongs to the greenback. The March 1865 <em>fall</em> in quoted prices, which a
@@ -492,18 +478,24 @@ forecast of anything; it capitalized a regulatory franchise. The biographies of 
 of 1907 and the Ten-Twenties of 1898 show the same force at earlier dates: bonds held
 at premiums because banks needed them, with yields that measure note-issue economics
 rather than the price of time.</p>
-<p>The Act of August 5, 1909 supplies the experiment. The 3 percent Panama Canal bonds of
-1911 were issued <em>without</em> the circulation privilege — the first major issue sold on
-investment terms alone since the Civil War era. Through the stress of 1917–1921 the
-privileged Panama 2s never traded below roughly 96 while the unprivileged 3s fell to
-80 and then to 74. Same obligor, same era, same gold clause; the entire gap is the
-regulatory subsidy. The episode deserves emphasis because the temptation to read
+<p>Two statutes supply the experiment. Section 39 of the Act of August 5, 1909 authorized
+further Panama Canal bonds at up to 3 percent, and the Act of March 2, 1911 let the
+Secretary make them unreceivable as security for national bank notes. The 3 percent
+Panama Canal bonds of 1911 were therefore issued <em>without</em> the circulation privilege —
+the first major issue sold on investment terms alone since the Civil War era. They sold
+at 102.58, about 2.9 percent to 1961. Between 1911 and 1916 the 3s yielded about 0.8 to
+1.0 percentage point more than the privileged Panama 2s: same obligor, same era, same
+gold clause, and that gap is the cleanest measure of the regulatory subsidy. Through
+the stress of 1917–1921 the 2s never traded below roughly 96 while the 3s fell to 80
+and then to 74. That larger gap mixes the privilege with duration and call terms: the
+3s were a non-callable fifty-year bond, while the 2s had passed their optional
+redemption dates. The episode deserves emphasis because the temptation to read
 pre-1917 U.S. bond yields as market interest rates is strong, and for the 2 percent
 family it is wrong. Macaulay made this point in 1938; the paired price series here
 let one see it plainly.</p>
 <p>A corollary: when the Federal Reserve Act rendered the note-issue franchise obsolete,
 the propped prices sagged without any change in federal credit. The Consols’ price
-trough in October 1913 coincides with the Act’s passage. Deregulation, like
+trough in October 1913 coincides with the congressional endgame of the Act. Deregulation, like
 regulation, moves prices that credit theory alone cannot explain.</p>
 </section>
 <section id="the-arithmetic-of-contract-terms">
@@ -526,7 +518,7 @@ supported above-par prices when rates fell, and obstructed Gallatin’s debt red
 which is why the exchange operations of 1807 and 1812 exist. The two exchanges are
 mirror images: 1807 traded the cap away to permit faster redemption; 1812 traded it
 away to <em>defer</em> redemption twelve years, converting a mandatory amortization stream
-into a postwar bullet at the moment the Treasury was borrowing at 88. Liability
+into a postwar bullet a year before the Treasury had to borrow at 88. Liability
 management is not a modern invention.</p>
 <p><em>Embedded options.</em> The Liberty Loans carried conversion privileges that created five
 of this book’s securities. The privileges functioned as promised: when coupons
@@ -539,9 +531,12 @@ tax-exempt; 3¾ percent fully tax-exempt), show identical prices in 19 of 36 com
 months while the quantities sort monotonically toward the taxable coupon as rates and
 surtax expectations moved — clientele sorting revealed in quantities, with a
 break-even surtax near 21 percent implied by the coupon spread.</p>
-<p><em>Price-guarantee clauses.</em> The 1814 loans carried a most-favored-lender clause: if a
-later tranche sold cheaper, earlier subscribers were retroactively credited. The
-clause is why recorded sale prices of 88 and 80 coexist within one loan, and it is an
+<p><em>Price-guarantee clauses.</em> The 1814 loans carried a most-favored-lender clause, written
+into the Treasury’s invitation for subscriptions rather than into the statute
+(Bayley): if a later sale went cheaper, earlier subscribers were credited with
+additional stock. The May 1814 loan sold at 88. A separate August 1814 offering of <span class="math notranslate nohighlight">\(6
+million raised about \)</span>4.3 million for $5.4 million of stock, at 80; that sale triggered
+the clause, and the May subscribers received supplemental stock. The clause is an
 early solution to a mechanism-design problem — sequential borrowing under deteriorating
 credit — that the biographies of 1813–1814 document in detail.</p>
 </section>
@@ -571,12 +566,12 @@ is a usable time series of reputation.</p>
 <td><p>88, syndicate of three</p></td>
 </tr>
 <tr class="row-odd"><td><p>1814</p></td>
-<td><p>Ten Million Loan and successors</p></td>
-<td><p>88, then 80, with guarantee clause</p></td>
+<td><p>May loan; separate August offering</p></td>
+<td><p>88 in May; 80 in August, which triggered the guarantee clause</p></td>
 </tr>
 <tr class="row-even"><td><p>1842</p></td>
 <td><p>Loan of 1842</p></td>
-<td><p>6s at 97½, placed with difficulty</p></td>
+<td><p>6s at about par (Bayley: <span class="math notranslate nohighlight">\(8,343,886 sold for \)</span>8,301,468, about 99.5; the database records 97½), placed with difficulty</p></td>
 </tr>
 <tr class="row-odd"><td><p>1843</p></td>
 <td><p>Loan of 1843</p></td>
@@ -584,7 +579,7 @@ is a usable time series of reputation.</p>
 </tr>
 <tr class="row-even"><td><p>1848</p></td>
 <td><p>Loan of 1848</p></td>
-<td><p>6s above 103, oversubscribed</p></td>
+<td><p>6s above 103</p></td>
 </tr>
 <tr class="row-odd"><td><p>1861</p></td>
 <td><p>February loan</p></td>
@@ -596,7 +591,7 @@ is a usable time series of reputation.</p>
 </tr>
 <tr class="row-odd"><td><p>1895</p></td>
 <td><p>Belmont–Morgan contract</p></td>
-<td><p>4s at 104½, resold near 120</p></td>
+<td><p>4s at 104½, reoffered by the syndicate at 112¼; market near 120 within weeks</p></td>
 </tr>
 <tr class="row-even"><td><p>1896–98</p></td>
 <td><p>Popular loans</p></td>
@@ -631,8 +626,12 @@ comes to believe the settlement. The appreciation is not instantaneous; the inte
 between the Public Credit Act (1869) and resumption (1879), during which the 6%
 consols climbed from roughly 108 toward gold parity, is a decade-long record of
 belief formation. Investors who bought Union debt in greenbacks and were repaid in
-gold earned the reward for correctly forecasting a regime; the biographies of the
-Five-Twenties make the magnitude explicit.</p>
+gold earned the reward for correctly forecasting a regime. The Public Credit Act of
+March 18, 1869 shows the settlement in prices: the average price of three Five-Twenty issues
+(the Five-Twenties of 1865 and the Consols of 1865 and 1867), whose principal the Act
+pledged to pay in coin, stood less than 1
+point above the Ten-Forties in January 1869 and about 9 points above them in March and
+April 1869.</p>
 <p>The cycle has one exception, and the book ends on it. In 1933 Congress abrogated the
 gold clause in outstanding federal bonds; the dollar was devalued from <span class="math notranslate nohighlight">\(20.67 to \)</span>35
 per ounce; in <em>Perry v. United States</em> (1935) the Supreme Court held the abrogation
@@ -657,7 +656,13 @@ absorbed by conversion, notes held to maturity. Silence is therefore correlated 
 the very mechanisms Sections 3 and 4 describe, and inferences drawn only from the
 well-quoted issues overweight securities that traded freely. Several biographies also
 document artifacts — isolated prints, gap-spanning “events,” stale quotations repeated
-for months — and decline to narrate them. We flag this here because the collection is
+for months — and decline to narrate them. Some bonds share one price series:
+the Eight Per Cent Loans of 1798 and 1800 carry identical prices; the Loan of 1812 and
+the Exchanged Six Per Cent Stock of 1812 carry identical prices, and the Sixteen
+Million and Seven and One-Half Million Loans of 1813 share a series that matches them
+in most months; the two 1814 loans carry identical prices; and from 1801 the Deferred
+Sixes carry essentially the price of the Six Per Cent Stock. Comparisons between
+those bonds measure nothing. We flag this here because the collection is
 likely to be used as a data source: the chapters’ event tables record which detected
 movements we could attribute, which we could not, and which we judge to be defects of
 the record. Treating the third category as market history would manufacture findings.</p>
@@ -724,7 +729,8 @@ this book measure more precisely.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -782,8 +788,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

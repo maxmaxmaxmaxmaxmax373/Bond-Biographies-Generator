@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Six Per Cent. Loan of 1812" href="chapter_20048_Six_Per_Cent_Loan_of_1812_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -457,6 +443,9 @@ document.write(`
 <p><em>An enhanced chapter from the Hall-Payne-Sargent US Federal Bond Database (2,857 issues, 1776–1960)</em></p>
 <p><strong>Bond ID (L1):</strong> 20051  |  <strong>Category:</strong> Interest Bearing &gt; Marketable &gt; Long Term Bond</p>
 <hr class="docutils" />
+<blockquote>
+<div><p><strong>Data note.</strong> The database records one price series for three loans: this stock, the Six Per Cent. Loan of 1812 (ID 20048) and the Sixteen Million Loan of 1813 (ID 20052). This stock’s prices equal those of the 1812 loan in all 150 months (April 1813–September 1825) and those of the 1813 loan in 130 of 149 overlapping months (they differ only in May–September 1813 and July 1824–September 1825). Comparisons among these bonds carry no information. Prices from August 1814 to February 1817 are quoted in the paper of banks that had suspended specie payments.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -545,7 +534,7 @@ document.write(`
 <section id="the-war-of-1812-and-the-price-of-federal-credit">
 <h3>The War of 1812 and the Price of Federal Credit<a class="headerlink" href="#the-war-of-1812-and-the-price-of-federal-credit" title="Link to this heading">#</a></h3>
 <p>The war dominates the price record. The first quotation in the database, <strong>$93.00 in April 1813</strong>, already carries a wartime discount: the market that had just absorbed the Sixteen Million Loan at 88 was not going to price an identical 6% claim at par. From there the stock slid with the government’s fortunes — through the failed campaigns and the tightening British blockade of 1813, which strangled the customs revenues on which debt service depended, down to the high $70s after the <strong>burning of Washington on August 24, 1814</strong>, and to its low of <strong>$75.00 in January 1815</strong>. Two caveats, common to all the War of 1812 chapters in this book, apply to these figures. Quotations were thin and regional, and could gap or go stale. And after banks outside New England <strong>suspended specie payments in August–September 1814</strong>, prices were quoted in depreciated local bank paper, so the recorded 1814–15 lows, grim as they are, if anything <em>understate</em> the collapse in the specie value of federal debt.</p>
-<p>The recovery was as sharp as the fall: news of the <strong>Treaty of Ghent</strong> (signed December 24, 1814) and of Jackson’s victory at New Orleans reached the seaboard cities in early-to-mid February 1815, and the price jumped <strong>+22% in a single month</strong>, from $75.00 to $91.50 — the identical spike that appears in the Six Per Cent. Loan of 1812 and the Sixteen Million Loan of 1813. The market was pricing federal survival, not individual issues.</p>
+<p>The recovery was as sharp as the fall: news of the <strong>Treaty of Ghent</strong> (signed December 24, 1814) and of Jackson’s victory at New Orleans reached the seaboard cities in early-to-mid February 1815, and the price jumped <strong>+22% in a single month</strong>, from $75.00 to $91.50 — the identical spike that appears in the Six Per Cent. Loan of 1812 and the Sixteen Million Loan of 1813. The spike is identical because the database carries one price series for the three loans (see the data note at the top of this chapter).</p>
 </section>
 <section id="the-panic-of-1819-the-dog-that-did-not-bark">
 <h3>The Panic of 1819: The Dog That Did Not Bark<a class="headerlink" href="#the-panic-of-1819-the-dog-that-did-not-bark" title="Link to this heading">#</a></h3>
@@ -719,7 +708,7 @@ document.write(`
 <section id="quantity-analysis-a-shelf-of-debt-built-fast-and-cleared-on-schedule">
 <h3>Quantity Analysis: A Shelf of Debt, Built Fast and Cleared on Schedule<a class="headerlink" href="#quantity-analysis-a-shelf-of-debt-built-fast-and-cleared-on-schedule" title="Link to this heading">#</a></h3>
 <p>The series divides into four phases, each legible against the contract:</p>
-<p><strong>Subscription, 1812–1813.</strong> The stock appears at <strong>$2.75 million</strong> on December 31, 1812 and reaches its peak of <strong>$2,984,747 by March 31, 1813</strong> — and then stops growing. As in 1807, these opening steps are administrative, not market events: holders of old 6% and deferred stock presenting certificates at the Treasury and the loan offices, old stock cancelled, new stock entered on the books at par. The roughly six-month lag between the July 1812 act and the first recorded issue mirrors the 1807 experience — the machinery of notice, subscription, and transfer. That the total then sat unchanged suggests the exchange window effectively closed in early 1813. Just under $3 million tendered — against roughly $6 million in 1807, made in far easier times — measures how much less attractive the offer looked from inside a war.</p>
+<p><strong>Subscription, 1812–1813.</strong> The stock appears at <strong>$2.75 million</strong> on December 31, 1812 and reaches its peak of <strong>$2,984,747 by March 31, 1813</strong> — and then stops growing. As in 1807, these opening steps are administrative, not market events: holders of old 6% and deferred stock presenting certificates at the Treasury and the loan offices, old stock cancelled, new stock entered on the books at par. The roughly six-month lag between the July 1812 act and the first recorded issue mirrors the 1807 experience — the machinery of notice, subscription, and transfer. The total then sat unchanged: the act kept the subscription books open only from October 1, 1812 to March 17, 1813. Just under $3 million tendered — against roughly $6 million in 1807, made in far easier times — measures how much less attractive the offer looked from inside a war.</p>
 <p><strong>The wartime and postwar plateau, 1813–1824.</strong> For a dozen years the quantity line is nearly flat. The only movements are two modest reductions in 1817 — from $2.98 million to $2.87 million at mid-year and to <strong>$2.67 million</strong> by September — about $316,000 in all. The stock was not redeemable until after 1824, so these cannot be reimbursements at the Treasury’s initiative; they most plausibly record purchases or surrenders through the sinking-fund machinery during 1817, when large postwar surpluses set off an aggressive general campaign of debt reduction. The database does not identify the mechanism, and we do not press the point. From late 1817 to the end of 1824 the outstanding amount is frozen at $2.669 million — the twelve-year deferral doing exactly what it promised, to both sides.</p>
 <p><strong>Redemption, 1825–1827.</strong> The moment the contract permitted, the Treasury moved. Between December 1824 and March 1825 the outstanding stock collapses from $2.669 million to <strong>$178,000 — a redemption of over 93% in a single quarter</strong>. The residue was ground down through 1825 and 1826 ($56,000 by mid-1825, $17,000 by year-end, $1,500 by the close of 1826) and reaches <strong>zero by March 1827</strong>. The mid-1820s were the heyday of the postwar sinking fund — the years in which the war debt of 1812–1815 was being swept off the books wholesale on its way to the total extinction of the federal debt in 1835 — and this issue, small and callable at last, was an early and easy target.</p>
 <p><strong>The long zero.</strong> The database carries the series at zero through 1839; unlike the 1807 exchanged stock, no lingering tail of unclaimed balances is recorded. There was no refinancing into other instruments: the stock was paid off in coin, extinguishing the claims outright.</p>
@@ -897,7 +886,7 @@ document.write(`
 </table>
 </div>
 <p>The causal reading is straightforward once the contract is in view:</p>
-<p><strong>Price spike, February 1815 (+22.0%).</strong> The peace bounce. News of the Treaty of Ghent (signed December 24, 1814) and of Jackson’s victory at New Orleans (January 8, 1815) reached the seaboard cities in early-to-mid February 1815. The price jumped from its all-time low of $75.00 to $91.50 in a single month as the twin threats of military defeat and Treasury default evaporated together. The identical +22% spike appears in the Six Per Cent. Loan of 1812 and the Sixteen Million Loan of 1813: the war-era six-percents moved as one bloc.</p>
+<p><strong>Price spike, February 1815 (+22.0%).</strong> The peace bounce. News of the Treaty of Ghent (signed December 24, 1814) and of Jackson’s victory at New Orleans (January 8, 1815) reached the seaboard cities in early-to-mid February 1815. The price jumped from its all-time low of $75.00 to $91.50 in a single month as the twin threats of military defeat and Treasury default evaporated together. The identical +22% spike appears in the Six Per Cent. Loan of 1812 and the Sixteen Million Loan of 1813, because the database carries one price series for all three.</p>
 <p><strong>Price spike, May 1815 (+5.8%).</strong> Continuation of the recovery as the blockade lifted, trade resumed, and the flood of postwar imports promised the customs revenue needed to service the debt. The stock crossed par by September 1815.</p>
 <p><strong>Quantity decreases, 1825–1827.</strong> These are not mysteries but the contract executing. The stock became redeemable after December 31, 1824; the Treasury, then running the large surpluses that were extinguishing the whole war debt, retired over 93% of it in the first quarter of 1825 and mopped up the remainder in shrinking tranches — the large <em>percentage</em> drops of 1825–27 apply to an ever-smaller base, with the final few hundred dollars cleared by March 1827. The “None identified” labels simply reflect that the operative event was written into the bond’s own terms twelve years earlier, not into the general chronology.</p>
 </section>
@@ -1038,9 +1027,9 @@ document.write(`
 <h3>Reading the Comparison: Old Paper, New Prices<a class="headerlink" href="#reading-the-comparison-old-paper-new-prices" title="Link to this heading">#</a></h3>
 <p>Three lessons sit in this chart:</p>
 <ul class="simple">
-<li><p><strong>The exchanged stock traded with the war loans, not with its parents’ history.</strong> Its range ($75.00–$109.50) is identical to the Sixteen Million Loan of 1813’s, its January 1815 trough is the same $75, and its February 1815 spike is the same +22%. Once the war began, the market priced <em>federal credit</em> as a single question; the fact that this particular stock descended from Hamilton’s funding of 1790 rather than from a wartime subscription earned it no premium. Tendering holders of 1812–13 discovered this immediately: the old stock they surrendered at par re-emerged as paper the market quoted in the low 90s.</p></li>
+<li><p><strong>The exchanged stock shares the war loans’ price series.</strong> Its range ($75.00–$109.50), its January 1815 trough of $75 and its February 1815 spike of +22% match the Six Per Cent. Loan of 1812 and the Sixteen Million Loan of 1813 because the database records one price series for the three (identical to the 1812 loan in all 150 months). The data therefore cannot show whether descent from Hamilton’s funding of 1790 earned this stock a premium or a discount. The series does show that the old stock surrendered at par re-emerged as paper quoted in the low 90s.</p></li>
 <li><p><strong>The parents’ series fade as this one runs on.</strong> The old 6s and deferred 6s were being ground away by the annual reimbursement schedule and successive exchanges; their quotations thin out and end in the early 1820s. The exchanged stock of 1812, protected from redemption until 1825, outlived them both — the last marketable remnant of the debt funded in 1790.</p></li>
-<li><p><strong>The postwar premium plateau ($104–109 in 1820–22) is a coupon story.</strong> Like the Sixteen Million Loan, this stock carried 6% into a postwar world where the government could borrow at about 5%; both traded at comparable premiums until their redemption dates pulled them back to par. The cheap 3s of 1790, meanwhile, ran along near half of par on the same credit — coupon arithmetic, not differential default risk.</p></li>
+<li><p><strong>The postwar premium plateau ($104–109 in 1820–22) is a coupon story.</strong> Like the Sixteen Million Loan, this stock carried 6% into a postwar world where the government could borrow at about 5%; the shared price series shows one premium for both until their redemption dates pulled them back to par. The cheap 3s of 1790, meanwhile, ran along near half of par on the same credit — coupon arithmetic, not differential default risk.</p></li>
 </ul>
 </section>
 </section>
@@ -1054,7 +1043,7 @@ document.write(`
 <h2>Implications and Legacy<a class="headerlink" href="#implications-and-legacy" title="Link to this heading">#</a></h2>
 <p><strong>The completion of the first liability-management program.</strong> Read as a pair, the exchanges of 1807 and 1812 are the two halves of a single project: unwinding the redemption covenant Hamilton had written into the Funding Act of 1790. The 1807 operation, made from fiscal strength, converted $6 million of the old sixes into stock redeemable at pleasure and extinguished it within four years. The 1812 operation, made under fiscal duress, converted a further $3 million into stock the Treasury would not have to touch until the war and its debts were digested. Between them — together with the ordinary grind of the $8-per-$100 reimbursement on the balance — they closed out the contractual architecture of 1790. The technique they share, a voluntary swap that alters redemption terms while leaving the coupon untouched, is the ancestor of every subsequent Treasury exchange offer, from the refundings of the 1870s to the Liberty Loan conversions of 1917–18.</p>
 <p><strong>A demonstration that debt management continues in wartime.</strong> The loans of 1812–1814 show the Treasury raising money on worsening terms; this small issue shows it simultaneously <em>managing the shape</em> of its existing obligations. Deferring the amortization of the old funded debt while borrowing new money at 88 was elementary cash-flow triage — the government stopped, in effect, paying off cheap old debt at par with the proceeds of expensive new debt. That both operations ran through the same offices in the same months is an early instance of a distinction modern treasuries take for granted: financing the deficit and managing the debt are different jobs.</p>
-<p><strong>A clean natural experiment in what a price is.</strong> Because this stock was economically identical to the wartime 6% loans — same coupon, same coin, same credit — its price series doubles theirs almost tick for tick, even though one lineage descends from the Revolution’s funded debt and the other from wartime subscriptions. Provenance carried no premium; only contract terms and credit did. And its final two years, flat at $100.25 while awaiting a certain redemption, are as clean an exhibit of pull-to-par as the early American record affords. Where quotations repeat unchanged for months, we read thin trading and stale or administered quotes, not market events.</p>
+<p><strong>What the price record can and cannot show.</strong> This stock was economically close to the wartime 6% loans — same coupon, same coin, same credit — and the database assigns it the 1812 loan’s price series month for month. The record therefore cannot test whether provenance carried a premium. Its final two years, flat at $100.25 while awaiting a certain redemption, are as clean an exhibit of pull-to-par as the early American record affords. Where quotations repeat unchanged for months, we read thin trading and stale or administered quotes, not market events.</p>
 <p><strong>A footnote with a long shadow.</strong> When the last of this stock was redeemed in March 1827, the securities created by the Funding Act of 1790 had effectively passed from the marketable debt (only the 3% stock of 1790 lingered, until the early 1830s). Eight years later the United States owed nothing at all — the only major nation ever to extinguish its national debt. The Exchanged Six Per Cent. Stock of 1812 was among the quietest instruments in that story: it raised no money, fought no battles, and never strayed far from the pack in price. But it carried Hamilton’s sixes through their last passage — under blockade, through a burned capital, past a suspension and a panic — and delivered them, at par and in coin, to their appointed end.</p>
 </section>
 <hr class="docutils" />
@@ -1146,7 +1135,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1226,8 +1216,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

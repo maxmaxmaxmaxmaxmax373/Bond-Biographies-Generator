@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Ten Million Loan of 1814" href="chapter_20056_Ten_Million_Loan_of_1814_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -462,6 +448,9 @@ document.write(`
 <p><em>An enhanced chapter from the Hall-Payne-Sargent US Federal Bond Database (2,857 issues, 1776–1960)</em></p>
 <p><strong>Bond ID (L1):</strong> 20058  |  <strong>Category:</strong> Interest Bearing &gt; Marketable &gt; Long Term Bond</p>
 <hr class="docutils" />
+<blockquote>
+<div><p><strong>Data note.</strong> The database records one price series for the three 1814 loans: this record, the Ten Million Loan of 1814 (ID 20056) and the Six Million Loan of 1814 (ID 20057) have identical prices in all 64 months. Comparisons among them carry no information. The series contains no wartime quotations: it begins with a single print in January 1817, which falls inside the bank-paper window (August 1814–February 1817, when prices were quoted in the paper of banks that had suspended specie payments), and resumes only in August 1820.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -506,7 +495,7 @@ document.write(`
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>The <strong>Undesignated Loan of 1814</strong> is the smallest and most enigmatic member of the family of six per cent. war stocks in this database. It was authorized under the <strong>Act of March 24, 1814</strong> — the act that empowered the Treasury to borrow up to $25 million for the third campaign of the War of 1812 — and carries the standard terms of the 1814 borrowings: a <strong>6.0% coupon</strong>, payable quarterly in coin, on stock redeemable at the government’s pleasure after twelve years. The database records a sale price of <strong>87½ per $100 of stock</strong>, and its quantity series begins in December 1814 at $150,000, growing in installments to a peak of just <strong>$746,403</strong> by September 1816. During its 64 months of recorded secondary-market quotations (January 1817 to April 1829), the stock’s average price was $104.62, ranging from $100.00 to $111.50 — it never once traded below par in the recorded series, because every recorded quotation postdates the war.</p>
 <p>A word about the name is essential, because this record’s identity is different in kind from the loans treated in the neighboring chapters. “Undesignated” is not a name the Treasury gave a loan in 1814; it is a <strong>classification of residue</strong>. The borrowings of 1814 proceeded in overlapping offerings under the March 24 act (and a further authority of November 15, 1814), and the resulting 6% stock was credited in Treasury records to the named loans — the Ten Million Loan of the spring, the smaller offerings of the desperate autumn. But a modest amount of 1814 six per cent. stock, issued under these authorities, cannot be assigned cleanly to any one of the named loans in the surviving accounts. The Hall–Payne–Sargent database gathers that unassigned stock under this ID. Its story is therefore not the story of a single subscription on a single day; it is a small, well-documented sliver of the <strong>worst borrowing year in the history of United States federal credit</strong>, and its later life — quiet premium years, pull to par, redemption at the end of the 1820s — is the war-six pattern in miniature.</p>
-<p>Why does the borrowing of 1814 deserve the label “worst”? By the summer of 1814 the fiscal machinery Gallatin had left behind was breaking. The loan of March 1814 was offered in tranches: the $10 million sought in May was taken at 88, but the $6 million offering of August coincided almost exactly with the British landing in Chesapeake Bay. On <strong>August 24, 1814, Washington was burned</strong>; within days, banks in Philadelphia, Baltimore, and New York <strong>suspended specie payments</strong>, and suspension spread to nearly every bank outside New England. Subscriptions to the August offering fell far short even at <strong>80 per $100 of stock</strong>, and much of what was subscribed was paid not in coin but in <strong>depreciated local bank paper whose value differed from city to city</strong> — so much so that the Treasury was forced to keep its receipts in separate, mutually inconvertible accounts by place. When <strong>Alexander J. Dallas</strong> took over the Treasury in October 1814, his first report to Congress was a blunt accounting of an essentially empty till and a public credit that had, for practical purposes, collapsed; that autumn the Treasury was unable to meet some of its obligations punctually, and the further loan attempted under the <strong>Act of November 15, 1814</strong> was substantially a failure. The stock collected under this ID is a residue of that program — small parcels of 6% stock issued as subscriptions, settlements, and adjustments were completed between late 1814 and 1816.</p>
+<p>Why does the borrowing of 1814 deserve the label “worst”? By the summer of 1814 the fiscal machinery Gallatin had left behind was breaking. The loan of March 1814 was offered in tranches: the $10 million sought in May was taken at 88, but the $6 million offering of August coincided almost exactly with the British landing in Chesapeake Bay. On <strong>August 24, 1814, Washington was burned</strong>; within days, banks in Philadelphia, Baltimore, and New York <strong>suspended specie payments</strong>, and suspension spread to nearly every bank outside New England. The August offering, a separate sale of $6 million, raised only about $4.3 million for about $5.4 million of stock, a price of <strong>80 per $100 of stock</strong> (Bayley 1881). That sale triggered the equal-terms clause in the Treasury’s invitation for the May subscriptions, and the May subscribers received supplemental stock to bring their price down to 80. Much of what was subscribed in August was paid not in coin but in <strong>depreciated local bank paper whose value differed from city to city</strong> — so much so that the Treasury was forced to keep its receipts in separate, mutually inconvertible accounts by place. When <strong>Alexander J. Dallas</strong> took over the Treasury in October 1814, his first report to Congress was a blunt accounting of an essentially empty till and a public credit that had, for practical purposes, collapsed; that autumn the Treasury was unable to meet some of its obligations punctually, and the further loan attempted under the <strong>Act of November 15, 1814</strong> was substantially a failure. The stock collected under this ID is a residue of that program — small parcels of 6% stock issued as subscriptions, settlements, and adjustments were completed between late 1814 and 1816.</p>
 </section>
 <section id="historical-context">
 <h2>Historical Context<a class="headerlink" href="#historical-context" title="Link to this heading">#</a></h2>
@@ -573,7 +562,7 @@ document.write(`
 </section>
 <section id="why-this-record-has-no-wartime-prices">
 <h3>Why This Record Has No Wartime Prices<a class="headerlink" href="#why-this-record-has-no-wartime-prices" title="Link to this heading">#</a></h3>
-<p>Unlike its larger siblings, this record carries <strong>no price observations from the war years at all</strong>: its first recorded quotation is January 1817, at exactly 100. That is what one would expect of a small residual parcel of stock — too little of it existed, in too few hands, to generate regular quotations in the thin and disrupted wartime market. Readers should therefore resist the temptation to read this bond’s placid, always-at-or-above-par price series as evidence that the 1814 stock escaped the wartime collapse. It did not; identical 6% stock issued under the same acts traded in the 70s and low 80s in late 1814 and January 1815 (and those quotations, made in suspended bank paper, understate the collapse in specie terms — see the discussion in the Sixteen Million Loan chapter). This record simply begins its market life <em>after</em> the recovery was complete.</p>
+<p>Unlike its larger siblings, this record carries <strong>no price observations from the war years at all</strong>: its first recorded quotation is January 1817, at exactly 100. That is what one would expect of a small residual parcel of stock — too little of it existed, in too few hands, to generate regular quotations in the thin and disrupted wartime market. Readers should therefore resist the temptation to read this bond’s placid, always-at-or-above-par price series as evidence that the 1814 stock escaped the wartime collapse. It did not. No 1814 loan has wartime quotations in the database, but the 6% stock of the 1812 and 1813 loans traded in the 70s and low 80s in late 1814 and January 1815 (and those quotations, made in suspended bank paper, understate the collapse in specie terms — see the discussion in the Sixteen Million Loan chapter). This record simply begins its market life <em>after</em> the recovery was complete.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bond Lifecycle Timeline</span>
@@ -795,7 +784,7 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>Three caveats govern the reading of this series. First, it is <strong>sparse and postwar only</strong>: a single quotation of exactly $100.00 in January 1817 is followed by a gap of more than three years before continuous quotations resume in August 1820. A parcel of stock this small traded by appointment, not by the day, and months without a recorded price mean thin markets rather than stable ones. Second, the apparent “+7% jump” between the 1817 and 1820 observations is a <strong>gap artifact</strong>, not a one-month move. Third, because the whole series postdates the resumption of specie payments (completed with the Second Bank’s operations from 1817), these quotations are in money of full value — unlike the wartime quotations of the sibling loans, they need no suspension discount to interpret. What the series then shows is textbook: a comfortable premium of $106–$111 during the deflationary Panic-of-1819 years, when a 6% coin coupon was worth more in real terms than ever, a peak of <strong>$111.50 in May 1821</strong>, and a long glide back toward par as the December 1826 redeemable date and then actual redemption approached — the pull to par ending at $100.63 in April 1829, months before the stock was called in.</p>
+<p>Three caveats govern the reading of this series. First, it is <strong>sparse and postwar only</strong>: a single quotation of exactly $100.00 in January 1817 is followed by a gap of more than three years before continuous quotations resume in August 1820. A parcel of stock this small traded by appointment, not by the day, and months without a recorded price mean thin markets rather than stable ones. Second, the apparent “+7% jump” between the 1817 and 1820 observations is a <strong>gap artifact</strong>, not a one-month move. Third, apart from the lone January 1817 print, which falls just inside the bank-paper window (August 1814–February 1817), the series postdates the resumption of specie payments in February 1817, so these quotations are in money of full value — unlike the wartime quotations of the 1812 and 1813 loans, they need no suspension discount to interpret. What the series then shows is textbook: a comfortable premium of $106–$111 during the deflationary Panic-of-1819 years, when a 6% coin coupon was worth more in real terms than ever, a peak of <strong>$111.50 in May 1821</strong>, and a long glide back toward par as the December 1826 redeemable date and then actual redemption approached — the pull to par ending at $100.63 in April 1829, months before the stock was called in.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Annotated price chart</span>
@@ -908,7 +897,7 @@ document.write(`
 <tr class="row-even"><td><p>1820-08</p></td>
 <td><p>price_spike</p></td>
 <td><p>+7.0%</p></td>
-<td><p>None identified</p></td>
+<td><p>None identified (data gap)</p></td>
 </tr>
 <tr class="row-odd"><td><p>1829-09</p></td>
 <td><p>quantity_decrease</p></td>
@@ -1094,13 +1083,13 @@ document.write(`
 </div>
 <section id="comparing-the-undesignated-stock-with-its-contemporaries">
 <h3>Comparing the Undesignated Stock with Its Contemporaries<a class="headerlink" href="#comparing-the-undesignated-stock-with-its-contemporaries" title="Link to this heading">#</a></h3>
-<p>The comparison makes the family resemblance plain. Where this bond’s series overlaps with the war sixes of 1812–1815 (compare the charts in the 20048 and 20052 chapters), the prices are nearly identical month by month: a premium of $104–$111 through 1820–1824, then the shared glide back toward par as the war loans’ redemption dates arrived. The market did not distinguish parcels of 1814 six per cent. stock by the accident of which subscription had produced them — a 6% quarterly coin coupon redeemable in the late 1820s was priced as federal credit, full stop. That is, incidentally, an independent argument for the database’s decision to treat this residue as a bond like any other: whatever ambiguity surrounds its origins, the market handled it as fully fungible war stock.</p>
+<p>The comparison makes the family resemblance plain, with one limit. The database gives this record the same price series as the Ten Million and Six Million Loans of 1814 (IDs 20056 and 20057; all 64 months identical), so the data cannot show whether the market distinguished parcels of 1814 six per cent. stock by the subscription that produced them. Against the Sixteen Million Loan of 1813 (ID 20052), a separate series, it runs about 2 points higher on average: a premium of $104–$111 through 1820–1824, then the shared glide back toward par as the war loans’ redemption dates arrived, with the 1814 stock’s later redemption date consistent with its small extra premium.</p>
 <p>Against the Hamilton-era stocks of 1790, the pattern is the one seen throughout this family: after 1815 the war sixes traded at a <em>larger</em> premium than the old funded debt, because their 6% coupon was generous relative to the roughly 4½–5% at which the postwar government could borrow — witness the “Same Era” companions in the table above, the 4½ and 5 per cent. stocks of 1822–1826 into which the Treasury exchanged or refinanced parts of the maturing war debt. And the divergence at the end is redemption mechanics, not credit: each stock’s price converges on 100 as its own call date approaches, so the family fans out in the mid-1820s according to redemption schedule rather than risk.</p>
 </section>
 </section>
 <section id="issuance-distribution-and-redemption">
 <h2>Issuance, Distribution, and Redemption<a class="headerlink" href="#issuance-distribution-and-redemption" title="Link to this heading">#</a></h2>
-<p>The database records this stock as sold at <strong>87½ per $100 of face value</strong> — a 12½% discount that places it squarely within the terms of the 1814 borrowing program, between the 88 of the spring offering and the 80 of the autumn. Because this record is a residual classification, the mechanics of its sale cannot be reconstructed subscription by subscription; what can be said with confidence is how the 1814 loans as a class were sold, and it is a grim story.</p>
+<p>The database records this stock as sold at <strong>87½ per $100 of face value</strong> — a 12½% discount that places it squarely within the terms of the 1814 borrowing program, between the 88 of the May offering and the 80 of the separate August offering. Because this record is a residual classification, the mechanics of its sale cannot be reconstructed subscription by subscription; what can be said with confidence is how the 1814 loans as a class were sold, and it is a grim story.</p>
 <p><strong>Who bought.</strong> By 1814 the great syndicate operation of 1813 (Girard, Astor, Parish — see the Sixteen Million Loan chapter) was not repeated on the same scale. The 1814 offerings were taken piecemeal: by banks in the middle states, by brokers and merchants in Philadelphia, New York, and Baltimore buying at deep discounts, and by contractors and creditors of the government accepting stock in settlement. New England capital remained almost entirely absent. Several substantial subscribers to the spring loan were ruined or defaulted on their later installments as the year deteriorated, which is one reason the Treasury’s accounts of the 1814 loans became tangled enough to leave a residue like this record.</p>
 <p><strong>What they paid with.</strong> After the suspension of specie payments in late August and September 1814, subscriptions were received in the local paper of banks that no longer redeemed their notes in coin — Philadelphia paper, Baltimore paper, New York paper, each depreciated by a different amount and none accepted at par outside its own city. A dollar received in Baltimore was not worth a dollar received in Boston, and the Treasury, obliged to keep its funds where they were paid in, found itself unable to move money to where its obligations fell due. This is the mechanism behind the Treasury’s autumn 1814 embarrassments, when some interest obligations could not be met punctually in the usual form — the closest the United States has come to an acknowledged default on its funded debt. Dallas’s reports of late 1814 and 1815 treat the restoration of a uniform national currency as inseparable from the restoration of public credit, and the Second Bank of 1816 was the institutional answer.</p>
 <p><strong>How it ended.</strong> Redemption followed the standard war-six sequence, delayed to the back of the queue by this stock’s later redeemable date (December 31, 1826) and its small size: sinking-fund purchases in 1817, a twelve-year premium plateau, and calls in 1829–1830 under the program that extinguished the entire national debt by 1835. Holders of the 1822–1826 exchange stocks show that some maturing war debt was refinanced into lower coupons, but for this small parcel the records indicate straightforward redemption for cash, with $1,760.91 of unpresented certificates written off in 1834.</p>
@@ -1121,7 +1110,7 @@ document.write(`
 </section>
 <section id="a-caveat-honestly-stated">
 <h3>A Caveat, Honestly Stated<a class="headerlink" href="#a-caveat-honestly-stated" title="Link to this heading">#</a></h3>
-<p>Because this record is a residual classification, its biography must remain more hedged than those of the named loans. The 87½ sale price, the exact composition of the parcels credited here, and the identity of the original subscribers cannot be verified issue by issue; the sinking-fund attribution for the 1817 reduction rests on timing; and the wartime experience of this stock must be inferred from the identical stock of the named 1814 loans rather than from its own (nonexistent) wartime quotations. Where this chapter asserts, it asserts from the database and from the well-documented history of the 1814 borrowing program as a whole; where those sources fall silent, it says so.</p>
+<p>Because this record is a residual classification, its biography must remain more hedged than those of the named loans. The 87½ sale price, the exact composition of the parcels credited here, and the identity of the original subscribers cannot be verified issue by issue; the sinking-fund attribution for the 1817 reduction rests on timing; and the wartime experience of this stock must be inferred from the 1812 and 1813 loans, since neither this record nor the named 1814 loans have wartime quotations. Where this chapter asserts, it asserts from the database and from the well-documented history of the 1814 borrowing program as a whole; where those sources fall silent, it says so.</p>
 </section>
 </section>
 <section id="references">
@@ -1208,7 +1197,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1293,8 +1283,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

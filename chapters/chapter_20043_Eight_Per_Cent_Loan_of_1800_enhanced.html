@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Eight Per Cent. Loan of 1798" href="chapter_20042_Eight_Per_Cent_Loan_of_1798_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -458,6 +444,9 @@ document.write(`
 <p><em>An enhanced chapter from the Hall-Payne-Sargent US Federal Bond Database (2,857 issues, 1776–1960)</em></p>
 <p><strong>Bond ID (L1):</strong> 20043  |  <strong>Category:</strong> Interest Bearing &gt; Marketable &gt; Long Term Bond</p>
 <hr class="docutils" />
+<blockquote>
+<div><p><strong>Data note.</strong> From November 1800 through December 1808 the database records the same monthly price for this loan and for the Eight Per Cent. Loan of 1798 (ID 20042): all 98 overlapping months are identical. Comparisons between the two 8s over those years therefore carry no information about differences between them.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -511,7 +500,7 @@ document.write(`
 <p><strong>1. The benchmark was broken.</strong> The natural reference asset, the funded 6% stock of 1790, sagged through the late 1790s as European war disrupted trade, as the Panic of 1796–97 tightened credit on both sides of the Atlantic, and as the French crisis raised the specter of full-scale war. With seasoned 6s obtainable in the secondary market at prices implying yields well above 7%, a new loan at 6% could only have been sold at a deep discount — which the Treasury, following the precedent of selling at or near par, was unwilling to do. The market’s required yield, not the Secretary’s preference, dictated the coupon.</p>
 <p><strong>2. Capital markets were thin.</strong> The United States in 1798 had a handful of banks, three small stock exchanges, and no standing machinery for distributing a large loan. The Dutch market, which had absorbed American loans in the 1780s and early 1790s, was closed — Amsterdam was under French domination, and borrowing there to fight France was out of the question. The loan had to be raised at home, from the merchants, banks, and insurance companies of the seaboard cities, in competition with private paper that commonly yielded more than the legal 6% ceiling on private contracts in many states.</p>
 <p><strong>3. War risk was real.</strong> Subscribers were being asked to lend to a government at the edge of war with the strongest military power in Europe, a government whose revenues depended on the seaborne trade that war would interrupt. The database shows the sibling <strong>Eight Per Cent. Loan of 1798</strong> trading as low as $90 during 1799 — even an 8% coupon, that is, was at times barely enough.</p>
-<p>By the time the 1800 tranche was sold, conditions had eased. Napoleon’s coup of 18 Brumaire (November 1799) brought to power a First Consul who wanted the American quarrel ended; negotiations were underway through 1800. The market noticed: the database records that the Loan of 1800 was sold not at par but at a <strong>premium of 5¾ per cent</strong> (a sale price of 105.75 per 100). The government, locked by its own act into an 8% coupon, at least clawed back part of the excess in the sale price — and the premium itself was the market’s signal that peace, and cheaper money, were coming.</p>
+<p>By the time the 1800 tranche was sold, conditions had eased. Napoleon’s coup of 18 Brumaire (November 1799) brought to power a First Consul who wanted the American quarrel ended; negotiations were underway through 1800. The market noticed: the database records that the Loan of 1800 was sold not at par but at a <strong>premium of 5¾ per cent</strong> (a sale price of 105.75 per 100).<a class="footnote-reference brackets" href="#bayley1800" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
 </section>
 <section id="historical-context">
 <h2>Historical Context<a class="headerlink" href="#historical-context" title="Link to this heading">#</a></h2>
@@ -762,7 +751,7 @@ document.write(`
 <section id="quantity-analysis">
 <h3>Quantity Analysis<a class="headerlink" href="#quantity-analysis" title="Link to this heading">#</a></h3>
 <p>The quantity series divides into four clean phases.</p>
-<p><strong>1. Full at birth (1800–1801).</strong> Unlike the funded stocks of 1790, which were <em>created by exchange</em> over years of subscription waves, the 8% loan was a <strong>cash loan</strong>: the whole $1,481,700 recorded in the database was on the books at the first observation. (Treasury compilations report slightly larger sums obtained under the act of May 7, 1800; the difference reflects accounting conventions and small amounts carried on other books.)</p>
+<p><strong>1. Full at birth (1800–1801).</strong> Unlike the funded stocks of 1790, which were <em>created by exchange</em> over years of subscription waves, the 8% loan was a <strong>cash loan</strong>: the whole $1,481,700 recorded in the database was on the books at the first observation. (Bayley (1881) gives the same $1,481,700 of stock, sold for $1,565,229 in cash; the larger cash figure is the premium.)</p>
 <p><strong>2. The slow trickle (1801–1806).</strong> From the end of 1801 the outstanding amount erodes by a few thousand dollars a quarter — from $1.48 million to $1.36 million over five years. These small reductions are consistent with <strong>sinking-fund operations and surrenders</strong>: under the debt-reduction framework Gallatin persuaded Congress to adopt in 1802, which pledged an annual appropriation of $7.3 million to interest and redemption of the public debt, the commissioners of the sinking fund retired debt as opportunity offered. A high-coupon stock trading at a premium was an expensive thing to buy in, however, so the early paydown was modest.</p>
 <p><strong>3. The great reimbursement (1807–1811).</strong> The decisive moves come in 1807–1808: the outstanding amount collapses from $1.36 million at the start of 1807 to about $0.3 million by mid-1808 — the Treasury’s <strong>reimbursement of the eight per cent stock</strong>, the centerpiece of Gallatin’s policy of retiring the government’s dearest debt at the earliest date the loan contracts allowed. Flush with customs revenue from the neutral-trade boom, the Treasury paid off the 8s of 1798 and 1800 in this window rather than let an 8% obligation run a day longer than necessary. A curious rebound appears in March 1809 (see the detected-events table below); the downward march then resumes, and in <strong>December 1811</strong> the remaining stock is almost entirely extinguished, leaving about $22,000, and within months only a residue.</p>
 <p><strong>4. The unclaimed tail (1812–1824).</strong> From 1812 the series shows a nearly flat remnant — $13,600, then $3,300, then $3,100 — certificates whose holders had not yet presented them for payment. This administrative residue, not any live borrowing, is what stretches the bond’s paper existence toward the 1835 “final redemption” date in the database. The economic life of the loan ended with Gallatin’s reimbursement.</p>
@@ -1123,7 +1112,7 @@ document.write(`
 <p>The chart above is a lesson in coupon arithmetic. All of these securities rested on the <strong>same credit</strong> — the customs revenues of the United States — yet they traded in three distinct bands, and the ordering is exactly what their coupons dictate.</p>
 <p><strong>The 8s versus the 6s.</strong> During 1800–1808 the two 8% loans traded a comfortable 10–15 points above the Six Per Cent Stock of 1790, which hovered in the 90s and around par. That gap is not a credit spread — it is the capitalized value of two extra points of coupon over the bonds’ expected remaining life. Note that the gap <em>narrows</em> steadily through the decade: as reimbursement of the 8s approached, their premium had to die away toward 100, while the quasi-perpetual 6s, protected by the Funding Act’s 2%-a-year redemption cap, could hold their level.</p>
 <p><strong>The 8s versus the 3s.</strong> The Three Per Cent Stock, dragging along near $50–60 in the same years, completes the demonstration: same government, same revenues, one-eighth versus roughly one-seventeenth coupon-per-dollar-of-price. The market priced the <em>cash flows</em>, not the flag on the certificate.</p>
-<p><strong>The two 8s against each other.</strong> The Loan of 1798, sold at par with the war scare at its height, sagged to $90 during 1799 — the one moment in either series when even eight per cent looked barely adequate. The Loan of 1800, born as peace was being signed, never saw a price below 101. From 1801 the two siblings trade practically on top of one another, as identical claims should, and both glide down the same premium-decay ramp into reimbursement in 1808. Where small divergences appear between them, thin quotations in a small issue are the likeliest explanation rather than any economic distinction.</p>
+<p><strong>The two 8s against each other.</strong> The Loan of 1798, sold at par with the war scare at its height, sagged to $90 during 1799 — the one moment in either series when even eight per cent looked barely adequate. The Loan of 1800, born as peace was being signed, never saw a price below 101. From November 1800 the database carries one price series for both loans (see the data note at the top of this chapter), so the chart cannot show whether the two siblings traded apart. Both follow the same premium-decay ramp into reimbursement in 1808.</p>
 </section>
 </section>
 <section id="issuance-distribution-and-redemption">
@@ -1135,7 +1124,7 @@ document.write(`
 </section>
 <section id="implications-and-legacy">
 <h2>Implications and Legacy<a class="headerlink" href="#implications-and-legacy" title="Link to this heading">#</a></h2>
-<p><strong>The cost of preparedness, priced.</strong> The Eight Per Cent. Loan of 1800 is the cleanest surviving measure of what war risk and thin capital markets cost the early republic. In 1798–1800 the United States — a government that had never missed a coupon on its funded debt — had to pay eight per cent while Britain borrowed at roughly half that rate in a vastly deeper market. The premium over the Hamilton 6s was the market’s bill for an undeclared war, an untested Treasury market, and the impossibility of borrowing abroad. Alexander Hamilton had preached that credit was a resource to be husbanded in peace so it could be spent in war; the 8% loans showed what happened when war arrived before the husbanding was complete.</p>
+<p><strong>The cost of preparedness, priced.</strong> The Eight Per Cent. Loan of 1800 is the cleanest surviving measure of what war risk and thin capital markets cost the early republic. In 1798–1800 the United States — a government that had never missed a coupon on its funded debt — had to pay eight per cent. British 3 per cent consols, the benchmark of a vastly deeper market, yielded about 5.9 per cent in 1798 and 4.7 per cent in 1800 (annual averages, Silberling 1919). The premium over the Hamilton 6s was the market’s bill for an undeclared war, an untested Treasury market, and the impossibility of borrowing abroad. Alexander Hamilton had preached that credit was a resource to be husbanded in peace so it could be spent in war; the 8% loans showed what happened when war arrived before the husbanding was complete.</p>
 <p><strong>A political weapon.</strong> Few securities have carried as much electoral freight per dollar of face value. The “eight per cent loans” gave Gallatin and the Republicans a concrete, quotable number with which to indict Federalist finance — armies, navies, stamp taxes, the direct tax, Fries’s Rebellion, and usurious borrowing, all of a piece. The critique helped win the election of 1800; and the redemption of the 8s then became the showpiece of the winners’ alternative program. Between 1801 and 1812 the Jefferson administration cut the federal debt from about $83 million to about $45 million, and the 8s went first. It is one of the neater symmetries of American fiscal history that the loan’s harshest critic became its punctual paymaster.</p>
 <p><strong>Creditworthiness, demonstrated in reverse.</strong> The Hamilton stocks proved the United States would <em>service</em> its debts; the 8s proved it would <em>retire</em> them — at par, early, and without haggling, even though the redeemed bondholders were largely the political enemies of the administration writing the checks. Jefferson and Gallatin never entertained repudiating or forcibly refinancing the Federalist war debt, and the price series records the market’s confidence: 98 months of quotations, never one below par. That performance was part of the capital-market reputation on which Gallatin could draw when he needed $11.25 million for Louisiana in 1803 — and which the Treasury would strain again after 1812.</p>
 <p><strong>A contrast in life cycles.</strong> Set beside its database neighbors, the 8% loan of 1800 shows how much variety hides inside “the early federal debt.” The 1790 trio were perpetual-style annuities born of a great restructuring, living for half a century through bubble, panic, and war. The 8s were something closer to a modern instrument: a cash loan, sold competitively at a market-clearing price, serviced quietly, and called in as soon as the issuer’s finances allowed. Their eight-year price series — a premium purchased at issue and amortized smoothly to par — is the least dramatic chart in this series, and that undrama is the achievement: it is what a government debt market looks like when it works.</p>
@@ -1154,6 +1143,7 @@ document.write(`
 <ul class="simple">
 <li><p>Bayley, R. A. (1881). <em>The National Loans of the United States, From July 4, 1776 to June 30, 1880</em>. Washington: Government Printing Office — the standard loan-by-loan compendium, including the terms and disposition of the 8% loans of 1798 and 1800.</p></li>
 <li><p>Dewey, D. R. (1918). <em>Financial History of the United States</em>. New York: Longmans, Green and Co.</p></li>
+<li><p>Silberling, N. J. (1919). “British Financial Experience, 1790–1830.” <em>Review of Economic Statistics</em> 1 (Supplement 2) — annual average prices and yields of British 3 per cent consols.</p></li>
 <li><p>Studenski, P. &amp; Krooss, H. E. (1952). <em>Financial History of the United States</em>. New York: McGraw-Hill.</p></li>
 <li><p>Elkins, S. &amp; McKitrick, E. (1993). <em>The Age of Federalism: The Early American Republic, 1788–1800</em>. New York: Oxford University Press — on the XYZ Affair, the Quasi-War, the direct tax, Fries’s Rebellion, and the politics of Federalist finance.</p></li>
 <li><p>Perkins, E. (1994). <em>American Public Finance and Financial Services, 1700–1815</em>. Columbus: Ohio State University Press.</p></li>
@@ -1163,6 +1153,13 @@ document.write(`
 </ul>
 <hr class="docutils" />
 <p><em>Enhanced Bond Biography generated from the Hall-Payne-Sargent Bond Database. Narrative enrichment draws on Bayley (1881), Dewey (1918), Elkins &amp; McKitrick (1993), and Edling (2014); statements about individual subscribers and precise reimbursement schedules are deliberately kept general where the surviving secondary literature is thin.</em></p>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="bayley1800" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Bayley (1881) reports $1,481,700 of stock issued for $1,565,229 in cash, a price of about 105.6. The database’s 105.75 and Bayley’s figure differ by about a seventh of a point; the stock amount, $1,481,700, matches the database’s peak quantity exactly. The government, locked by its own act into an 8% coupon, at least clawed back part of the excess in the sale price — and the premium itself was the market’s signal that peace, and cheaper money, were coming.</p>
+</aside>
+</aside>
 </section>
 </section>
 </section>
@@ -1222,7 +1219,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1303,8 +1301,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

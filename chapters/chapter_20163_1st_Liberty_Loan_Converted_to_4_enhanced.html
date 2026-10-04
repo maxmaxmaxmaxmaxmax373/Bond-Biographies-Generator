@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: 1st Liberty Loan of 1917 (3.5%)" href="chapter_20162_1st_Liberty_Loan_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -485,6 +471,13 @@ document.write(`
 <span class="n">BondQuant</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondQuant&#39;</span><span class="p">]</span>
 <span class="n">BondPrice</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s1">&#39;BondPrice&#39;</span><span class="p">]</span>
 <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Drop one-month prints flagged as data artifacts (each is described in the chapter text)</span>
+<span class="n">ARTIFACT_PRINTS</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">20090</span><span class="p">,</span> <span class="s1">&#39;1859-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20133</span><span class="p">,</span> <span class="s1">&#39;1919-12-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20170</span><span class="p">,</span> <span class="s1">&#39;1920-01-31&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">20166</span><span class="p">,</span> <span class="s1">&#39;1920-05-31&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">_id</span><span class="p">,</span> <span class="n">_d</span> <span class="ow">in</span> <span class="n">ARTIFACT_PRINTS</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">_s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Average&#39;</span><span class="p">,</span> <span class="s1">&#39;Coupon&#39;</span><span class="p">,</span> <span class="s1">&#39;Registered&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">BondPrice</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">_d</span><span class="p">),</span> <span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">_s</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">)</span>
 
 <span class="n">BondQuant_T</span> <span class="o">=</span> <span class="n">BondQuant</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <span class="n">BondPrice_T</span> <span class="o">=</span> <span class="n">BondPrice</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
@@ -721,7 +714,7 @@ document.write(`
 <li><p><strong>But give up the tax shield.</strong> Converting meant accepting the Second Act’s narrower exemption. The original 3½s were free of essentially all federal taxation, including the wartime <strong>surtaxes</strong> that reached confiscatory levels on large incomes; the converted 4s were not. For a high-bracket investor, the surtax exemption on the 3½s could easily be worth more than half a point of coupon; for a small saver below the surtax threshold, it was worth nothing.</p></li>
 </ul>
 <p>The result was a sorting by tax bracket and by attentiveness. The database records the outcome: of the roughly $2 billion of original First Liberties, the parent series (ID 20162) shows an outflow of roughly $575 million as conversion-era bookkeeping is recorded in November 1918 — by which point about $385 million had already moved on to the 4¼% variant (ID 20164) and about <strong>$191 million</strong> stood as converted 4s, the peak of this bond’s series. The great majority of First Loan holders — small savers and surtax-payers alike — never converted at all, a mixture of rational tax arithmetic and simple inertia. (The precise timing of individual exchanges is smoothed in the database; conversions ran from late 1917 through 1918.)</p>
-<p>When the <strong>Third Liberty Loan Act of April 1918</strong> set 4¼%, the story repeated one level up. The Third Loan itself carried no conversion privilege — the Treasury had learned how expensive the option was — but the outstanding First Loan 4s received a further right to convert into 4¼s. Notably, the further-conversion privilege on First Loan 4s remained open for years rather than lapsing after a short window (in contrast to the Second Loan 4s, whose privilege expired in November 1918 and produced a single-month, $2.8 billion cliff — see the 2nd Liberty Loan chapter). The consequence is visible below: instead of a cliff, a long, steady leak.</p>
+<p>When the <strong>Third Liberty Loan Act of April 1918</strong> set 4¼%, the story repeated one level up. The Third Loan itself carried no conversion privilege — the Treasury had learned how expensive the option was — but the outstanding First Loan 4s received a further right to convert into 4¼s. The Third Liberty Bond Act of April 4, 1918 (§3) speaks of “the six months’ conversion period prescribed by the Secretary of the Treasury,” and the Act of September 24, 1918 recognized a further privilege “arising as a consequence of the issue of bonds of the Fourth Liberty Loan.” Conversion of the 4s nonetheless continued well past those windows. Treasury notices of October 1919 still told holders of First Liberty converted 4s and Second Liberty 4s how to convert, with the 4¼ percent rate starting at the next coupon date (<em>Bamberg Herald</em>, October 16, 1919), and the database shows the 4s flowing into the 4¼ percent record through 1921. The Second Loan 4s kept converting as well: their single-month, $2.8 billion drop of November 1918 records the first wave, and a further $170 million moved in May 1920 (see the 2nd Liberty Loan chapter). The consequence for this bond is visible below: a long, steady leak.</p>
 </section>
 <section id="bond-quantity-over-time">
 <h2>Bond Quantity Over Time<a class="headerlink" href="#bond-quantity-over-time" title="Link to this heading">#</a></h2>
@@ -1069,7 +1062,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3391ee65ecfeb076618166076b9bf4b09ae6f2783a3f4ed985ed8f1db021be2c.png" src="../_images/3391ee65ecfeb076618166076b9bf4b09ae6f2783a3f4ed985ed8f1db021be2c.png" />
+<img alt="../_images/a9249f6552eaa51a38ae6381c411076cac531b72dc913b682f798819bfe4dbbf.png" src="../_images/a9249f6552eaa51a38ae6381c411076cac531b72dc913b682f798819bfe4dbbf.png" />
 </div>
 </div>
 <section id="reading-the-comparison">
@@ -1078,7 +1071,7 @@ document.write(`
 <ul class="simple">
 <li><p><strong>The 4s versus the parent 3½s (ID 20162).</strong> For much of 1919–1921 the converted 4s traded remarkably close to — and at times below — the 3½% originals, despite the extra half point of coupon. The reversal of the naive coupon ranking has the same two explanations documented in the 1st and 2nd Liberty chapters: the 3½s’ <strong>full surtax exemption</strong>, enormously valuable to high-bracket holders while wartime surtax rates remained confiscatory, and the 3½s’ own still-open conversion optionality. The market priced the tax shield and the option, not just the coupon — which is, in miniature, the whole economics of why many holders never converted in the first place.</p></li>
 <li><p><strong>The 4s versus the 4¼s (IDs 20164, 20165).</strong> The converted 4s generally traded a shade below their 4¼% siblings, the gap approximating the present value of the forgone quarter point. But because the 4s carried a live right to <em>become</em> 4¼s, arbitrage kept the spread thin: a wide gap would simply have accelerated conversion (as it visibly did in the spring of 1920). The 4s’ price thus tracked the 4¼s’ price minus a sliver — an embedded option keeping two securities tethered.</p></li>
-<li><p><strong>The 4% Firsts versus the 4% Seconds (ID 20166).</strong> Same coupon, same tax status, yet the unconverted 4% Seconds sank slightly deeper in 1920 (low of $84.36 versus $84.50) — consistent with the Seconds’ conversion privilege having lapsed in November 1918 while this bond’s remained exercisable. A dead option is worth nothing; a live one is worth a few dimes per hundred, and the price data are precise enough to show it.</p></li>
+<li><p><strong>The 4% Firsts versus the 4% Seconds (ID 20166).</strong> Same coupon, same tax status, and nearly the same 1920 lows ($84.36 for the Seconds against $84.50 for this bond). Both bonds still carried the right to convert into 4¼s, and a gap of 14 cents per hundred is within quotation noise.</p></li>
 </ul>
 </section>
 </section>
@@ -1120,8 +1113,10 @@ document.write(`
 <ul class="simple">
 <li><p>First Liberty Loan Act, Act of April 24, 1917, ch. 4, 40 Stat. 35.</p></li>
 <li><p>Second Liberty Bond Act, Act of September 24, 1917, ch. 56, 40 Stat. 288 (and subsequent amendments).</p></li>
-<li><p>Third Liberty Loan Act, Act of April 4, 1918, ch. 44, 40 Stat. 502.</p></li>
+<li><p>Third Liberty Loan Act, Act of April 4, 1918, ch. 44, 40 Stat. 502 (§3: conversion privileges of the 4 percent bonds; six-month conversion period).</p></li>
 <li><p><em>Annual Report of the Secretary of the Treasury on the State of the Finances</em>, 1917–1919 and 1935. Washington: Government Printing Office.</p></li>
+<li><p>Act of September 24, 1918, ch. 176, 40 Stat. 965 (Supplement to Second Liberty Bond Act; tax exemptions of converted bonds and conversion privilege arising from the Fourth Liberty Loan).</p></li>
+<li><p><em>Bamberg Herald</em> (Bamberg, S.C.), October 16, 1919, p. 9 (Treasury instructions for converting First Liberty converted 4s and Second Liberty 4s).</p></li>
 </ul>
 </section>
 <section id="scholarly-works">
@@ -1203,7 +1198,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1285,8 +1281,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Four Percent Loan of 1907" href="chapter_20121_Four_Percent_Loan_of_1907_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -571,7 +557,7 @@ document.write(`
 </section>
 <section id="the-later-life-silver-scare-war-scare-and-the-settlement-of-1900">
 <h3>The later life: silver scare, war scare, and the settlement of 1900<a class="headerlink" href="#the-later-life-silver-scare-war-scare-and-the-settlement-of-1900" title="Link to this heading">#</a></h3>
-<p>Once the 1895–96 crisis passed to its successor bonds, the 5s of 1904 settled into the role their price series documents below: a seasoned premium bond registering the era’s news. The <strong>free-silver campaign of 1896</strong> — Bryan nominated on the “Cross of Gold” speech in July — marks the price’s sharpest sag, to $108.87 in August 1896: a 5 percent “coin” bond had perhaps eight years of payments exposed to a silver victory, and the market discounted accordingly, though far more mildly than it discounted the thirty-year 4s of 1925. McKinley’s victory on November 3, 1896 restored the premium within weeks. The <strong>Spanish-American War</strong> put a visible but modest dent in the price in April 1898 (the war itself was financed by the popular 3 percent Ten-Twenty loan — see Bond 20130). Finally the <strong>Gold Standard Act of March 14, 1900</strong> transformed the bond’s remaining life: Section 11 invited holders to exchange the 5s of 1904, 4s of 1907, and 3s of 1908 for new thirty-year 2 percent gold consols at premium-compensating valuations, and within a year roughly three-quarters of this loan had been surrendered — after which the rump ran quietly down its glide path to par and was paid off at the February 1904 maturity.</p>
+<p>Once the 1895–96 crisis passed to its successor bonds, the 5s of 1904 settled into the role their price series documents below: a seasoned premium bond registering the era’s news. The <strong>free-silver campaign of 1896</strong> — Bryan nominated on the “Cross of Gold” speech in July — marks the price’s sharpest sag, to $108.87 in August 1896: a 5 percent “coin” bond had perhaps eight years of payments exposed to a silver victory, and the market discounted accordingly. The thirty-year 4s of 1925 lost a slightly smaller fraction of their price over the same weeks. McKinley’s victory on November 3, 1896 restored the premium within weeks. The <strong>Spanish-American War</strong> put a visible but modest dent in the price in April 1898 (the war itself was financed by the popular 3 percent Ten-Twenty loan — see Bond 20130). Finally the <strong>Gold Standard Act of March 14, 1900</strong> transformed the bond’s remaining life: Section 11 invited holders to exchange the 5s of 1904, 4s of 1907, and 3s of 1908 for new thirty-year 2 percent gold consols at premium-compensating valuations, and within a year roughly three-quarters of this loan had been surrendered — after which the rump ran quietly down its glide path to par and was paid off at the February 1904 maturity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bond Lifecycle Timeline</span>
@@ -804,7 +790,7 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>Three observations organize the chart below. First, the bond <em>opened</em> at its premium: the first observation of $117.30 in February 1894 sits almost exactly on the Treasury’s minimum offering price of about 117.2, and the peak of <strong>$119.35 in October 1894</strong> came in the very months the gold reserve was draining toward its autumn low — a reminder that the reserve crisis was a <em>monetary</em> danger, not a solvency danger, and that a 3 percent basis on ten-year federal debt looked cheap to the banks that held it. Second, the sharpest genuine repricing of the bond’s life is the sag to <strong>$108.87 in August 1896</strong>, the weeks after the Democratic convention nominated Bryan on a free-silver platform: a 5 percent “coin” bond with under eight years to run had real but bounded exposure to a silver dollar, and the dip — roughly 4 percent from the early-summer level, against a much deeper proportional sag in the thirty-year 4s of 1925 — is close to a textbook illustration of devaluation risk scaling with duration. McKinley’s victory restored the price to $114 by December 1896. Third, everything after 1900 is mostly <strong>arithmetic</strong>: a non-callable bond redeemable at $100 on February 1, 1904 must shed its premium as that date approaches, and the slide from $115.53 in March 1900 to $101.25 in November 1903 is that amortization, punctuated by increasingly sparse quotations (note the missing months of 1901–03) as the conversion of 1900 shrank the tradable float to a rump.</p>
+<p>Three observations organize the chart below. First, the bond <em>opened</em> at its premium: the first observation of $117.30 in February 1894 sits almost exactly on the Treasury’s minimum offering price of about 117.2, and the peak of <strong>$119.35 in October 1894</strong> came in the very months the gold reserve was draining toward its autumn low — a reminder that the reserve crisis was a <em>monetary</em> danger, not a solvency danger, and that a 3 percent basis on ten-year federal debt looked cheap to the banks that held it. Second, the sharpest genuine repricing of the bond’s life is the sag to <strong>$108.87 in August 1896</strong>, the weeks after the Democratic convention nominated Bryan on a free-silver platform: a 5 percent “coin” bond with under eight years to run had real but bounded exposure to a silver dollar. From June to August 1896 the 5s fell 3.7 percent, from $113.10 to $108.87, while the thirty-year 4s of 1925 fell 2.8 percent, from $116.50 to $113.21. Similar fractional price losses on bonds of very different maturity mean that the shorter bond’s yield rose more: from about 3.0 to 3.6 percent for the 5s, against about 3.1 to 3.3 percent for the 4s. McKinley’s victory restored the price to $114 by December 1896. Third, everything after 1900 is mostly <strong>arithmetic</strong>: a non-callable bond redeemable at $100 on February 1, 1904 must shed its premium as that date approaches, and the slide from $115.53 in March 1900 to $101.25 in November 1903 is that amortization, punctuated by increasingly sparse quotations (note the missing months of 1901–03) as the conversion of 1900 shrank the tradable float to a rump.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Annotated price chart</span>
@@ -1075,7 +1061,7 @@ document.write(`
 <section id="reading-the-comparison">
 <h3>Reading the Comparison<a class="headerlink" href="#reading-the-comparison" title="Link to this heading">#</a></h3>
 <p>Set beside the founding-era stocks, the 5s of 1904 display the same symmetry the database reveals for all the gold-defense bonds. The 6 percents of 1790 traded mostly <em>around or below</em> par, because the open question of their era was whether the new republic would pay at all; the 5s of 1904 spent every month of their ten-year life <em>above</em> par — their worst price, in the depths of the silver scare, was $108.87 — because by the 1890s the question had shifted from <em>whether</em> the United States would pay to <em>in what money</em>. Devaluation risk, unlike default risk, could shave a premium without ever threatening it.</p>
-<p>Within its own generation (only partly plotted here), the sharpest comparison is with the <strong>Loan of 1925</strong>. Born of the same crisis a year apart, under the same statute, payable in the same ambiguous “coin,” the two bonds differed chiefly in maturity — ten years against thirty — and the summer of 1896 measured what that difference was worth: the free-silver scare knocked the long 4s down to about $113 from a level near $124, while the short 5s slipped only from about $113 to $109. A silver dollar would have clipped eight years of this bond’s payments but three decades of the other’s. The <strong>2 percent Consols of 1930</strong> are the instructive opposite in a different dimension: their price was made by the national-bank circulation privilege rather than by investment arithmetic, which is exactly why so many holders of the 5s were willing, in 1900, to trade a 5 percent coupon for a 2 percent one — the bundle of bond-plus-franchise, at the Treasury’s premium-compensating exchange valuation, was worth more to a note-issuing bank than the plain 5 percent bond it gave up.</p>
+<p>Within its own generation (only partly plotted here), the sharpest comparison is with the <strong>Loan of 1925</strong>. Born of the same crisis a year apart, under the same statute, payable in the same ambiguous “coin,” the two bonds differed chiefly in maturity — ten years against thirty — and the summer of 1896 tested what that difference was worth. Between June and August the long 4s fell from $116.50 to $113.21 and the short 5s from $113.10 to $108.87 — similar fractions of price. A silver dollar would have clipped eight years of this bond’s payments but three decades of the other’s, yet the data show no larger proportional fall in the long bond; in yield terms the ten-year bond moved more. The <strong>2 percent Consols of 1930</strong> are the instructive opposite in a different dimension: their price was made by the national-bank circulation privilege rather than by investment arithmetic, which is exactly why so many holders of the 5s were willing, in 1900, to trade a 5 percent coupon for a 2 percent one — the bundle of bond-plus-franchise, at the Treasury’s premium-compensating exchange valuation, was worth more to a note-issuing bank than the plain 5 percent bond it gave up.</p>
 </section>
 </section>
 <section id="issuance-distribution-and-redemption">
@@ -1088,8 +1074,8 @@ document.write(`
 <section id="implications-and-legacy">
 <h2>Implications and Legacy<a class="headerlink" href="#implications-and-legacy" title="Link to this heading">#</a></h2>
 <p><strong>The experiment that had to fail first.</strong> The historical significance of the 5s of 1904 lies less in what they accomplished than in what they proved impossible. Twice in 1894 the Treasury did everything orthodoxy prescribed — advertised a loan, sold it at a full price, took payment in gold — and twice the gold ran out through the redemption window faster than the loan had brought it in, because bond sales did nothing to stop the endless chain and much of the subscription gold came out of the Treasury itself. The lesson was structural: a fiscal instrument cannot, by itself, cure a monetary defect. It was the demonstrated failure of these two conventional sales that made the <em>unconventional</em> Belmont–Morgan contract of February 1895 — with its foreign gold and its exchange-market protection — politically survivable, if never politically forgiven. In that sense this bond is the necessary first act of the drama whose climax belongs to the Loan of 1925.</p>
-<p><strong>A 3 percent basis in the middle of a crisis.</strong> The prices tell the era’s deepest truth about American credit. In February 1894, with the reserve broken, the deficit growing, and Congress paralyzed, the United States borrowed ten-year money at roughly 3 percent — and the bonds promptly traded up. Default was never in the price; only the <em>denomination</em> of payment was. The whole spread between what the 5s yielded and what a hypothetical explicit-gold bond would have yielded was the market’s tax on the word “coin” — the same tax Cleveland complained of when Congress refused gold-clause authority in 1895, and the tax the Gold Standard Act finally abolished in 1900. Payne, Szőke, Hall &amp; Sargent (2025) treat exactly this wedge in estimating the cost of financing the federal debt under the gold standard.</p>
-<p><strong>The short bond as a control group.</strong> For the event studies the 1890s invite, the 5s of 1904 are the ideal companion series to the 4s of 1925: same issuer, same statute, same “coin” clause, different maturity. The summer of 1896 moved both prices, but proportionally to their exposure — a few points off the ten-year bond, twice that off the thirty-year — which is precisely the term-structure signature of a feared future devaluation rather than of default or panic. The pair of series is as clean a natural experiment on gold-standard credibility as the nineteenth century offers.</p>
+<p><strong>A 3 percent basis in the middle of a crisis.</strong> The prices tell the era’s deepest truth about American credit. In February 1894, with the reserve broken, the deficit growing, and Congress paralyzed, the United States borrowed ten-year money at roughly 3 percent — and the bonds promptly traded up. Default was never in the price; only the <em>denomination</em> of payment was. The whole spread between what the 5s yielded and what a hypothetical explicit-gold bond would have yielded was the market’s tax on the word “coin” — the same tax Cleveland complained of when Congress did not authorize gold bonds in 1895, and the tax the Gold Standard Act finally abolished in 1900. Payne, Szőke, Hall &amp; Sargent (2025) treat exactly this wedge in estimating the cost of financing the federal debt under the gold standard.</p>
+<p><strong>The short bond as a control group.</strong> For the event studies the 1890s invite, the 5s of 1904 are the ideal companion series to the 4s of 1925: same issuer, same statute, same “coin” clause, different maturity. The summer of 1896 moved both prices by similar fractions — 3.7 percent off the ten-year bond, 2.8 percent off the thirty-year — so the yield on the shorter bond rose more, by about 0.6 percentage point against 0.2. A simple story in which devaluation risk scales with the number of exposed payments predicts the opposite ordering of price losses; the data do not support it. The pair of series remains a useful natural experiment on gold-standard credibility.</p>
 <p><strong>An honest ledger, closed early.</strong> For all the tumult of its birth, the bond’s own record was spotless: forty quarterly coupons paid in full, most of the principal voluntarily exchanged at fair value in 1900, and the rest paid — some of it early, for the convenience of the market — in the gold dollars whose defense had been its whole purpose. The gold the bonds bought in 1894 slipped away within months; the credibility their punctual service helped sustain did not.</p>
 </section>
 <section id="references">
@@ -1181,7 +1167,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1262,8 +1249,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

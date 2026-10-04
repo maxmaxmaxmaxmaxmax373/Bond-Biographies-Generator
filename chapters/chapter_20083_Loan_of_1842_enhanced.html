@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Six Per Cent. Loan of 1815" href="chapter_20069_Six_Per_Cent_Loan_of_1815_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -458,6 +444,7 @@ document.write(`
 <p><em>An enhanced chapter from the Hall-Payne-Sargent US Federal Bond Database (2,857 issues, 1776–1960)</em></p>
 <p><strong>Bond ID (L1):</strong> 20083  |  <strong>Category:</strong> Interest Bearing &gt; Marketable &gt; Long Term Bond</p>
 <hr class="docutils" />
+<p><strong>Data note.</strong> Quotations from January 1862 to the end of the series (November 1862) are prices in greenbacks, while this bond’s coupons and principal were payable in coin. Price movements in 1862 mix the gold premium with credit news.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -504,7 +491,7 @@ document.write(`
 <p>Behind those tidy statistics lies one of the most humiliating episodes in the history of American public credit — and one of its most complete recoveries.</p>
 <p>In January 1835 the United States had done something no major nation had ever done: it paid off essentially its entire national debt. Andrew Jackson celebrated the extinction of the debt as a moral triumph. Barely two years later, the Panic of May 1837 shattered the banking system, and the long depression that followed — deepening again after 1839 — collapsed the customs and land-sale revenues on which the federal government lived. The Treasury ran deficits year after year from 1837 through 1843, papering over the gap first with short-dated Treasury notes and then, reluctantly, with funded loans. The debt-free republic was borrowing again.</p>
 <p>It was borrowing, moreover, at the worst possible moment. In 1841–42, eight states and the Territory of Florida stopped paying interest on their debts, and several ultimately repudiated obligations outright. European investors, who held a large share of those state bonds, did not carefully distinguish between the credit of Pennsylvania or Mississippi and the credit of the United States: to many in London and Paris, “American” credit was simply ruined. When the Tyler administration’s Treasury tried to place its new loan, it found the door to European capital markets closed — a remark widely attributed to Baron James de Rothschild, and reported in McGrane’s classic study of the episode, had it that the head of the finances of Europe told an American agent that the United States “cannot borrow a dollar.” Whatever the exact words, the substance was true: in 1842 the government of the United States, which had never itself missed a payment, could not sell its 6 per cent bonds abroad at any acceptable price.</p>
-<p>The Loan of 1842 is therefore the pivot of a larger story. It marks the low point of federal credit between Hamilton’s funding of 1790 and the Civil War, and its subsequent climb — from a difficult sale at 97½ to quotations above 118 within eighteen months — traces the restoration of the government’s good name. It went on to trade alongside the Mexican War sixes, to be bought back at handsome premiums out of the surpluses of the 1850s, and to be redeemed at maturity in 1863 in the middle of a far greater war. Few securities in the database compress so much of antebellum fiscal history into a single price series.</p>
+<p>The Loan of 1842 is therefore the pivot of a larger story. It marks the low point of federal credit between Hamilton’s funding of 1790 and the Civil War, and &gt; <strong>Data note.</strong> The database’s price series for the Louisiana stock runs from July 1809 to September 1820; there are no quotations for 1804–1809. In 76 of its 135 months the recorded price equals that of the Six Per Cent Stock of 1790 (ID 20021), so comparisons between the two stocks carry little information. Prices from August 1814 to February 1817 are quoted in the paper of banks that had suspended specie payments; the wartime trough and the 1815 recovery are measured in that depreciating unit. — traces the restoration of the government’s good name. It went on to trade alongside the Mexican War sixes, to be bought back at handsome premiums out of the surpluses of the 1850s, and to be redeemed at maturity in 1863 in the middle of a far greater war. Few securities in the database compress so much of antebellum fiscal history into a single price series.</p>
 </section>
 <section id="historical-context">
 <h2>Historical Context<a class="headerlink" href="#historical-context" title="Link to this heading">#</a></h2>
@@ -570,7 +557,7 @@ document.write(`
 </section>
 <section id="the-difficult-birth-of-the-loan-and-the-recovery">
 <h3>The difficult birth of the loan, and the recovery<a class="headerlink" href="#the-difficult-birth-of-the-loan-and-the-recovery" title="Link to this heading">#</a></h3>
-<p>The Act of April 15, 1842 authorized new twenty-year borrowing at up to 6 per cent, extending the shorter-term authority of 1841. Subscriptions came in slowly and in fragments: the quantity series below shows only $1.6 million placed by June 1842 and $3.4 million by year-end. Congress relaxed the terms, permitting sale below par, and the price-sold figure of 97½ in the database records the concession the Treasury had to make — the United States, at peace, paying a discount on a 6 per cent coin bond. The turn came with the Tariff of August 1842, which restored customs revenue, and with the general revival of business in 1843. By March 1843 the full $8.34 million was out; by November 1843 the bond was quoted at 118⅝. Several defaulting states (Pennsylvania and Maryland among them) later resumed payment, and the worst of the stigma faded, though the repudiations of Mississippi and Florida were never made good.</p>
+<p>The Act of April 15, 1842 authorized new twenty-year borrowing at up to 6 per cent, extending the shorter-term authority of 1841. The Act of 1841 had forbidden sales below par; the Act of April 15, 1842 let the Secretary sell the stock below par after advertising it. The Act of August 31, 1842 restored the par floor. Subscriptions came in slowly and in fragments: the quantity series below shows only $1.6 million placed by June 1842 and $3.4 million by year-end. The database records a sale price of 97½. Bayley (1881, pp. 363–364) reports $8,343,886 of stock sold for $8,301,468 in cash, an average of about 99.5. On either figure the United States, at peace, sold a 6 per cent coin bond below par. The turn came with the Tariff of August 1842, which restored customs revenue, and with the general revival of business in 1843. By March 1843 the full $8.34 million was out; by November 1843 the bond was quoted at 118⅝. Several defaulting states (Pennsylvania and Maryland among them) later resumed payment, and the worst of the stigma faded, though the repudiations of Mississippi and Florida were never made good.</p>
 </section>
 <section id="the-mexican-war-the-golden-1850s-and-the-end">
 <h3>The Mexican War, the golden 1850s, and the end<a class="headerlink" href="#the-mexican-war-the-golden-1850s-and-the-end" title="Link to this heading">#</a></h3>
@@ -666,12 +653,12 @@ document.write(`
 <td><p>~$8.34 million (peak outstanding, March 1843)</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Price Sold</strong></p></td>
-<td><p>0.975 (about 97½ per $100 of face value)</p></td>
+<td><p>0.975 in the database (97½ per $100 of face value); Bayley’s cash figures ($8,301,468 for $8,343,886 of stock) give about 99.5</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Two features deserve emphasis. First, the <strong>twenty-year term</strong> was itself a statement: the Loan of 1841 had been a short-dated stopgap, and the 1842 act’s long maturity acknowledged that the deficit was not a passing embarrassment but a debt that would have to be carried across a generation. Second, the <strong>sale below par</strong> — recorded in the database as 0.975 — was a concession Congress had originally resisted. A 6 per cent coin bond of the United States selling at a discount in peacetime measures precisely how much the state-default crisis had cost the federal government’s reputation, since the same government’s securities would spend most of the 1850s above 110.</p>
+<p>Two features deserve emphasis. First, the <strong>twenty-year term</strong> was itself a statement: the Loan of 1841 had been a short-dated stopgap, and the 1842 act’s long maturity acknowledged that the deficit was not a passing embarrassment but a debt that would have to be carried across a generation. Second, the <strong>sale below par</strong> — recorded in the database as 0.975, and about 99.5 on Bayley’s cash figures — was a concession the Act of 1841 had refused and the Act of April 15, 1842 granted. A 6 per cent coin bond of the United States selling at a discount in peacetime measures precisely how much the state-default crisis had cost the federal government’s reputation, since the same government’s securities would spend most of the 1850s above 110.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display full bond features from database</span>
@@ -751,7 +738,7 @@ document.write(`
 <section id="quantity-analysis">
 <h3>Quantity Analysis<a class="headerlink" href="#quantity-analysis" title="Link to this heading">#</a></h3>
 <p>The quantity series tells the story of the loan in four movements.</p>
-<p><strong>The struggle to sell (1842–43).</strong> Only $1.63 million was out by June 1842 and $3.42 million by December — a crawl that reflects the hostile market described above. The jump to the full $8.34 million by March 1843 came only after Congress permitted sale below par and after the Tariff of 1842 and reviving trade made federal paper saleable again. A loan that a decade later would have been absorbed in a morning took the better part of a year to place.</p>
+<p><strong>The struggle to sell (1842–43).</strong> Only $1.63 million was out by June 1842 and $3.42 million by December — a crawl that reflects the hostile market described above. The jump to the full $8.34 million by March 1843 came after the Tariff of 1842 and reviving trade made federal paper saleable again. A loan that a decade later would have been absorbed in a morning took the better part of a year to place.</p>
 <p><strong>The long plateau (1843–1852).</strong> The full amount then sat essentially untouched for a decade, through the Mexican War — when the Treasury was adding new debt, not retiring old — with only a token $80,700 reduction at the end of 1848.</p>
 <p><strong>Premium purchases out of surplus (1853–1857).</strong> From 1853 the balance falls steadily: to $6.6 million by the end of 1853, $4.5 million by the end of 1854, and $2.88 million by the end of 1857. This is the mirror image of the 1842 humiliation. Tariff revenues swollen by the prosperity (and gold) of the early 1850s gave the Treasury persistent surpluses, and Secretaries Corwin and, especially, James Guthrie used them to buy government bonds in the open market at substantial premiums — this bond was then quoted in the teens above par — both to reduce the debt and to return idle Treasury cash to a money market that complained of its absorption. The purchases stop abruptly at the end of 1857: the Panic of 1857 collapsed customs revenue, the surpluses vanished, and the balance froze at $2.88 million for five years while the Treasury of 1858–60 went back to <em>borrowing</em>.</p>
 <p><strong>Redemption at maturity (1863).</strong> The bond became redeemable on January 1, 1863, and the ledger shows the principal paid off in the first half of that year — an 82% drop in the March 1863 quarter and most of the rest by June. The timing is remarkable: in the middle of the Civil War, while borrowing on an unprecedented scale through five-twenties and legal-tender notes, the Treasury retired this twenty-year relic of the 1842 crisis on schedule. The small residual balances that linger in the “Total Outstanding” series into the late 1860s (ultimately a mere $6,000) represent certificates never presented for payment — a common tail in nineteenth-century loan accounts, not a default.</p>
@@ -796,7 +783,7 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>The first quotation in the database, 103½ in February 1843, already stands above both par and the 97½ issue price — the market had turned before the loan was even fully placed. The run to 118⅝ by November 1843 is one of the sharpest sustained rallies of any peacetime bond in the antebellum database: a price move of roughly twenty points in under two years, driven not by any change in the bond’s terms but by the resurrection of the issuer’s reputation and the general collapse of yields as idle capital, burned by state bonds, crowded into the one American public credit that had never failed.</p>
+<p>The first quotation in the database, 103½ in February 1843, already stands above par and above the issue price (97½ in the database; about 99.5 on Bayley’s cash figures) — the market had turned before the loan was even fully placed. The run to 118⅝ by November 1843 is one of the sharpest sustained rallies of any peacetime bond in the antebellum database: a price move of roughly twenty points in under two years, driven not by any change in the bond’s terms but by the resurrection of the issuer’s reputation and the general collapse of yields as idle capital, burned by state bonds, crowded into the one American public credit that had never failed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Annotated price chart</span>
@@ -895,7 +882,7 @@ document.write(`
 <tr class="row-even"><td><p>1843-03</p></td>
 <td><p>quantity increase</p></td>
 <td><p>+144.1%</p></td>
-<td><p>The balance of the loan finally taken; recovery in trade and Congress’s permission to sell below par let the Treasury complete the placement ($8.34M outstanding).</p></td>
+<td><p>The balance of the loan finally taken; recovery in trade let the Treasury complete the placement ($8.34M outstanding).</p></td>
 </tr>
 <tr class="row-odd"><td><p>1845-12</p></td>
 <td><p>price drop</p></td>
@@ -915,7 +902,7 @@ document.write(`
 <tr class="row-even"><td><p>1861-07</p></td>
 <td><p>price drop</p></td>
 <td><p>-5.4%</p></td>
-<td><p>Civil War escalation. After a gap in quotations, the bond reappears below par in the summer of 1861 as the Union confronted the cost of a real war (the July quote precedes and spans the defeat at Bull Run).</p></td>
+<td><p>(follows a data gap) Civil War escalation. After a gap in quotations, the bond reappears below par in the summer of 1861 as the Union confronted the cost of a real war (the July quote precedes and spans the defeat at Bull Run).</p></td>
 </tr>
 <tr class="row-odd"><td><p>1863-03</p></td>
 <td><p>quantity decrease</p></td>
@@ -1030,7 +1017,7 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>The most telling companions are the loans on either side of it. The <strong>Loan of 1841</strong> was the first, short-dated attempt to fund the deficit, placed with difficulty at rates near 6%. The <strong>Loan of 1843</strong>, by contrast, was sold at a <strong>5% coupon above par</strong> — barely a year after the Treasury had been forced to discount 6s. No pair of adjacent issues in the antebellum database better measures how fast federal credit recovered once revenue returned and the state-default panic subsided. During the Mexican War the bond was joined by the <strong>6s of 1846, 1847, and 1848</strong>, twenty-year coin bonds essentially of its own design; the war loans of 1847–48 sold at or above par, some to buyers who included returning foreign investors — the same European market that had refused the 1842 loan took American federal bonds again within five years.</p>
+<p>The most telling companions are the loans on either side of it. The <strong>Loan of 1841</strong> was the first, short-dated attempt to fund the deficit, placed with difficulty at rates near 6%. The <strong>Loan of 1843</strong>, by contrast, was sold at a <strong>5% coupon above par</strong> — barely a year after the Treasury had been forced to discount 6s. No pair of adjacent issues in the antebellum database better measures how fast federal credit recovered once revenue returned and the state-default panic subsided. During the Mexican War the bond was joined by the <strong>6s of 1846, 1847, and 1848</strong>, twenty-year coin bonds essentially of its own design; the war loans of 1847–48 sold at or above par, and in 1848 W. W. Corcoran placed more than $3 million of the 1848 loan in London (Cohen 1971) — the same European market that had refused the 1842 loan took American federal bonds again within six years.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparative price chart with related bonds</span>
@@ -1076,8 +1063,8 @@ document.write(`
 </section>
 <section id="issuance-distribution-and-redemption">
 <h2>Issuance, Distribution, and Redemption<a class="headerlink" href="#issuance-distribution-and-redemption" title="Link to this heading">#</a></h2>
-<p>The bond was originally sold at <strong>97½</strong> (0.975 per $100 of face value).</p>
-<p><strong>How it was sold.</strong> There was no underwriting syndicate of the Baring–Hope kind here — that was precisely the problem. The Treasury invited subscriptions and sold the stock directly, in installments, over roughly a year. Efforts to interest European houses failed completely; the state-default scandal had made “American securities” a term of abuse in London and on the Continent, and the great banks declined even the federal government’s paper. The loan was therefore absorbed at home — by American banks, insurance companies, trustees, and individual capitalists, largely in the northeastern cities — and only slowly, with Congress ultimately conceding sale below par to get it done. Contemporary Treasury reports record the placement’s fits and starts; the quantity series above ($1.6M by mid-1842, $8.34M by March 1843) is their statistical shadow.</p>
+<p>The database records the sale price as <strong>97½</strong> (0.975 per $100 of face value). Bayley (1881, pp. 363–364) reports $8,343,886 of stock sold for $8,301,468 in cash, an average of about 99.5.</p>
+<p><strong>How it was sold.</strong> There was no underwriting syndicate of the Baring–Hope kind here — that was precisely the problem. The Treasury invited subscriptions and sold the stock directly, in installments, over roughly a year. Efforts to interest European houses failed completely; the state-default scandal had made “American securities” a term of abuse in London and on the Continent, and the great banks declined even the federal government’s paper. The loan was therefore absorbed at home — by American banks, insurance companies, trustees, and individual capitalists, largely in the northeastern cities — and only slowly, with sales below par permitted from April to August 1842. Contemporary Treasury reports record the placement’s fits and starts; the quantity series above ($1.6M by mid-1842, $8.34M by March 1843) is their statistical shadow.</p>
 <p><strong>How it lived.</strong> Once placed, the stock became a favorite premium investment. Its semi-annual coin coupons and long maturity suited trustees and institutions, and as prices rose past 110 the effective yield to a buyer fell well below 5% — the market rate the recovered Treasury faced when it issued the 5% Loan of 1843. In the 1850s the Treasury itself became the dominant buyer, retiring roughly $5.5 million of the issue between 1853 and 1857 through open-market purchases at premium prices out of surplus revenue.</p>
 <p><strong>How it ended.</strong> The remaining $2.88 million reached maturity on January 1, 1863, and was paid off principally in the first half of that year. The final chapter carries an irony worth savoring: the redemption occurred just as the Legal Tender Acts had driven gold to a premium over the new greenbacks. The bond’s principal and interest were obligations payable in coin, and quotations from 1862 onward must be read with care — the New York market by then quoted bonds in depreciating paper currency, so the rise from 95 to 107 during 1862 conflates genuine recovery in Union credit with the falling value of the unit of quotation. We flag rather than decompose this: the database’s final quotations (par by July 1862, 107 by October–November) are consistent with both forces at work, and with the market anticipating a coin-value payoff at the January 1863 maturity. Trivial residual amounts — certificates never presented — remained on the books into the postwar years, dwindling to $6,000.</p>
 </section>
@@ -1088,7 +1075,7 @@ document.write(`
 <p><strong>It priced the difference between federal and state credit.</strong> The states defaulted; the federal government, with a fraction of their revenue troubles, did not — yet in 1842 the market punished it almost as if it had. The subsequent divergence, as the federal 6s soared to 118 while repudiating states remained locked out of capital markets for decades, taught investors (especially European ones) to distinguish American sovereign credit from American state credit. That distinction, expensively learned, underwrote the Union’s ability to borrow in 1861–65.</p>
 <p><strong>It rejected assumption and distribution alike.</strong> The early 1840s debates ended with a durable settlement of American fiscal federalism: the federal government would neither assume state debts (as in 1790) nor share its revenues with the states (as briefly in 1836–41); states, in turn, rewrote their constitutions in the late 1840s to restrict their own borrowing. The Loan of 1842 was floated in the middle of — and its hard sale was an argument within — that debate.</p>
 <p><strong>It demonstrated redemption discipline under maximum stress.</strong> Paying off a maturing 6 per cent coin loan on schedule in early 1863, while simultaneously borrowing at an unprecedented pace and suspending specie payments on its notes, was a deliberate signal by the wartime Treasury that the old debt’s terms would be honored to the letter. Investors who remembered 1842 understood the message.</p>
-<p><strong>And it left an aphorism.</strong> Whether or not Baron Rothschild spoke the exact words tradition assigns him — that the United States “cannot borrow a dollar” — the episode he came to symbolize made the loan’s later history the more eloquent. Within eighteen months of that verdict the bond stood at 118; within five years European money was buying American war loans again; within twenty, the government that could not borrow a dollar borrowed two and a half billion of them. Few securities have ever more thoroughly outlived their own obituary.</p>
+<p><strong>And it left an aphorism.</strong> Whether or not Baron Rothschild spoke the exact words tradition assigns him — that the United States “cannot borrow a dollar” — the episode he came to symbolize made the loan’s later history the more eloquent. Within eighteen months of that verdict the bond stood at 118; within six years European money was buying American war loans again; within twenty, the government that could not borrow a dollar borrowed two and a half billion of them. Few securities have ever more thoroughly outlived their own obituary.</p>
 </section>
 <hr class="docutils" />
 <section id="references">
@@ -1179,7 +1166,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1260,8 +1248,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

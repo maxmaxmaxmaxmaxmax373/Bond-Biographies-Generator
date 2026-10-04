@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Undesignated Loan of 1814" href="chapter_20058_Undesignated_Loan_of_1814_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -409,7 +395,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funding-a-depreciated-currency-the-last-loan-of-the-war-of-1812">Funding a Depreciated Currency: The Last Loan of the War of 1812</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funding-the-small-treasury-notes-the-last-loan-of-the-war-of-1812">Funding the Small Treasury Notes: The Last Loan of the War of 1812</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historical-context">Historical Context</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fiscal-catastrophe-of-late-1814">The Fiscal Catastrophe of Late 1814</a></li>
@@ -463,11 +449,14 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bond-biography-seven-per-cent-stock-of-1815">
 <h1>Bond Biography: Seven Per Cent. Stock of 1815<a class="headerlink" href="#bond-biography-seven-per-cent-stock-of-1815" title="Link to this heading">#</a></h1>
-<section id="funding-a-depreciated-currency-the-last-loan-of-the-war-of-1812">
-<h2>Funding a Depreciated Currency: The Last Loan of the War of 1812<a class="headerlink" href="#funding-a-depreciated-currency-the-last-loan-of-the-war-of-1812" title="Link to this heading">#</a></h2>
+<section id="funding-the-small-treasury-notes-the-last-loan-of-the-war-of-1812">
+<h2>Funding the Small Treasury Notes: The Last Loan of the War of 1812<a class="headerlink" href="#funding-the-small-treasury-notes-the-last-loan-of-the-war-of-1812" title="Link to this heading">#</a></h2>
 <p><em>An enhanced chapter from the Hall-Payne-Sargent US Federal Bond Database (2,857 issues, 1776-1960)</em></p>
 <p><strong>Bond ID (L1):</strong> 20064  |  <strong>Category:</strong> Interest Bearing &gt; Marketable &gt; Long Term Bond</p>
 <hr class="docutils" />
+<blockquote>
+<div><p><strong>Data note.</strong> The price series begins in September 1815. Its first eighteen months, through February 1817, fall inside the bank-paper window (August 1814–February 1817), when prices were quoted in the paper of banks that had suspended specie payments; quotations from March 1817 are in specie-convertible money.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -511,7 +500,7 @@ document.write(`
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>The <strong>Seven Per Cent. Stock of 1815</strong> was authorized under the Act of February 24, 1815 (with supplementary legislation of March 3, 1815). It was first issued on June 30, 1815 with a coupon rate of 7.0% – the highest coupon on any funded stock created during the War of 1812 era. During its lifetime on the secondary market, the bond’s average price was $106.52, ranging from $102.25 to $111.38 (based on 88 monthly observations from 1815-09-30 to 1824-01-31). Peak outstanding reached $9.05 million on 1817-09-30.</p>
-<p>This bond was born of desperation but lived a charmed life. It was conceived in the darkest weeks of the War of 1812, when the Treasury’s credit lay in ruins: Washington had been burned, the banks outside New England had suspended specie payments, and the government’s Treasury notes – pressed into service as a de facto currency – were circulating at a discount. The acts of early 1815 offered holders of those depreciated notes a way out: convert them into long-term funded stock. To make the offer attractive, Congress attached a premium coupon of 7 percent – a full point above the 6 percent that had been the ceiling of respectable federal borrowing since the Jeffersonian era, and a frank admission of how far the government’s credit had fallen. The chapters on the Six Per Cent. Loan of 1812 (Bond ID 20048) and the loans of 1813 trace how the Treasury’s terms deteriorated step by step as the war dragged on; the 7 percent stock marks the bottom of that descent.</p>
+<p>This bond was born of desperation but lived a charmed life. It was conceived in the darkest weeks of the War of 1812, when the Treasury’s credit lay in ruins: Washington had been burned, the banks outside New England had suspended specie payments, and the government’s Treasury notes – pressed into service as a de facto currency – were circulating at a discount. The Act of February 24, 1815 authorized a new issue of Treasury notes, including small non-interest-bearing notes, and gave their holders the right to fund them into long-term stock. To make the offer attractive, Congress attached a premium coupon of 7 percent – a full point above the 6 percent that had been the ceiling of respectable federal borrowing since the Jeffersonian era, and a frank admission of how far the government’s credit had fallen. The chapters on the Six Per Cent. Loan of 1812 (Bond ID 20048) and the loans of 1813 trace how the Treasury’s terms deteriorated step by step as the war dragged on; the 7 percent stock marks the bottom of that descent.</p>
 <p>Yet almost at the moment of its creation, the bond’s fortunes reversed. News of the Treaty of Ghent reached American markets in February 1815, just days before the authorizing act passed. The Seven Per Cent. Stock was therefore issued into a rapidly healing market: it never traded below par in our data, spent its entire quoted life at a premium, and was retired early – bought up by the sinking fund and redeemed en masse once it became redeemable at the start of 1825 – as postwar Treasury surpluses melted away the war debt. A high-coupon bond with a short life, it is a fitting coda to the War of 1812 arc: the instrument that funded the wreckage of a wartime currency ended its days as one of the safest, steadiest securities in the American market.</p>
 </section>
 <section id="historical-context">
@@ -555,17 +544,17 @@ document.write(`
 <section id="the-fiscal-catastrophe-of-late-1814">
 <h3>The Fiscal Catastrophe of Late 1814<a class="headerlink" href="#the-fiscal-catastrophe-of-late-1814" title="Link to this heading">#</a></h3>
 <p>To understand why the United States was paying 7 percent in 1815, one must understand the autumn of 1814 – the low point of federal credit between the Revolution and the Civil War.</p>
-<p>By 1814 the war was consuming far more than the Treasury could raise. Customs revenue, the government’s fiscal mainstay, had been strangled by the British blockade; the Republican Congress had come only slowly and reluctantly to internal taxation; and the long-term loans of 1813 and 1814 had been placed only at deepening discounts (the 1814 loans sold at just 80 percent of face value). On August 24, 1814, British forces burned the public buildings of Washington, including the Treasury itself. Within days, banks in Baltimore, Philadelphia, and New York suspended specie payments, and suspension spread to most of the country outside New England. The nation’s monetary system fragmented into a patchwork of depreciated, mutually inconvertible state bank notes.</p>
+<p>By 1814 the war was consuming far more than the Treasury could raise. Customs revenue, the government’s fiscal mainstay, had been strangled by the British blockade; the Republican Congress had come only slowly and reluctantly to internal taxation; and the long-term loans of 1813 and 1814 had been placed only at deepening discounts (the May 1814 loan sold at 88 and the separate August 1814 offering at just 80 percent of face value). On August 24, 1814, British forces burned the public buildings of Washington, including the Treasury itself. Within days, banks in Baltimore, Philadelphia, and New York suspended specie payments, and suspension spread to most of the country outside New England. The nation’s monetary system fragmented into a patchwork of depreciated, mutually inconvertible state bank notes.</p>
 <p>The Treasury, which kept its deposits in those banks and received its taxes in their notes, was caught in the wreckage. It increasingly paid its bills in Treasury notes – short-term, interest-bearing paper that had been issued in successive waves since 1812 and that now functioned as the government’s de facto currency. As the volume grew and confidence shrank, the notes went to a discount against specie. In the closing months of 1814 the Treasury was, by the standard accounts (Dewey 1918; Hickey 1989; Hall and Sargent), unable to meet some of its obligations punctually: interest due on the funded debt in New England could not be paid in the specie or Boston funds that creditors were entitled to demand, and some maturing Treasury notes went unredeemed at their due dates. These episodes – partial and temporary, but real – are conventionally described as a technical default, and contemporaries did not mince words about them. Secretary of the Treasury Alexander J. Dallas, taking office in October 1814, told Congress plainly that the public credit was in a state of prostration.</p>
 </section>
 <section id="the-funding-mechanism-turning-notes-into-stock">
 <h3>The Funding Mechanism: Turning Notes into Stock<a class="headerlink" href="#the-funding-mechanism-turning-notes-into-stock" title="Link to this heading">#</a></h3>
 <p>Dallas’s remedy, embodied in the acts of late 1814 and early 1815, was to fund the floating mass of Treasury notes into long-term stock. The Act of February 24, 1815 authorized a new issue of up to $25 million in Treasury notes, including for the first time “small” Treasury notes in denominations under $100 that bore no interest and were plainly designed to circulate as money. Crucially, the legislation allowed holders to convert their notes into funded stock: the small non-interest-bearing notes could be funded at par into stock bearing <strong>7 percent</strong>, while the larger interest-bearing notes were fundable into 6 percent stock. The Seven Per Cent. Stock of 1815 is the instrument created by the first of these channels.</p>
-<p>Why 7 percent? The premium coupon did double duty. It compensated holders of the small notes for the interest those notes did not pay, and – more fundamentally – it was the price of coaxing voluntary conversion out of a public holding depreciated government paper. A government whose 6 percent bonds had recently sold at 80 could not fund its floating debt at 6; the extra point was, in effect, the discount on the Treasury’s credit made explicit in the coupon rather than in the issue price. It was the highest rate the federal government had paid on a funded loan since the emergency 8 percent loans of 1798-1800.</p>
+<p>Why 7 percent? The premium coupon did double duty. It compensated holders of the small notes for the interest those notes did not pay, and – more fundamentally – it was the price of coaxing voluntary conversion out of a public holding non-interest-bearing government paper. A government whose 6 percent bonds had recently sold at 80 could not fund its floating debt at 6; the extra point was, in effect, the discount on the Treasury’s credit made explicit in the coupon rather than in the issue price. It was the highest rate the federal government had paid on a funded loan since the emergency 8 percent loans of 1798-1800.</p>
 </section>
 <section id="the-sudden-peace">
 <h3>The Sudden Peace<a class="headerlink" href="#the-sudden-peace" title="Link to this heading">#</a></h3>
-<p>Then everything changed at once. The Treaty of Ghent had been signed on December 24, 1814; news of it reached New York on February 11, 1815, hard on the heels of word of Andrew Jackson’s victory at New Orleans (January 8). The Senate ratified the treaty within the week. Prices of government securities leapt – the 6 percent war loans spiked more than 20 percent in February 1815 – and the fiscal emergency dissolved with remarkable speed. Trade resumed, customs revenue recovered, and the doubled wartime tax rates briefly remained in force, swinging the budget into surplus by 1816-1817. The Seven Per Cent. Stock was thus issued <em>after</em> the crisis that justified its terms had passed: subscribers who funded their notes in 1815 and 1816 received a premium coupon on the credit of a government whose solvency was no longer in doubt. The market noticed, and from its first quotation in September 1815 the stock traded above par.</p>
+<p>Then everything changed at once – before the small notes were even authorized. The Treaty of Ghent had been signed on December 24, 1814; news of it reached New York on February 11, 1815, hard on the heels of word of Andrew Jackson’s victory at New Orleans (January 8). The Senate ratified the treaty within the week, and the Act of February 24, 1815 followed. The small notes it authorized were issued into the peace and traded at a premium. Prices of government securities leapt – the 6 percent war loans spiked more than 20 percent in February 1815 – and the fiscal emergency dissolved with remarkable speed. Trade resumed, customs revenue recovered, and the doubled wartime tax rates briefly remained in force, swinging the budget into surplus by 1816-1817. The Seven Per Cent. Stock was thus issued <em>after</em> the crisis that justified its terms had passed: subscribers who funded their notes in 1815 and 1816 received a premium coupon on the credit of a government whose solvency was no longer in doubt. The market noticed, and from its first quotation in September 1815 the stock traded above par.</p>
 </section>
 <section id="postwar-consolidation">
 <h3>Postwar Consolidation<a class="headerlink" href="#postwar-consolidation" title="Link to this heading">#</a></h3>
@@ -1090,15 +1079,15 @@ document.write(`
 <h2>Implications and Legacy<a class="headerlink" href="#implications-and-legacy" title="Link to this heading">#</a></h2>
 <section id="the-coupon-as-a-barometer-of-credit">
 <h3>The Coupon as a Barometer of Credit<a class="headerlink" href="#the-coupon-as-a-barometer-of-credit" title="Link to this heading">#</a></h3>
-<p>Set beside its siblings, the Seven Per Cent. Stock completes a legible time series of the Treasury’s credit during the war: 6 percent at par in 1812, 6 percent at 88 in 1813, 6 percent at 80 in 1814, and finally 7 percent in 1815 to fund a depreciated paper currency. Each step records the market’s deteriorating assessment of the government’s promises. The 7s are the war’s fever peak – and, because peace arrived almost simultaneously, they are also the moment the fever broke. No subsequent federal loan of the nineteenth century’s first half would need to offer so high a rate; within a decade the Treasury was borrowing below 5 percent, and the 7s themselves were redeemed precisely because their coupon had become an anachronism.</p>
+<p>Set beside its siblings, the Seven Per Cent. Stock completes a legible time series of the Treasury’s credit during the war: 6 percent at par in 1812, 6 percent at 88 in 1813, 6 percent at 88 and then 80 in 1814, and finally 7 percent in 1815 to fund the small Treasury notes. Each step records the market’s deteriorating assessment of the government’s promises. The 7s are the war’s fever peak – and, because peace arrived almost simultaneously, they are also the moment the fever broke. No subsequent federal loan of the nineteenth century’s first half would need to offer so high a rate; within a decade the Treasury was borrowing below 5 percent, and the 7s themselves were redeemed precisely because their coupon had become an anachronism.</p>
 </section>
 <section id="funding-a-floating-debt-an-old-trick-skillfully-reused">
 <h3>Funding a Floating Debt: An Old Trick, Skillfully Reused<a class="headerlink" href="#funding-a-floating-debt-an-old-trick-skillfully-reused" title="Link to this heading">#</a></h3>
-<p>The mechanism that created this bond – converting a depreciated floating debt into long-term funded stock on terms attractive enough to be voluntary – was Alexander Hamilton’s 1790 playbook applied in miniature. Dallas’s funding of the Treasury notes accomplished quietly what the original funding had accomplished grandly: it withdrew an unstable quasi-currency from circulation, replaced it with a marketable capital asset, and restored the distinction between money and debt that wartime finance had blurred. The episode also taught a darker lesson that would recur in American fiscal history: when a government pays its bills in its own depreciating paper and then funds that paper at a premium interest rate, the cost of the war is partly hidden in the coupon. The 7 percent rate was, in substance, a deferred payment for the defaults and depreciation of 1814.</p>
+<p>The mechanism that created this bond – converting a floating debt into long-term funded stock on terms attractive enough to be voluntary – was Alexander Hamilton’s 1790 playbook applied in miniature. Dallas’s funding of the Treasury notes accomplished quietly what the original funding had accomplished grandly: it withdrew an unstable quasi-currency from circulation, replaced it with a marketable capital asset, and restored the distinction between money and debt that wartime finance had blurred. The episode also shows how a coupon set in a crisis can outlast it: Congress fixed the 7 percent rate when federal credit was at its worst, and the Treasury paid it on notes funded after peace had restored that credit.</p>
 </section>
 <section id="the-cheap-ending-of-an-expensive-beginning">
 <h3>The Cheap Ending of an Expensive Beginning<a class="headerlink" href="#the-cheap-ending-of-an-expensive-beginning" title="Link to this heading">#</a></h3>
-<p>The bond’s later life illustrates the other side of the ledger: how quickly a credible sovereign can reclaim cheap finance. The stock’s uninterrupted premium, its placid ride through the Panic of 1819, and its unceremonious redemption at par in 1825 all testify to a federal credit rebuilt within a decade of near-collapse – rebuilt by the Second Bank, the resumption of specie payments, the postwar tariff revenue, and above all by the demonstrated willingness to pay. By the mid-1830s the entire national debt was briefly extinguished. Holders who funded worthless-looking small notes in 1815 into 7 percent stock and held to redemption earned one of the better risk-adjusted returns available in the early republic – a reward, in effect, for lending confidence to a government at the moment it had none to spare.</p>
+<p>The bond’s later life illustrates the other side of the ledger: how quickly a credible sovereign can reclaim cheap finance. The stock’s uninterrupted premium, its placid ride through the Panic of 1819, and its unceremonious redemption at par in 1825 all testify to a federal credit rebuilt within a decade of near-collapse – rebuilt by the Second Bank, the resumption of specie payments, the postwar tariff revenue, and above all by the demonstrated willingness to pay. By the mid-1830s the entire national debt was briefly extinguished. Holders who funded small notes in 1815 into 7 percent stock and held to redemption earned one of the better risk-adjusted returns available in the early republic – a reward, in effect, for lending confidence to a government at the moment it had none to spare.</p>
 </section>
 <section id="a-window-into-the-database">
 <h3>A Window into the Database<a class="headerlink" href="#a-window-into-the-database" title="Link to this heading">#</a></h3>
@@ -1192,7 +1181,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1201,7 +1191,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funding-a-depreciated-currency-the-last-loan-of-the-war-of-1812">Funding a Depreciated Currency: The Last Loan of the War of 1812</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funding-the-small-treasury-notes-the-last-loan-of-the-war-of-1812">Funding the Small Treasury Notes: The Last Loan of the War of 1812</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historical-context">Historical Context</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-fiscal-catastrophe-of-late-1814">The Fiscal Catastrophe of Late 1814</a></li>
@@ -1283,8 +1273,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

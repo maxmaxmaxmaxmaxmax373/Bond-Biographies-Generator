@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Seven Per Cent. Stock of 1815" href="chapter_20064_Seven_Per_Cent_Stock_of_1815_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -467,6 +453,9 @@ document.write(`
 <p><em>An enhanced chapter from the Hall-Payne-Sargent US Federal Bond Database (2,857 issues, 1776-1960)</em></p>
 <p><strong>Bond ID (L1):</strong> 20069  |  <strong>Category:</strong> Interest Bearing &gt; Marketable &gt; Long Term Bond</p>
 <hr class="docutils" />
+<blockquote>
+<div><p><strong>Data note.</strong> The price series holds a single print in January 1817, which falls inside the bank-paper window (August 1814–February 1817, when prices were quoted in the paper of banks that had suspended specie payments), and then nothing until August 1820. All later quotations are in specie-convertible money.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -553,7 +542,7 @@ document.write(`
 </div>
 <section id="the-debt-the-war-left-behind">
 <h3>The Debt the War Left Behind<a class="headerlink" href="#the-debt-the-war-left-behind" title="Link to this heading">#</a></h3>
-<p>The fiscal catastrophe that produced this bond is described at length in the chapter on the Seven Per Cent. Stock of 1815 (Bond ID 20064), and the step-by-step deterioration of the Treasury’s borrowing terms is traced in the chapters on the war loans of 1812-1814 (Bond IDs 20048, 20052, 20056, 20058). In brief: the British blockade strangled customs revenue, Congress came late to internal taxation, the loans of 1814 could be sold only at 80 percent of face value, and after the burning of Washington in August 1814 the banks outside New England suspended specie payments. The Treasury fell back on successive issues of Treasury notes – short-dated, interest-bearing paper (the standard rate worked out to 5.4 percent a year) that circulated as a substitute currency and went to a discount as its volume grew. By early 1815 the outstanding notes were, in Dallas’s own assessment, a prostrate public credit made visible.</p>
+<p>The fiscal catastrophe that produced this bond is described at length in the chapter on the Seven Per Cent. Stock of 1815 (Bond ID 20064), and the step-by-step deterioration of the Treasury’s borrowing terms is traced in the chapters on the war loans of 1812-1814 (Bond IDs 20048, 20052, 20056, 20058). In brief: the British blockade strangled customs revenue, Congress came late to internal taxation, the May 1814 loan sold at 88 and the separate August 1814 offering only at 80 percent of face value, and after the burning of Washington in August 1814 the banks outside New England suspended specie payments. The Treasury fell back on successive issues of Treasury notes – short-dated, interest-bearing paper (the standard rate worked out to 5.4 percent a year) that circulated as a substitute currency and went to a discount as its volume grew. By early 1815 the outstanding notes were, in Dallas’s own assessment, a prostrate public credit made visible.</p>
 <p>The acts of February 24 and March 3, 1815 offered noteholders an exit: convert the paper into long-term funded stock, payable in coin. The February act channeled the small non-interest-bearing notes into 7 percent stock; the March act provided for funding the larger interest-bearing notes into 6 percent stock, authorizing a loan of roughly $18.5 million for the redemption of Treasury notes. Because the large notes already bore interest and stood closer to par than the small ones, a smaller sweetener sufficed: 6 percent rather than 7. The database records this bond’s price sold as 0.95 – consistent with stock being issued at the rate of $100 of stock for $95 of notes or money, which raised the effective yield above the nominal 6 percent coupon and did for the large-note holders, through the issue price, part of what the extra coupon point did for the small-note holders.</p>
 </section>
 <section id="how-the-war-and-its-aftermath-show-up-in-this-bond">
@@ -874,7 +863,7 @@ document.write(`
 <tr class="row-even"><td><p>1820-08</p></td>
 <td><p>price_spike</p></td>
 <td><p>+7.6%</p></td>
-<td><p>An artifact of the series’ structure: the “spike” is measured from the lone January 1817 quotation of $100.00 across a three-and-a-half-year gap to the resumed quotation of $107.62. It records the cumulative postwar appreciation of federal 6s – including the deflation-driven rise after 1819 – not a one-month move.</p></td>
+<td><p>(data gap) An artifact of the series’ structure: the “spike” is measured from the lone January 1817 quotation of $100.00 across a three-and-a-half-year gap to the resumed quotation of $107.62. It records the cumulative postwar appreciation of federal 6s – including the deflation-driven rise after 1819 – not a one-month move.</p></td>
 </tr>
 <tr class="row-odd"><td><p>1830-03</p></td>
 <td><p>quantity_decrease</p></td>
@@ -1087,7 +1076,7 @@ document.write(`
 <h2>Implications and Legacy<a class="headerlink" href="#implications-and-legacy" title="Link to this heading">#</a></h2>
 <section id="a-menu-of-funding-terms">
 <h3>A Menu of Funding Terms<a class="headerlink" href="#a-menu-of-funding-terms" title="Link to this heading">#</a></h3>
-<p>Taken together with its 7 percent twin, the Six Per Cent. Loan of 1815 constitutes one of the earliest American examples of a Treasury offering a <em>menu</em> of conversion terms tailored to different classes of creditor. Holders of small, non-interest-bearing notes – the war’s involuntary currency – got a premium coupon at par; holders of large, interest-bearing notes got the standard 6 percent coupon sweetened through a 95 issue price and longer call protection. Each package was calibrated to the paper it was meant to absorb, and each worked: together the two channels funded over $21 million of floating debt into long-term stock without compulsion. The episode was Alexander Hamilton’s 1790 funding operation replayed in miniature – withdrawing an unstable quasi-currency, replacing it with a marketable capital asset, and restoring the wartime-blurred line between money and debt – and it anticipated the far larger menus of terms the Treasury would spread before creditors during the Civil War.</p>
+<p>Taken together with its 7 percent twin, the Six Per Cent. Loan of 1815 constitutes one of the earliest American examples of a Treasury offering a <em>menu</em> of conversion terms tailored to different classes of creditor. Holders of small, non-interest-bearing notes – authorized after news of peace, and trading at a premium – got a premium coupon at par; holders of large, interest-bearing notes got the standard 6 percent coupon sweetened through a 95 issue price and longer call protection. Each package was calibrated to the paper it was meant to absorb, and each worked: together the two channels funded over $21 million of floating debt into long-term stock without compulsion. The episode was Alexander Hamilton’s 1790 funding operation replayed in miniature – withdrawing an unstable quasi-currency, replacing it with a marketable capital asset, and restoring the wartime-blurred line between money and debt – and it anticipated the far larger menus of terms the Treasury would spread before creditors during the Civil War.</p>
 </section>
 <section id="the-larger-quieter-twin">
 <h3>The Larger, Quieter Twin<a class="headerlink" href="#the-larger-quieter-twin" title="Link to this heading">#</a></h3>
@@ -1188,7 +1177,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1278,8 +1268,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

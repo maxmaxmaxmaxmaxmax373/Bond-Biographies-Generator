@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Bond Biography: Six Per Cent Stock of 1790" href="chapter_20021_Six_Per_Cent_Stock_of_1790_enhanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -254,9 +243,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -368,24 +362,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -459,6 +445,9 @@ document.write(`
 <p><em>An enhanced chapter from the Hall-Payne-Sargent US Federal Bond Database (2,857 issues, 1776–1960)</em></p>
 <p><strong>Bond ID (L1):</strong> 20022  |  <strong>Category:</strong> Interest Bearing &gt; Marketable &gt; Long Term Bond</p>
 <hr class="docutils" />
+<blockquote>
+<div><p><strong>Data note.</strong> From February 1801 onward the database records the same monthly price for this stock and for the Six Per Cent Stock of 1790 (ID 20021): every month from February 1801 to December 1823 is identical. Comparisons between the two after 1801 carry no information; only the 1790–1800 prices distinguish the deferred stock. The Three Per Cent Stock (ID 20023) has its own price series throughout. Prices from August 1814 to February 1817 are quoted in the paper of banks that had suspended specie payments.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -586,7 +575,7 @@ document.write(`
 </section>
 <section id="the-conversion">
 <h3>1801: The Conversion<a class="headerlink" href="#the-conversion" title="Link to this heading">#</a></h3>
-<p>On January 1, 1801, the waiting ended and the deferred stock began paying 6% quarterly in specie. From that date it was, in every economic respect, the same instrument as the Six Per Cent Stock of 1790, and the market treated it accordingly: from 1801 onward the two price series in the database coincide exactly. The spread between the two securities — roughly $42 in 1791–92, $28 in 1795, $12 in 1798, $3 in 1800 — had converged to zero right on schedule.</p>
+<p>On January 1, 1801, the waiting ended and the deferred stock began paying 6% quarterly in specie. From that date it was, in every economic respect, the same instrument as the Six Per Cent Stock of 1790. From February 1801 onward the database carries a single price series for the two stocks, so their prices coincide by construction. The spread between the two securities — roughly $42 in 1791–92, $28 in 1795, $12 in 1798, $3 in 1800 — had converged to zero right on schedule.</p>
 </section>
 <section id="the-barbary-interlude-the-war-of-1812-and-after">
 <h3>The Barbary interlude, the War of 1812, and after<a class="headerlink" href="#the-barbary-interlude-the-war-of-1812-and-after" title="Link to this heading">#</a></h3>
@@ -974,6 +963,7 @@ document.write(`
 <section id="approximate-yield-to-maturity">
 <h2>Approximate Yield to Maturity<a class="headerlink" href="#approximate-yield-to-maturity" title="Link to this heading">#</a></h2>
 <p>A word of caution is required here. The standardized YTM approximation below treats the stock as an ordinary 6% coupon bond maturing at the final redemption date of December 31, 1836 — a tolerable description of the security <em>after</em> January 1, 1801, but quite wrong before it, since the calculation credits the bond with coupons it was not yet paying. The apparent double-digit “yields” of the early 1790s are an artifact of that mismatch, not a measure of distrust in U.S. credit. For the deferred period the economically meaningful calculation is the one the market itself was doing: the price of the deferred stock should equal the price of the plain sixes discounted back from January 1801. At the observed prices — $45–50 for the deferred against $90–100 for the sixes in the early 1790s, with the ratio rising steadily thereafter — the implied discount rate hovers around the same 6–8% at which all federal stock then yielded. The convergence of the computed YTM toward the coupon rate after 1801 correctly reflects the bond trading as a par-grade 6% security for the rest of its life.</p>
+<p>The database’s yield to maturity misleads for a deferred stock, so the right object before 1801 is a ratio. Let <em>y</em> = 6/<em>P</em> be the current yield on the plain sixes, where <em>P</em> is their price. If the market discounted the deferred coupons at the rate it applied to the sixes, the ratio of the deferred price to the sixes’ price at date <em>t</em> should equal (1+<em>y</em>)<sup>−(1801−<em>t</em>)</sup>, the value at <em>t</em> of a dollar due on January 1, 1801. In the 105 months before 1801 in which both stocks are quoted (December 1790 to December 1800), the gap between the observed ratio and this benchmark averages −0.003, with a standard deviation of 0.026 and a range of −0.07 to +0.07. The gap is most negative in 1790–92 (mean −0.014, the bubble and panic years) and close to zero from 1793 on. The market priced the deferral almost exactly as the sixes’ own yield implied.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Approximate Yield to Maturity</span>
@@ -1131,7 +1121,7 @@ document.write(`
 <ul class="simple">
 <li><p><strong>1790–92:</strong> the deferred stock traded roughly $42–45 below the plain sixes — about $45–67 against $80–110. A 6% annuity that will not begin for a decade, discounted at the 6–8% yields then prevailing, is worth roughly half to two-thirds of one that pays now; the market had the arithmetic right from the first quotation.</p></li>
 <li><p><strong>1795:</strong> the average gap had narrowed to about $28; <strong>1798:</strong> about $12; <strong>1800:</strong> barely $3. Each year that passed handed the deferred holder one more year of approaching coupons, and the price ratio climbed accordingly — even through the Quasi-War, when the plain sixes were <em>falling</em>. The deferred stock’s ability to appreciate through a war scare, purely on pull-to-conversion, is the episode’s most elegant demonstration that the discount was time, not fear.</p></li>
-<li><p><strong>1801 onward:</strong> the gap is exactly zero. Once interest commenced, the two securities were economically indistinguishable, and the database records identical prices for them for the rest of their joint lives.</p></li>
+<li><p><strong>1801 onward:</strong> once interest commenced, the two securities were economically indistinguishable, and the database records one price series for both for the rest of their joint lives. The gap is zero by construction, so the data cannot test whether the market priced them alike.</p></li>
 <li><p><strong>The threes tell the complementary story.</strong> They traded near half of par throughout — their discount reflected a permanently lower coupon, so it never closed until redemption at par approached in the 1830s. The deferred sixes’ discount reflected a temporarily absent coupon, so it closed on a schedule known in 1790 to the day.</p></li>
 </ul>
 <p>Common shocks — the 1791–92 bubble and panic, the 1798 trough, the War of 1812 sag — are visible in every series; divergences are matters of coupon and timing, not differential default risk. It is hard to find a better classroom illustration, from any century, of discounting as the market actually practices it.</p>
@@ -1244,7 +1234,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1326,8 +1317,8 @@ By Thomas J. Sargent, with the Hall–Payne–Sargent Bond Database toolkit
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
